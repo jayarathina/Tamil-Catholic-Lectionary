@@ -72,7 +72,7 @@ INSERT INTO `generalcalendar__saintscommon` (`dayID`, `Reference`, `Category`) V
 ('Doctors-6GR02', 'மத்7:21-29', ''),
 ('Doctors-6GR03', 'மத்13:47-52', ''),
 ('Doctors-6GR04', 'மத்23:8-12', ''),
-('Doctors-6GR05', 'மாற்4:1-10,13-20or4:1-9', ''),
+('Doctors-6GR05', 'மாற்4:1-10,13-20 ors மாற்4:1-9', ''),
 ('Doctors-6GR06', 'லூக்6:43-45', ''),
 ('Martyrs-1FR01', '2குறி24:18-22', ''),
 ('Martyrs-1FR02', '2மக்6:18,21,24-31', ''),

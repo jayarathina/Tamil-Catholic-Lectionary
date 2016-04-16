@@ -8,7 +8,7 @@
 CREATE TABLE `readings__ow` (
   `dayID` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `YearCycle` tinyint(4) NOT NULL,
-  `DayTitle` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `dayTitle` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `reading1` text COLLATE utf8_unicode_ci NOT NULL,
   `psalms` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `Response` text COLLATE utf8_unicode_ci NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE `readings__ow` (
 -- Dumping data for table `readings__ow`
 --
 
-INSERT INTO `readings__ow` (`dayID`, `YearCycle`, `DayTitle`, `reading1`, `psalms`, `Response`, `ResponseVs`) VALUES
+INSERT INTO `readings__ow` (`dayID`, `YearCycle`, `dayTitle`, `reading1`, `psalms`, `Response`, `ResponseVs`) VALUES
 ('OW01-1Mon', 1, '', 'எபி1:1-6', 'திபா97:1,2b.6,7c.9', '', ''),
 ('OW01-1Mon', 2, '', '1சாமு1:1-8', 'திபா116:12-13.14-17.18-19', '', ''),
 ('OW01-2Tue', 1, '', 'எபி2:5-12', 'திபா8:2ab,5.6-7.8-9', '', ''),

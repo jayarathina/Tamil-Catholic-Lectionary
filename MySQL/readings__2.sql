@@ -7,7 +7,7 @@
 
 CREATE TABLE `readings__2` (
   `dayID` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `DayTitle` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `dayTitle` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `reading1` text COLLATE utf8_unicode_ci NOT NULL,
   `psalms` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `response` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE `readings__2` (
 -- Dumping data for table `readings__2`
 --
 
-INSERT INTO `readings__2` (`dayID`, `DayTitle`, `reading1`, `psalms`, `response`, `responseVs`, `reading2`, `alleluia`, `gospel`) VALUES
+INSERT INTO `readings__2` (`dayID`, `dayTitle`, `reading1`, `psalms`, `response`, `responseVs`, `reading2`, `alleluia`, `gospel`) VALUES
 ('AW01-0Sun A', '', 'எசா2:1-5', 'திபா122:1-2.4-5.6-7.8-9', '', '', 'உரோ13:11-14', '', 'மத்24:37-44'),
 ('AW01-0Sun B', '', 'எசா63:16b-17;64:1,3-8', 'திபா80:1ab,2.14-15.17-18', '', '', '1கொரி1:3-9', '', 'மாற்13:33-37'),
 ('AW01-0Sun C', '', 'எரே33:14-16', 'திபா25:4-5a.8-9.10,14', '', '', '1தெச3:12-4:2', '', 'லூக்21:25-28,34-36'),

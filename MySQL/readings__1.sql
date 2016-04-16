@@ -7,7 +7,7 @@
 
 CREATE TABLE `readings__1` (
   `dayID` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `DayTitle` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `dayTitle` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `reading1` text COLLATE utf8_unicode_ci NOT NULL,
   `psalms` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `response` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE `readings__1` (
 -- Dumping data for table `readings__1`
 --
 
-INSERT INTO `readings__1` (`dayID`, `DayTitle`, `reading1`, `psalms`, `response`, `responseVs`, `alleluia`, `gospel`) VALUES
+INSERT INTO `readings__1` (`dayID`, `dayTitle`, `reading1`, `psalms`, `response`, `responseVs`, `alleluia`, `gospel`) VALUES
 ('AW01-1Mon', '', '<year type=''a''>எசா4:2-6</year>\n<year type=''default''>எசா2:1-5</year>', 'திபா122:1-2.3-4b.4cd-5.6-7.8-9', '', '', 'திபா80:4', 'மத்8:5-11'),
 ('AW01-2Tue', '', 'எசா11:1-10', 'திபா72:1-2.7-8.12-13.17', '', '', '', 'லூக்10:21-24'),
 ('AW01-3Wed', '', 'எசா25:6-10a', 'திபா23:1-3a.3b-4.5.6', 'ஆண்டவரின் இல்லத்தில் நான் நெடுநாள் வாழ்ந்திருப்பேன்.', '6b', '', 'மத்15:29-37'),

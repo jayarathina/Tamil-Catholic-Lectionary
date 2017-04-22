@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2017 at 08:52 PM
+-- Generation Time: Apr 22, 2017 at 11:43 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -592,33 +592,6 @@ INSERT INTO `generalcalendar__saintscommon` (`dayID`, `refKey`, `Category`) VALU
 ('Virgins-6GR01', 'மத்19:3-12', ''),
 ('Virgins-6GR02', 'மத்25:1-13', ''),
 ('Virgins-6GR03', 'லூக்10:38-42', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `generalcalendar__vigil`
---
-
-CREATE TABLE `generalcalendar__vigil` (
-  `mnth` tinyint(2) NOT NULL,
-  `dt` tinyint(2) NOT NULL,
-  `dayID` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `common` text COLLATE utf8_unicode_ci NOT NULL,
-  `reading1` text COLLATE utf8_unicode_ci NOT NULL,
-  `psalms` text COLLATE utf8_unicode_ci NOT NULL,
-  `reading2` text COLLATE utf8_unicode_ci NOT NULL,
-  `alleluia` text COLLATE utf8_unicode_ci NOT NULL,
-  `gospel` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `generalcalendar__vigil`
---
-
-INSERT INTO `generalcalendar__vigil` (`mnth`, `dt`, `dayID`, `common`, `reading1`, `psalms`, `reading2`, `alleluia`, `gospel`) VALUES
-(8, 15, 'Assumption, Vigil', 'PROPER', '1குறி15:3-4,15-16;16:1-2', 'திபா132:6-7.9-10.13-14', '1கொரி15:54-57', 'லூக்11:28', 'லூக்11:27-28'),
-(6, 24, 'Birth of John the Baptist, Vigil', 'PROPER', 'எரே1:4-10', 'திபா71:1-2.3-4a.5-6ab.15a,17', '1பேது1:8-12', 'யோவா1:7;லூக்1:17காண்க', 'லூக்1:5-17'),
-(6, 29, 'Peter and Paul, apostles, Vigil', 'PROPER', 'திப3:1-10', 'திபா19:1-2.3-4', 'கலா1:11-20', 'யோவா21:17d', 'யோவா21:15-19');
 
 -- --------------------------------------------------------
 
@@ -1593,13 +1566,16 @@ CREATE TABLE `readings__list_unsettled` (
 --
 
 INSERT INTO `readings__list_unsettled` (`dayID`, `dayTitle`, `reading1`, `psalms`, `reading2`, `alleluia`, `gospel`) VALUES
+('Assumption, Vigil', '', '1குறி15:3-4,15-16;16:1-2', 'திபா132:6-7.9-10.13-14', '1கொரி15:54-57', 'லூக்11:28', 'லூக்11:27-28'),
+('Birth of John the Baptist, Vigil', '', 'எரே1:4-10', 'திபா71:1-2.3-4a.5-6ab.15a,17', '1பேது1:8-12', 'யோவா1:7;லூக்1:17காண்க', 'லூக்1:5-17'),
 ('CW01-Dec25-1', 'கிறிஸ்து பிறப்பு§திருவிழிப்புத் திருப்பலி', 'எசா62:1-5', 'திபா89:3-4.15-16.26,28', 'திப13:16-17,22-25', 'CW01-Dec25-1', 'மத்1:1-25(அல்லது1:18-25)'),
 ('CW01-Dec25-2', 'கிறிஸ்து பிறப்பு§இரவில் திருப்பலி', 'எசா9:2-4,6-7', 'திபா96:1-2.3-4.11-12.13', 'தீத்2:11-14', 'லூக்2:10-11', 'லூக்2:1-14'),
 ('CW01-Dec25-3', 'கிறிஸ்து பிறப்பு§விடியற்காலைத் திருப்பலி', 'எசா62:11-12', 'திபா97:1-2.5-6.11-12', 'தீத்3:4-7', 'லூக்2:14', 'லூக்2:15-20'),
 ('CW01-Dec25-4', 'கிறிஸ்து பிறப்பு§பகலில் திருப்பலி', 'எசா52:7-10', 'திபா98:1.2-3a.3b-4.5-6', 'எபி1:1-6', 'CW01-Dec25-4', 'யோவா1:1-18(அல்லது1:1-5,9-14)'),
-('EW08-Pentecost-1', 'தூய ஆவி ஞாயிறு§திருவிழிப்புத் திருப்பலி', 'தொநூ11:1-9அல்லதுவிப19:3-8a,16-20bஅல்லதுஎசே37:1-14அல்லதுயோவே3:1-5', 'திபா104:1-2.24,35.27-28.29b-30', 'உரோ8:22-27', 'EW08-Pentecost-1', 'யோவா7:37-39'),
+('EW08-Pentecost-1', 'தூய ஆவி ஞாயிறு§திருவிழிப்புத் திருப்பலி', 'தொநூ11:1-9 அல்லது விப19:3-8a,16-20b அல்லது எசே37:1-14 அல்லது யோவே3:1-5', 'திபா104:1-2.24,35.27-28.29b-30', 'உரோ8:22-27', 'EW08-Pentecost-1', 'யோவா7:37-39'),
 ('LW06-0Sun', '<title type=''2''>ஆண்டவருடைய திருப்பாடுகளின்</title>\n<title type=''1'' id=''TitleDeafult''>குருத்து ஞாயிறு</title>', 'எசா50:4-7', 'திபா22:7-8.16-17.18-19.22-23', 'பிலி2:6-11', 'பிலி2:8-9', '<yeartype=''a''>பவனியில்: மத்21:1-11; திருப்பலியில்: மத்26:14-27:66 அல்லது மத்27:11-54</year>\n<yeartype=''b''>பவனியில்: மாற்11:1-10 அல்லது யோவா12:12-16; திருப்பலியில்: மாற்14:1-15:47 அல்லது மாற்15:1-39</year>\n<yeartype=''c''>பவனியில்: லூக்19:28-40; திருப்பலியில்: லூக்22:14-23:56 அல்லது லூக்23:1-49</year>'),
-('LW06-6Sat', 'பாஸ்கா  திருவிழிப்பு', '<ol><li>தொநூ1:1-2:2 அல்லது தொநூ1:1,26-31a\n<ul><li>திபா104:1-2a.5-6.10,12.13-14.24,35c அல்லது திபா33:4-5,6-7,12-13,20+22</li></ul>\n</li>\n<li>தொநூ22:1-18 அல்லது 22:1-2,9-13,15-18\n<ul><li>திபா16:5,8.9-10.11</li></ul>\n</li>\n<li>விப14:15-15:9\n<ul><li>விப15:1-2.3-4.5-6.17-18</li></ul>\n</li>\n<li>எசா54:5-14\n<ul><li>திபா30:1,3.4-5.10,11a,12b</li></ul>\n</li>\n<li>எசா55:1-11\n<ul><li>எசா12:2-3.4bcd.5-6</li></ul>\n</li>\n<li>பாரூ3:9-15,32-4:4\n<ul><li>திபா19:7.8.9.10</li></ul>\n</li>\n<li>எசே36:16-17a,18-28\n<ul><li>திபா42:2,4bcd;43:3,4 அல்லது திபா51:10-11,12-13,16-17</li></ul>\n</li>\n</ol>\n\n', 'திபா118:1-2.16-17.22-23', 'உரோ6:3-11', '', '<yeartype=''a''>மத்28:1-10</year>\n<yeartype=''b''>மாற்16:1-8</year>\n<yeartype=''c''>லூக்24:1-12</year>');
+('LW06-6Sat', 'பாஸ்கா  திருவிழிப்பு', '<ol><li>தொநூ1:1-2:2 அல்லது தொநூ1:1,26-31a\n<ul><li>திபா104:1-2a.5-6.10,12.13-14.24,35c அல்லது திபா33:4-5,6-7,12-13,20+22</li></ul>\n</li>\n<li>தொநூ22:1-18 அல்லது 22:1-2,9-13,15-18\n<ul><li>திபா16:5,8.9-10.11</li></ul>\n</li>\n<li>விப14:15-15:9\n<ul><li>விப15:1-2.3-4.5-6.17-18</li></ul>\n</li>\n<li>எசா54:5-14\n<ul><li>திபா30:1,3.4-5.10,11a,12b</li></ul>\n</li>\n<li>எசா55:1-11\n<ul><li>எசா12:2-3.4bcd.5-6</li></ul>\n</li>\n<li>பாரூ3:9-15,32-4:4\n<ul><li>திபா19:7.8.9.10</li></ul>\n</li>\n<li>எசே36:16-17a,18-28\n<ul><li>திபா42:2,4bcd;43:3,4 அல்லது திபா51:10-11,12-13,16-17</li></ul>\n</li>\n</ol>\n\n', 'திபா118:1-2.16-17.22-23', 'உரோ6:3-11', '', '<yeartype=''a''>மத்28:1-10</year>\n<yeartype=''b''>மாற்16:1-8</year>\n<yeartype=''c''>லூக்24:1-12</year>'),
+('Peter and Paul, apostles, Vigil', '', 'திப3:1-10', 'திபா19:1-2.3-4', 'கலா1:11-20', 'யோவா21:17d', 'யோவா21:15-19');
 
 -- --------------------------------------------------------
 
@@ -1968,12 +1944,6 @@ ALTER TABLE `generalcalendar__india`
 -- Indexes for table `generalcalendar__saintscommon`
 --
 ALTER TABLE `generalcalendar__saintscommon`
-  ADD PRIMARY KEY (`dayID`);
-
---
--- Indexes for table `generalcalendar__vigil`
---
-ALTER TABLE `generalcalendar__vigil`
   ADD PRIMARY KEY (`dayID`);
 
 --

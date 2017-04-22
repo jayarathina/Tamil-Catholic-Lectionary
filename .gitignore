@@ -1,3 +1,6 @@
+#Local Drive Include File
+lib/includeExternal.php
+
 .metadata
 bin/
 tmp/

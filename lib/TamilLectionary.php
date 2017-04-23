@@ -6,7 +6,6 @@
 require_once 'mods/Medoo.php';
 include_once 'lib/includeExternal.php';
 include_once 'lib/FeastNameFramer.php';
-
 class TamilLectionary {
 
 	public $rcy;
@@ -22,14 +21,24 @@ class TamilLectionary {
 				'password' => '',
 				'charset' => 'utf8' 
 		) );
-				
-		$rc = new RomanCalendar ($year, $calcConfig );
 		
-		$setNames = new FeastNameFramer($this->database);
+		$rc = new RomanCalendar ( $year, $calcConfig );
 		
-		$this->rcy = $setNames->setDayNames($rc->rcy);
+		$setNames = new FeastNameFramer ( $this->database );
+		$this->rcy = $setNames->setDayNames ( $rc->rcy );
+		
+		$this->getReadings ();
 		
 		print_r ( $this->rcy->fullYear );
 	}
 
+	function getReadings() {
+		foreach ( $this->rcy->fullYear as $month => $value ) {
+			foreach ( $value as $days => $feasts ) {
+				foreach ( $feasts as $fet ) {
+					// $this->getDayReadings ( $fet ['code'], $this->rcy->currentYear );
+				}
+			}
+		}
+	}
 }

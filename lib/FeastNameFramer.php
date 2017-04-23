@@ -9,9 +9,11 @@ class FeastNameFramer {
 	public $rcy;
 
 	private $database;
+
 	function __construct($database) {
 		$this->database = $database;
 	}
+
 	/**
 	 * Set names in the place of codes.
 	 * This has to be language specific. Here an english language example is given.
@@ -42,7 +44,7 @@ class FeastNameFramer {
 							}
 						}
 						
-						if (! $nameSet)
+						if (! $nameSet) // should never happen
 							die ( 'ERROR: Name for code: ' . $singleFeast ['code'] . 'not in database' );
 					}
 				}

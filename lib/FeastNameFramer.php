@@ -3,6 +3,7 @@
 /**
  * RomanLectionary 1.0
  * @author Br. Jayarathina Madharasan SDR
+ * Formats the day code to name for the day
  */
 class FeastNameFramer {
 
@@ -58,7 +59,7 @@ class FeastNameFramer {
 		// @formatter:on
 		
 		$RomanCalendarDayException = array (
-				'CW02-0Sun' => 'கிறிஸ்து பிறப்பு விழாவுக்குப் பின் 2ம் ' . $dayTamilFull [0],
+				'CW02-0Sun' => 'கிறிஸ்து பிறப்பு விழாவுக்குப் பின் 2ம் ஞாயிறு',
 				'CW03-Epiphany' => 'ஆண்டவரின் திருக்காட்சி',
 				'CW04-Baptism' => 'ஆண்டவரின் திருமுழுக்கு',
 				
@@ -98,7 +99,7 @@ class FeastNameFramer {
 			case 'CW' :
 				switch ($wkNo) {
 					case 1 : // Christmas Octave
-						$fTitle = ' கிறிஸ்து பிறப்பின் எண்கிழமையில் ' . intval ( substr ( $dayCode, - 2 ) - 24 ) . ' நாள் - டிசம்பர் ' . substr ( $dayCode, - 2 );
+						$fTitle = ' கிறிஸ்து பிறப்பின் எண்கிழமையில் ' . intval ( substr ( $dayCode, - 2 ) - 24 ) . 'ஆம் நாள் - டிசம்பர் ' . substr ( $dayCode, - 2 );
 						break;
 					case 2 : // Before Epiphany
 						$fTitle = 'சனவரி ' . substr ( $dayCode, - 1 );

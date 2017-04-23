@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2017 at 11:43 PM
+-- Generation Time: Apr 23, 2017 at 08:37 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -43,7 +43,7 @@ INSERT INTO `generalcalendar` (`feast_month`, `feast_date`, `feast_code`, `feast
 (1, 1, 'Blessed Virgin Mary, the Mother of God', 'இறைவனின் அன்னையாகிய தூய கன்னி மரியா', 'Solemnity', 'PROPER'),
 (1, 2, 'Saints Basil the Great and Gregory Nazianzen, bishops and doctors', 'புனிதர்கள் பெரிய பசிலியார், நசியான்சன் கிரகோரியார் - ஆயர்கள், மறைவல்லுநர்கள்', 'Mem', 'மேய்ப்பர் or மறைவல்லுநர்'),
 (1, 3, 'The Most Holy Name of Jesus', 'இயேசுவின் திருப்பெயர்', 'OpMem', ''),
-(1, 7, 'Saint Raymond of Penyafort, priest', 'புனித பெனாப்போர்த்து இரேய்முந்து  - மறைப்பணியாளர்', 'OpMem', 'மேய்ப்பர்'),
+(1, 7, 'Saint Raymond of Penyafort, priest', 'புனித பெனாப்போர்த்து இரேய்முந்து - மறைப்பணியாளர்', 'OpMem', 'மேய்ப்பர்'),
 (1, 13, 'Saint Hilary of Poitiers, bishop and doctor', 'புனித இலாரியார் - ஆயர், மறைவல்லுநர்', 'OpMem', 'மேய்ப்பர் or மறைவல்லுநர்'),
 (1, 17, 'Saint Anthony of Egypt, abbot', 'புனித வனத்து அந்தோணியார் - ஆதீனத் தலைவர்', 'Mem', 'புனிதர், புனிதையர் (துறவியர்)'),
 (1, 20, 'Saint Fabian, pope and martyr', 'புனித பபியான் - திருத்தந்தை, மறைச்சாட்சி', 'OpMem', 'மறைச்சாட்சியர் or மேய்ப்பர் (திருத்தந்தை)'),
@@ -154,7 +154,7 @@ INSERT INTO `generalcalendar` (`feast_month`, `feast_date`, `feast_code`, `feast
 (8, 4, 'Saint Jean Vianney (the Curé of Ars), priest', 'புனித ஜான் மரிய வியான்னி - மறைப்பணியாளர்', 'Mem', 'மேய்ப்பர்'),
 (8, 5, 'Dedication of the Basilica of Saint Mary Major', 'தூய கன்னி மரியாவின் பேராலய நேர்ந்தளிப்பு (பனிமய அன்னை)', 'OpMem', 'தூய கன்னி மரியா'),
 (8, 6, 'Transfiguration of the Lord', 'ஆண்டவரின் தோற்றமாற்றம்', 'Feast-Lord', 'PROPER'),
-(8, 7, 'Saint Cajetan, priest', 'புனித கயத்தான் -  மறைப்பணியாளர்', 'OpMem', 'மேய்ப்பர் or புனிதர், புனிதையர் (துறவியர்)'),
+(8, 7, 'Saint Cajetan, priest', 'புனித கயத்தான் - மறைப்பணியாளர்', 'OpMem', 'மேய்ப்பர் or புனிதர், புனிதையர் (துறவியர்)'),
 (8, 7, 'Saint Sixtus II, pope, and companions, martyrs', 'புனிதர்கள் திருத்தந்தை இரண்டாம் சிக்ஸ்து, தோழர்கள் - மறைச்சாட்சியர்', 'OpMem', 'மறைச்சாட்சியர்'),
 (8, 8, 'Saint Dominic, priest', 'புனித தோமினிக் - மறைப்பணியாளர்', 'Mem', 'மேய்ப்பர் (மறைபரப்புப் பணியாளர்) or புனிதர், புனிதையர் (துறவியர்)'),
 (8, 9, 'Saint Teresa Benedicta of the Cross (Edith Stein), virgin and martyr', 'திருச்சிலுவையின் புனித தெரெசா பெனடிக்டா - கன்னியர், மறைச்சாட்சி', 'OpMem', 'கன்னியர் or மறைசாட்சியர்'),
@@ -188,7 +188,7 @@ INSERT INTO `generalcalendar` (`feast_month`, `feast_date`, `feast_code`, `feast
 (9, 19, 'Saint Januarius, bishop and martyr', 'புனித சனுவாரியு - ஆயர், மறைச்சாட்சி', 'OpMem', 'மறைச்சாட்சியர் or மேய்ப்பர்'),
 (9, 20, 'Saint Andrew Kim Taegon, priest, and Paul Chong Hasang and companions, martyrs', 'புனிதர்கள் மறைப்பணியாளர் ஆன்ரு கிம் தே கோன், பவுல் சோங் காசாங், தோழர்கள் - மறைச்சாட்சியர்', 'Mem', 'மறைசாட்சியர்'),
 (9, 21, 'Saint Matthew the Evangelist, Apostle, Evangelist', 'புனித மத்தேயு - திருத்தூதர், நற்செய்தியாளர்', 'Feast', 'PROPER'),
-(9, 23, 'Saint Pio of Pietrelcina (Padre Pio), priest', 'புனித பியோ,  மறைப்பணியாளர்', 'OpMem', ''),
+(9, 23, 'Saint Pio of Pietrelcina (Padre Pio), priest', 'புனித பியோ, மறைப்பணியாளர்', 'OpMem', ''),
 (9, 26, 'Saints Cosmas and Damian, martyrs', 'புனிதர்கள் கோஸ்மாஸ், தமியான் - மறைச்சாட்சியர்', 'OpMem', 'மறைச்சாட்சியர்'),
 (9, 27, 'Saint Vincent de Paul, priest', 'புனித வின்சென்ட் தே பவுல் - மறைப்பணியாளர்', 'Mem', 'மேய்ப்பர் (மறைபரப்புப் பணியாளர்) or புனிதர், புனிதையர் (அறச்செயலில் ஈடுபட்டோர்)'),
 (9, 28, 'Saint Wenceslaus, martyr', 'புனித வென்செஸ்லாஸ் - மறைச்சாட்சி', 'OpMem', 'மறைச்சாட்சியர்'),
@@ -206,7 +206,7 @@ INSERT INTO `generalcalendar` (`feast_month`, `feast_date`, `feast_code`, `feast
 (10, 14, 'Saint Callistus I, pope and martyr', 'புனித முதலாம் கலிஸ்து - திருத்தந்தை, மறைச்சாட்சி', 'OpMem', 'மறைச்சாட்சியர் or மேய்ப்பர் (திருத்தந்தை)'),
 (10, 15, 'Saint Teresa of Jesus, virgin and doctor', 'இயேசுவின் (அவிலா நகர்) புனித தெரேசா - கன்னியர், மறைவல்லுநர்', 'Mem', 'கன்னியர் or புனிதர், புனிதையர் (துறவியர்)'),
 (10, 16, 'Saint Hedwig, religious', 'புனித எட்விஜ் - துறவி', 'OpMem', 'புனிதர், புனிதையர் (துறவியர்)'),
-(10, 16, 'Saint Margaret Mary Alacoque, virgin', 'புனித மார்கரீத் மரியா அலக்கோக்கு -  கன்னியர்', 'OpMem', 'கன்னியர் or புனிதர், புனிதையர் (துறவியர்)'),
+(10, 16, 'Saint Margaret Mary Alacoque, virgin', 'புனித மார்கரீத் மரியா அலக்கோக்கு - கன்னியர்', 'OpMem', 'கன்னியர் or புனிதர், புனிதையர் (துறவியர்)'),
 (10, 17, 'Saint Ignatius of Antioch, bishop and martyr', 'அந்தியோக்கு நகர் புனித இஞ்ஞாசி - ஆயர், மறைச்சாட்சி', 'Mem', 'PROPER  or  மறைச்சாட்சியர் or மேய்ப்பர்'),
 (10, 18, 'Saint Luke the Evangelist', 'புனித லூக்கா - நற்செய்தியாளர்', 'Feast', 'PROPER'),
 (10, 19, 'Saint Paul of the Cross, priest', 'சிலுவையின் புனித பவுல் - மறைப்பணியாளர்', 'OpMem', 'மேய்ப்பர் or புனிதர், புனிதையர் (துறவியர்)'),
@@ -251,7 +251,7 @@ INSERT INTO `generalcalendar` (`feast_month`, `feast_date`, `feast_code`, `feast
 (12, 26, 'Saint Stephen, the first martyr', 'புனித ஸ்தேவான் - முதல் மறைச்சாட்சி', 'Feast', 'PROPER'),
 (12, 27, 'Saint John the Apostle and evangelist', 'புனித யோவான் - திருத்தூதர், நற்செய்தியாளர்', 'Feast', 'PROPER'),
 (12, 28, 'Holy Innocents, martyrs', 'புனித மாசில்லாக் குழந்தைகள் - மறைச்சாட்சியர்', 'Feast', 'PROPER'),
-(12, 29, 'Saint Thomas Becket, bishop and martyr', 'புனித தாமஸ் பெக்கட் -  ஆயர் மறைச்சாட்சி', 'OpMem', 'மறைச்சாட்சியர் or மேய்ப்பர்'),
+(12, 29, 'Saint Thomas Becket, bishop and martyr', 'புனித தாமஸ் பெக்கட் - ஆயர் மறைச்சாட்சி', 'OpMem', 'மறைச்சாட்சியர் or மேய்ப்பர்'),
 (12, 31, 'Saint Sylvester I, pope', 'புனித முதலாம் சில்வெஸ்தர் - திருத்தந்தை', 'OpMem', 'மேய்ப்பர் (திருத்தந்தை)');
 
 -- --------------------------------------------------------

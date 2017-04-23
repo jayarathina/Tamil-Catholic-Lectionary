@@ -2,17 +2,21 @@
 header('Content-Type: text/html; charset=utf-8');
 
 include_once 'lib/TamilLectionary.php';
+include_once 'lib/TamilLectionaryRenderHTML.php';
 
 ?>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="styles/style_year.css">
 	</head>
 <body>
-<pre>
 <?php
 
-$tamilLect = new TamilLectionary (2016, parse_ini_file ( 'settings.ini' ) );
+$tamilLect = new TamilLectionary (null, parse_ini_file ( 'settings.ini' ) );
+
+$RenderHTML = new TamilLectionaryRenderHTML();
+
+echo $RenderHTML->renderHTML($tamilLect->rcy);
 
 ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2017 at 01:10 PM
+-- Generation Time: Apr 25, 2017 at 12:06 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -127,7 +127,7 @@ INSERT INTO `generalcalendar` (`feast_month`, `feast_date`, `feast_code`, `feast
 (6, 24, 'Birth of Saint John the Baptist', 'திருமுழுக்கு யோவானின் பிறப்பு', 'Solemnity', '', ''),
 (6, 27, 'Saint Cyril of Alexandria, bishop and doctor', 'அலெக்சாந்திரிய நகர் புனித சிரில் - ஆயர், மறைவல்லுநர்', 'OpMem', 'மேய்ப்பர் or மறைவல்லுநர்', ''),
 (6, 28, 'Saint Irenaeus, bishop and martyr', 'புனித இரனேயு - ஆயர், மறைச்சாட்சி', 'Mem', 'மறைச்சாட்சியர் or மறைவல்லுநர்', ''),
-(6, 29, 'Saints Peter and Paul, Apostles', 'புனிதர்கள் பேதுரு, பவுல்', 'Solemnity', '', ''),
+(6, 29, 'Saints Peter and Paul, Apostles', 'புனிதர்கள் பேதுரு, பவுல் - திருத்தூதர்கள்', 'Solemnity', '', ''),
 (6, 30, 'First Martyrs of the Church of Rome', 'உரோமைத் திருச்சபையின் முதல் மறைச்சாட்சியர்', 'OpMem', 'மறைச்சாட்சியர்', ''),
 (7, 3, 'Saint Thomas the Apostle', 'புனித தோமா - திருத்தூதர்', 'Feast', '', ''),
 (7, 4, 'Saint Elizabeth of Portugal', 'லுஸ்தானியா நகர் புனித எலிசபெத்து', 'OpMem', 'புனிதர், புனிதையர் (அறச்செயலில் ஈடுபட்டோர்)', ''),
@@ -761,7 +761,6 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 ('First Martyrs of the Church of Rome', 'உரோ8:31b-39', 'திபா124:2-3.4-5.7b-8', '', 'மத்5:10', 'மத்24:4-13'),
 ('Guardian Angels', 'விப23:20-23a', 'திபா91:1-2.3-4.10-11', '', 'திபா103:21', 'மத்18:1-5,10'),
 ('Holy Innocents, martyrs', '1யோவா1:5-2:2', 'திபா124:2-3.4-5.7b-8', '', 'Martyrs-5AL06', 'மத்2:13-18'),
-('Holy Name of the Blessed Virgin Mary', '', '', '', '', ''),
 ('Immaculate Conception of the Blessed Virgin Mary', 'தொநூ3:9-15,20', 'திபா98:1.2-3ab.3c-4', 'எபே1:3-6,11-12', 'லூக்1:28', 'லூக்1:26-38'),
 ('IN Blessed Maria Theresa Chiramel, virgin', 'தொநூ12:1-4a', 'திபா45:10-11.13-14.15-16', 'கலா2:19-21', 'யோவா12:26', 'யோவா12:20-26'),
 ('IN Saint Alphonsa of the Immaculate Conception (Alphonsa Muttathupadathu), virgin', 'இணை28:8-12', 'திபா45:10-11.13-14.15-16', 'கலா2:19-21', 'யோவா12:26', 'யோவா12:20-26'),
@@ -826,10 +825,7 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 ('LW06-2Tue', 'எசா49:1-6', 'திபா71:1-2.3-4a.5-6.15,17', '', 'LW06-2Tue', 'யோவா13:21-33,36-38'),
 ('LW06-3Wed', 'எசா50:4-9a', 'திபா69:7-9.20-21.30,32-33', '', 'LW06-3Wed', 'மத்26:14-25'),
 ('LW06-4Thu', 'விப12:1-8,11-14', 'திபா116:12-13,15-16,17-18', '1கொரி11:23-26', 'யோவா13:34', 'யோவா13:1-15'),
-('LW06-4Thu-Chrism', 'எசா61:1-3a,6a,8b-9', 'திபா89:20-21.24,26', 'திவெ1:5-8', 'எசா61:1ab', 'லூக்4:16-21'),
 ('LW06-5Fri', 'எசா52:13-53:12', 'திபா31:1,5.11-12.14-15.16,24', 'எபி4:14-16;5:7-9', 'பிலி2:8-9', 'யோவா18:1-19:42'),
-('Our Lady of Fatima', '', '', '', '', ''),
-('Our Lady of Guadalupe', '', '', '', '', ''),
 ('Our Lady of Lourdes', 'எசா66:10-14c', 'யூதி13:18ab.19-20a', '', 'லூக்1:45காண்க', 'யோவா2:1-11'),
 ('Our Lady of Mount Carmel', 'செக்2:10-13', 'லூக்1:47.48-49.50-51.52-53.54-55', '', 'லூக்11:28', 'மத்12:46-50'),
 ('Our Lady of Sorrows', 'எபி5:7-9', 'திபா31:2ab.2c-3.4-5.14-15.19', '', 'Sept15', 'யோவா19:25-27 or லூக்2:33-35'),
@@ -1142,11 +1138,11 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 ('OW20-5Fri 1', 'ரூத்1:1,3-6,14b-16,22', 'திபா146:5-6ab.6c-7.8-9a.9bc-10', '', 'திபா25:4c,5a', 'மத்22:34-40'),
 ('OW20-5Fri 2', 'எசே37:1-14', 'திபா107:2-3.4-5.6-7.8-9', '', 'திபா25:4c,5a', 'மத்22:34-40'),
 ('OW20-6Sat 1', 'ரூத்2:1-3,8-11;4:13-17', 'திபா128:1b-2.3.4.5', '', 'மத்23:9b,10b', 'மத்23:1-12'),
-('OW20-6Sat 2', 'எசே43:1-7ab', 'திபா85:9ab,10.11-12.13-14', '', 'மத்23:9b,10b', 'மத்23:1-12');
-INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `alleluia`, `gospel`) VALUES
+('OW20-6Sat 2', 'எசே43:1-7ab', 'திபா85:9ab,10.11-12.13-14', '', 'மத்23:9b,10b', 'மத்23:1-12'),
 ('OW21-0Sun A', 'எசா22:15,19-23', 'திபா138:1-2a.2b-3.6,8b', 'உரோ11:33-36', 'மத்16:18', 'மத்16:13-20'),
 ('OW21-0Sun B', 'யோசு24:1-2a,15-17,18b', 'திபா34:1-2.15-16.17-18.19-20.21-22', 'எபே5:21-32', 'யோவா6:63b,68b', 'யோவா6:60-69'),
-('OW21-0Sun C', 'எசா66:18-21', 'திபா117:1.2', 'எபி12:5-7,11-13', 'யோவா14:6', 'லூக்13:22-30'),
+('OW21-0Sun C', 'எசா66:18-21', 'திபா117:1.2', 'எபி12:5-7,11-13', 'யோவா14:6', 'லூக்13:22-30');
+INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `alleluia`, `gospel`) VALUES
 ('OW21-1Mon 1', '1தெச1:1-5,8b-10', 'திபா149:1b-2.3-4.5-6a,9b', '', 'யோவா10:27', 'மத்23:13-22'),
 ('OW21-1Mon 2', '2தெச1:1-5,11-12', 'திபா96:1-2a.2b-3.4-5', '', 'யோவா10:27', 'மத்23:13-22'),
 ('OW21-2Tue 1', '1தெச2:1-8', 'திபா139:1-3.4-6', '', 'எபி4:12', 'மத்23:23-26'),
@@ -1357,15 +1353,12 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 ('Presentation of the Blessed Virgin Mary', 'செக்2:10-13', 'லூக்1:47.48-49.50-51.52-53.54-55', '', 'லூக்11:28', 'மத்12:46-50'),
 ('Presentation of the Lord', 'மலா3:1-4', 'திபா24:7.8.9.10', 'எபி2:14-18', 'லூக்2:32', 'லூக்2:22-40 அல்லது லூக்2:22-32'),
 ('Queenship of Blessed Virgin Mary', 'எசா9:2-4,6-7', 'திபா113:1-2.3-4.5-6.7-8', '', 'லூக்1:28காண்க', 'லூக்1:26-38'),
-('Saint Adalbert, bishop and martyr', '', '', '', '', ''),
 ('Saint Agatha, virgin and martyr', '1கொரி1:26-31', 'திபா31:2cd-3.5,7ab.15b-16', '', '1பேது4:14', 'லூக்9:23-26'),
 ('Saint Agnes, virgin and martyr', '1கொரி1:26-31', 'திபா23:1-3.4.5.6', '', 'யோவா15:9b,5b', 'மத்13:44-46'),
 ('Saint Albert the Great, bishop and doctor', 'சீஞா15:1-6', 'திபா119:9-10.11-12.13-14', '', 'திப16:14bகாண்க', 'மத்13:47-52'),
 ('Saint Aloysius Gonzaga, religious', '1யோவா5:1-5', 'திபா16:1-2a,5.7-8.11', '', 'யோவா13:34', 'மத்22:34-40'),
 ('Saint Alphonsus Maria de Liguori, bishop and doctor of the Church', 'உரோ8:1-4', 'திபா119:9-10.11-12.13-14', '', 'மத்5:16', 'மத்5:13-19'),
 ('Saint Ambrose, bishop and doctor', 'எபே3:8-12', 'திபா89:1-2.3-4.20-21.24,26', '', 'யோவா10:14', 'யோவா10:11-16'),
-('Saint Andrew Dung-Lac and his companions, martyrs', '', '', '', '', ''),
-('Saint Andrew Kim Taegon, priest, and Paul Chong Hasang and companions, martyrs', '', '', '', '', ''),
 ('Saint Andrew the Apostle', 'உரோ10:9-18', 'திபா19:1-2.3-4ab', '', 'மத்4:19', 'மத்4:18-22'),
 ('Saint Angela Merici, virgin', '1பேது4:7b-11', 'திபா148:1-2.11-13ab.13c-14', '', 'மத்11:25காண்க', 'மாற்9:34-37'),
 ('Saint Anselm of Canterbury, bishop and doctor of the Church', 'எபே3:14-19', 'திபா34:1-2.3-4.5-6.7-8.9-10', '', 'யோவா6:63b,68b', 'மத்7:21-29'),
@@ -1374,11 +1367,9 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 ('Saint Anthony of Egypt, abbot', 'எபே6:10-13,18', 'திபா16:1-2a,5.7-8.11', '', 'யோவா8:31b-32', 'மத்19:16-26'),
 ('Saint Anthony of Padua, priest and doctor', 'எசா61:1-3', 'திபா89:1-2.3-4.20-21.24,26', '', 'லூக்4:18-19காண்க', 'லூக்10:1-9'),
 ('Saint Anthony Zaccaria, priest', '2திமொ1:13-14;2:1-3', 'திபா1:1-2.3.4,6', '', 'மத்11:25காண்க', 'மாற்10:13-16'),
-('Saint Apollinaris, bishop and martyr', '', '', '', '', ''),
 ('Saint Athanasius, bishop and doctor', '1யோவா5:1-5', 'திபா37:3-4.5-6.30-31', '', 'மத்5:10', 'மத்10:22-25a'),
 ('Saint Augustine (Austin) of Canterbury, bishop', '1தெச2:2b-8', 'திபா96:1-2a.2b-3.7-8a.10', '', 'யோவா10:14-15', 'மத்9:35-38'),
 ('Saint Augustine of Hippo, bishop and doctor of the Church', '1யோவா4:7-16', 'திபா119:9-10.11-12.13-14', '', 'மத்23:9b,10b', 'மத்23:8-12'),
-('Saint Augustine Zhao Rong and companions, martyrs', '', '', '', '', ''),
 ('Saint Barnabas the Apostle', 'திப11:21b-26;13:1-3', 'திபா98:1.2-3.4.5-6', '', 'மத்28:19a,20b', 'மத்10:7-13'),
 ('Saint Bartholomew the Apostle', 'திவெ21:9b-14', 'திபா145:10-11.12-13ab.17-18', '', 'யோவா1:49b', 'யோவா1:45-51'),
 ('Saint Bede the Venerable, priest and doctor', '1கொரி2:10b-16', 'திபா119:9-10.11-12.13-14', '', 'யோவா6:63b,68b', 'மத்7:21-29'),
@@ -1394,11 +1385,9 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 ('Saint Callistus I, pope and martyr', '1பேது5:1-4', 'திபா40:1,3ab.6-7a,7b-8,9', '', 'யோவா15:15b', 'லூக்22:24-30'),
 ('Saint Camillus de Lellis, priest', '1யோவா3:14-18', 'திபா112:1-2.3-4.5-7a.7b-8.9', '', 'யோவா13:34', 'யோவா15:9-17'),
 ('Saint Casimir', 'பிலி3:8-14', 'திபா15:2-3a.3bc-4ab.5', '', 'யோவா13:34', 'யோவா15:9-17'),
-('Saint Catherine of Alexandria', '', '', '', '', ''),
 ('Saint Catherine of Siena, virgin and doctor of the Church', '1யோவா1:5-2:2', 'திபா103:1-2.3-4.8-9.13-14.17-18', '', 'மத்11:25', 'மத்11:25-30'),
 ('Saint Cecilia', 'ஓசே2:14,15b,19-20', 'திபா45:10-11.13-14.15-16', '', 'Virgins-5AL02', 'மத்25:1-13'),
 ('Saint Charles Borromeo, bishop', 'உரோ12:3-13', 'திபா89:1-2.3-4.20-21.24,26', '', 'யோவா10:14', 'யோவா10:11-16'),
-('Saint Christopher Magallanes and companions, martyrs', '', '', '', '', ''),
 ('Saint Clare, virgin', 'பிலி3:8-14', 'திபா16:1-2a,5.7-8.11', '', 'மத்5:3', 'மத்19:27-29'),
 ('Saint Clement I, pope and martyr', '1பேது5:1-4', 'திபா89:1-2.3-4.20-21.24,26', '', 'மாற்1:17', 'மத்16:13-19'),
 ('Saint Columban, religious', 'எசா52:7-10', 'திபா96:1-2a.2b-3.7-8a.10', '', 'யோவா8:12', 'லூக்9:57-62'),
@@ -1446,21 +1435,16 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 ('Saint John of God, religious', '1யோவா3:14-18', 'திபா112:1-2.3-4.5-7a.7b-8.9', '', 'யோவா13:34', 'மத்25:31-40'),
 ('Saint John of Kanty, priest', 'யாக்2:14-17', 'திபா112:1-2.3-4.5-7a.7b-8.9', '', 'யோவா13:34', 'லூக்6:27-38'),
 ('Saint John of the Cross, priest and doctor', '1கொரி2:1-10a', 'திபா37:3-4.5-6.30-31', '', 'மத்5:3', 'லூக்14:25-33'),
-('Saint John Paul II, pope', '', '', '', '', ''),
 ('Saint John the Apostle and evangelist', '1யோவா1:1-4', 'திபா97:1-2.5-6.11-12', '', 'Martyrs-5AL06', 'யோவா20:2-8'),
-('Saint John XXIII, pope', '', '', '', '', ''),
 ('Saint Josaphat, bishop and martyr', 'எபே4:1-7,11-13', 'திபா1:1-2.3.4,6', '', 'யோவா15:9b,5b', 'யோவா17:20-26'),
 ('Saint Joseph Husband of the Blessed Virgin Mary', '2சாமு7:4-5a,12-14a,16', 'திபா89:1-2.3-4.26,28', 'உரோ4:13,16-18,22', 'திபா84:4', 'மத்1:16,18-21,24aஅல்லதுலூக்2:41-51a'),
 ('Saint Joseph of Calasanz, priest', '1கொரி12:31-13:13 ors 13:4-13', 'திபா34:1-2.3-4.5-6.7-8.9-10', '', 'யோவா15:9b,5b', 'மத்18:1-5'),
 ('Saint Joseph the Worker', 'தொநூ1:26-2:3 or கொலோ3:14-15,17,23-24', 'திபா90:2.3-4.12-13.14,16', '', 'திபா68:19', 'மத்13:54-58'),
-('Saint Josephine Bakhita, virgin', '', '', '', '', ''),
-('Saint Juan Diego', '', '', '', '', ''),
 ('Saint Justin Martyr', '1கொரி1:18-25', 'திபா34:1-2.3-4.5-6.7-8', '', 'மத்5:16', 'மத்5:13-19'),
 ('Saint Lawrence of Brindisi, priest and doctor', '2கொரி4:1-2,5-7', 'திபா40:1,3ab.6-7a,7b-8,9', '', 'W3Wed/Doc-AL', 'மாற்4:1-10,13-20'),
 ('Saint Lawrence, deacon and martyr', '2கொரி9:6-10', 'திபா112:1-2.5-6.7-8.9', '', 'யோவா8:12bc', 'யோவா12:24-26'),
 ('Saint Leo the Great, pope and doctor', 'சீஞா39:6-10', 'திபா37:3-4.5-6.30-31', '', 'மாற்1:17', 'மத்16:13-19'),
 ('Saint Louis', 'எசா58:6-11', 'திபா112:1-2.3-4.5-7a.7b-8.9', '', 'யோவா13:34', 'மத்22:34-40'),
-('Saint Louis Grignon de Montfort, priest', '', '', '', '', ''),
 ('Saint Lucy of Syracuse, virgin and martyr', '2கொரி10:17-11:2', 'திபா31:2cd-3.5,7ab.15b-16', '', 'Virgins-5AL02', 'மத்25:1-13'),
 ('Saint Luke the Evangelist', '2திமொ4:9-17', 'திபா145:10-11.12-137ab.17-18', '', 'யோவா15:16', 'லூக்10:1-9'),
 ('Saint Margaret Mary Alacoque, virgin', 'எபே3:14-19', 'திபா23:1-3.4.5.6', '', 'மத்11:25காண்க', 'மத்11:25-30'),
@@ -1486,29 +1470,23 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 ('Saint Peter Canisius, priest and doctor', '2திமொ4:1-5', 'திபா40:1,3ab.6-7a,7b-8,9', '', 'மத்5:16', 'மத்5:13-19'),
 ('Saint Peter Chanel, priest and martyr', '1கொரி1:18-25', 'திபா117:1.2', '', 'மாற்1:17', 'மாற்1:14-20'),
 ('Saint Peter Chrysologus, bishop and doctor', 'எபே3:8-12', 'திபா119:9-10.11-12.13-14', '', 'யோவா15:5', 'லூக்6:43-45'),
-('Saint Peter Claver, priest', '', '', '', '', ''),
 ('Saint Peter Damian, bishop and doctor of the Church', '2திமொ4:1-5', 'திபா16:1-2a,5.7-8.11', '', 'யோவா15:9b,5b', 'யோவா15:1-8'),
-('Saint Peter Julian Eymard, priest', '', '', '', '', ''),
 ('Saint Philip Neri, priest', 'பிலி4:4-9', 'திபா34:1-2.3-4.5-6.7-8.9-10', '', 'யோவா15:9b,5b', 'யோவா17:20-26'),
-('Saint Pio of Pietrelcina (Padre Pio), priest', '', '', '', '', ''),
 ('Saint Pius V, pope', '1கொரி4:1-5', 'திபா110:1.2.3.4', '', 'யோவா10:14', 'யோவா21:15-17'),
 ('Saint Pius X, pope', '1தெச2:2b-8', 'திபா89:1-2.3-4.20-21.24,26', '', 'யோவா10:14-15', 'யோவா21:15-17'),
 ('Saint Polycarp, bishop and martyr', 'திவெ2:8-11', 'திபா31:2cd-3.5,7.15bc-16', '', 'Martyrs-5AL06', 'யோவா15:18-21'),
 ('Saint Raymond of Penyafort, priest', '2கொரி5:14-20', 'திபா103:1-2.3-4.8-9.13-14.17-18', '', 'லூக்21:36b', 'லூக்12:35-40'),
-('Saint Rita of Cascia', '', '', '', '', ''),
 ('Saint Robert Bellarmine, bishop and doctor', 'சாஞா7:7-10,15-16', 'திபா19:7.8.9.10', '', 'யோவா6:63b,68b', 'மத்7:21-29'),
 ('Saint Romuald, abbot', 'பிலி3:8-14', 'திபா131:1.2.3', '', 'மத்5:3', 'லூக்14:25-33'),
 ('Saint Rose of Lima, virgin', '2கொரி10:17-11:2', 'திபா148:1-2.11-13a.13b-14', '', 'யோவா15:9b,5b', 'மத்13:44-46'),
 ('Saint Scholastica, virgin', 'இபா8:6-7', 'திபா148:1-2.11-13ab.13c-14', '', 'யோவா14:23', 'லூக்10:38-42'),
 ('Saint Sebastian, martyr', '1பேது3:14-17', 'திபா34:1-2.3-4.5-6.7-8', '', 'யாக்1:12', 'மத்10:28-33'),
-('Saint Sharbel Makhluf, hermit', '', '', '', '', ''),
 ('Saint Simon and Saint Jude, apostles', 'எபே2:19-22', 'திபா19:1-2.3-4', '', 'apostles', 'லூக்6:12-19'),
 ('Saint Sixtus II, pope, and companions, martyrs', 'சாஞா3:1-9', 'திபா126:1-2ab.2cd-3.4-5.6', '', 'யாக்1:12', 'மத்10:28-33'),
 ('Saint Stanislaus, bishop and martyr', 'திவெ12:10-12a', 'திபா34:1-2.3-4.5-6.7-8', '', '2கொரி1:3b-4a', 'யோவா17:11b-19'),
 ('Saint Stephen of Hungary', 'இச6:3-9', 'திபா112:1-2.3-4.5-7a.7b-8.9', '', 'யோவா14:23', 'மத்25:14-30 ors 25:14-23'),
 ('Saint Stephen, the first martyr', 'திப6:8-10;7:54-60', 'திபா31:2cd-3.5,7ab.15b-16', '', 'திபா118:26a,27a', 'மத்10:17-22'),
 ('Saint Sylvester I, pope', 'எசே34:11-16', 'திபா23:1-3.4.5.6', '', 'மாற்1:17', 'மத்16:13-19'),
-('Saint Teresa Benedicta of the Cross (Edith Stein), virgin and martyr', '', '', '', '', ''),
 ('Saint Teresa of Jesus, virgin and doctor', 'உரோ8:22-27', 'திபா19:8.9.10.11', '', 'யோவா15:9b,5b', 'யோவா15:1-8'),
 ('Saint Thérèse of the Child Jesus, virgin and doctor', 'எசா66:10-14c', 'திபா131:1.2.3', '', 'மத்11:25', 'மத்18:1-5'),
 ('Saint Thomas Aquinas, priest and doctor', 'சாஞா7:7-10,15-16', 'திபா119:9-10.11-12.13-14', '', 'மத்23:9b,10b', 'மத்23:8-12'),
@@ -1527,7 +1505,6 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 ('Saints Jean de Brébeuf, Isaac Jogues, priests and martyrs; and their companions, martyrs', '2கொரி4:7-15', 'திபா126:1-2ab.2cd-3.4-5.6', '', 'மத்28:19a-20b', 'மத்28:16-20'),
 ('Saints Joachim and Anne', 'சீஞா44:1,10-15', 'திபா132:11.13-14.17-18', '', 'லூக்2:25bகாண்க', 'மத்13:16-17'),
 ('Saints John Fisher, bishop and martyr and Thomas More, martyr', '1பேது4:12-19', 'திபா126:1-2ab.2cd-3.4-5.6', '', 'மத்5:10', 'மத்10:34-39'),
-('Saints Lawrence Ruiz and companions, martyrs', '', '', '', '', ''),
 ('Saints Marcellinus and Peter, martyrs', '2கொரி6:4-10', 'திபா124:2-3.4-5.7b-8', '', '2கொரி1:3b-4a', 'யோவா17:11b-19'),
 ('Saints Michael, Gabriel and Raphael, Archangels', 'தானி7:9-10,13-14 or திவெ12:7-12a', 'திபா138:1-2a.2b-3.4-5', '', 'திபா103:21', 'யோவா1:47-51'),
 ('Saints Nereus and Achilleus, martyrs', 'திவெ7:9-17', 'திபா124:2-3.4-5.7b-8', '', 'மத்5:10', 'மத்10:17-22'),
@@ -1540,7 +1517,6 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 ('Seven Holy Founders of the Servite Order', 'உரோ8:26-30', 'திபா34:1-2.3-4.5-6.7-8.9-10', '', 'மத்5:3', 'மத்19:27-29'),
 ('The Beheading of Saint John the Baptist, martyr', 'எரே1:17-19', 'திபா71:1-2.3-4a.5-6.15ab,17', '', 'மத்5:10', 'மாற்6:17-29'),
 ('The Conversion of Saint Paul, apostle', 'திப22:3-16 அல்லது திப9:1-22', 'திபா117:1.2', '', 'யோவா15:16', 'மாற்16:15-18'),
-('The Most Holy Name of Jesus', '', '', '', '', ''),
 ('Transfiguration of the Lord A', 'தானி7:9-10,13-14', 'திபா97:1-2.5-6.9', '2பேது1:16-19', 'மத்17:5c', 'மத்17:1-9'),
 ('Transfiguration of the Lord B', 'தானி7:9-10,13-14', 'திபா97:1-2.5-6.9', '2பேது1:16-19', 'மத்17:5c', 'மாற்9:2-9'),
 ('Transfiguration of the Lord C', 'தானி7:9-10,13-14', 'திபா97:1-2.5-6.9', '2பேது1:16-19', 'மத்17:5c', 'லூக்9:28b-36'),
@@ -1549,11 +1525,12 @@ INSERT INTO `readings__list` (`dayID`, `reading1`, `psalms`, `reading2`, `allelu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `readings__list_stub`
+-- Table structure for table `readings__list_multiple`
 --
 
-CREATE TABLE `readings__list_stub` (
+CREATE TABLE `readings__list_multiple` (
   `dayID` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `reading1` text COLLATE utf8_unicode_ci NOT NULL,
   `psalms` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `reading2` text COLLATE utf8_unicode_ci NOT NULL,
@@ -1562,20 +1539,21 @@ CREATE TABLE `readings__list_stub` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `readings__list_stub`
+-- Dumping data for table `readings__list_multiple`
 --
 
-INSERT INTO `readings__list_stub` (`dayID`, `reading1`, `psalms`, `reading2`, `alleluia`, `gospel`) VALUES
-('Assumption of the Blessed Virgin Mary - Vigil', '1குறி15:3-4,15-16;16:1-2', 'திபா132:6-7.9-10.13-14', '1கொரி15:54-57', 'லூக்11:28', 'லூக்11:27-28'),
-('Birth of Saint John the Baptist - Vigil', 'எரே1:4-10', 'திபா71:1-2.3-4a.5-6ab.15a,17', '1பேது1:8-12', 'யோவா1:7;லூக்1:17காண்க', 'லூக்1:5-17'),
-('CW01-Dec25-1', 'எசா62:1-5', 'திபா89:3-4.15-16.26,28', 'திப13:16-17,22-25', 'CW01-Dec25-1', 'மத்1:1-25(அல்லது1:18-25)'),
-('CW01-Dec25-2', 'எசா9:2-4,6-7', 'திபா96:1-2.3-4.11-12.13', 'தீத்2:11-14', 'லூக்2:10-11', 'லூக்2:1-14'),
-('CW01-Dec25-3', 'எசா62:11-12', 'திபா97:1-2.5-6.11-12', 'தீத்3:4-7', 'லூக்2:14', 'லூக்2:15-20'),
-('CW01-Dec25-4', 'எசா52:7-10', 'திபா98:1.2-3a.3b-4.5-6', 'எபி1:1-6', 'CW01-Dec25-4', 'யோவா1:1-18(அல்லது1:1-5,9-14)'),
-('EW08-Pentecost - Vigil', 'தொநூ11:1-9 அல்லது விப19:3-8a,16-20b அல்லது எசே37:1-14 அல்லது யோவே3:1-5', 'திபா104:1-2.24,35.27-28.29b-30', 'உரோ8:22-27', 'EW08-Pentecost-1', 'யோவா7:37-39'),
-('LW06-0Sun', 'எசா50:4-7', 'திபா22:7-8.16-17.18-19.22-23', 'பிலி2:6-11', 'பிலி2:8-9', '<yeartype=''a''>பவனியில்: மத்21:1-11; திருப்பலியில்: மத்26:14-27:66 அல்லது மத்27:11-54</year>\n<yeartype=''b''>பவனியில்: மாற்11:1-10 அல்லது யோவா12:12-16; திருப்பலியில்: மாற்14:1-15:47 அல்லது மாற்15:1-39</year>\n<yeartype=''c''>பவனியில்: லூக்19:28-40; திருப்பலியில்: லூக்22:14-23:56 அல்லது லூக்23:1-49</year>'),
-('LW06-6Sat', '<ol><li>தொநூ1:1-2:2 அல்லது தொநூ1:1,26-31a\n<ul><li>திபா104:1-2a.5-6.10,12.13-14.24,35c அல்லது திபா33:4-5,6-7,12-13,20+22</li></ul>\n</li>\n<li>தொநூ22:1-18 அல்லது 22:1-2,9-13,15-18\n<ul><li>திபா16:5,8.9-10.11</li></ul>\n</li>\n<li>விப14:15-15:9\n<ul><li>விப15:1-2.3-4.5-6.17-18</li></ul>\n</li>\n<li>எசா54:5-14\n<ul><li>திபா30:1,3.4-5.10,11a,12b</li></ul>\n</li>\n<li>எசா55:1-11\n<ul><li>எசா12:2-3.4bcd.5-6</li></ul>\n</li>\n<li>பாரூ3:9-15,32-4:4\n<ul><li>திபா19:7.8.9.10</li></ul>\n</li>\n<li>எசே36:16-17a,18-28\n<ul><li>திபா42:2,4bcd;43:3,4 அல்லது திபா51:10-11,12-13,16-17</li></ul>\n</li>\n</ol>\n\n', 'திபா118:1-2.16-17.22-23', 'உரோ6:3-11', '', '<yeartype=''a''>மத்28:1-10</year>\n<yeartype=''b''>மாற்16:1-8</year>\n<yeartype=''c''>லூக்24:1-12</year>'),
-('Saints Peter and Paul, Apostles - Vigil', 'திப3:1-10', 'திபா19:1-2.3-4', 'கலா1:11-20', 'யோவா21:17d', 'யோவா21:15-19');
+INSERT INTO `readings__list_multiple` (`dayID`, `name`, `reading1`, `psalms`, `reading2`, `alleluia`, `gospel`) VALUES
+('Assumption of the Blessed Virgin Mary - Vigil', ' தூய கன்னி மரியாவின் விண்ணேற்பு - திருவிழிப்புத் திருப்பலி', '1குறி15:3-4,15-16;16:1-2', 'திபா132:6-7.9-10.13-14', '1கொரி15:54-57', 'லூக்11:28', 'லூக்11:27-28'),
+('Birth of Saint John the Baptist - Vigil', 'புனித திருமுழுக்கு யோவானின் பிறப்பு - திருவிழிப்புத் திருப்பலி', 'எரே1:4-10', 'திபா71:1-2.3-4a.5-6ab.15a,17', '1பேது1:8-12', 'யோவா1:7;லூக்1:17காண்க', 'லூக்1:5-17'),
+('EW08-Pentecost - Vigil', 'தூய ஆவி ஞாயிறு - திருவிழிப்புத் திருப்பலி', 'தொநூ11:1-9 அல்லது விப19:3-8a,16-20b அல்லது எசே37:1-14 அல்லது யோவே3:1-5', 'திபா104:1-2.24,35.27-28.29b-30', 'உரோ8:22-27', 'EW08-Pentecost-1', 'யோவா7:37-39'),
+('LW06-0Sun', 'ஆண்டவருடைய திருப்பாடுகளின் குருத்து ஞாயிறு', 'எசா50:4-7', 'திபா22:7-8.16-17.18-19.22-23', 'பிலி2:6-11', 'பிலி2:8-9', '<yeartype=''a''>பவனியில்: மத்21:1-11; திருப்பலியில்: மத்26:14-27:66 அல்லது மத்27:11-54</year>\n<yeartype=''b''>பவனியில்: மாற்11:1-10 அல்லது யோவா12:12-16; திருப்பலியில்: மாற்14:1-15:47 அல்லது மாற்15:1-39</year>\n<yeartype=''c''>பவனியில்: லூக்19:28-40; திருப்பலியில்: லூக்22:14-23:56 அல்லது லூக்23:1-49</year>'),
+('LW06-4Thu', 'திருத்தைலத் திருப்பலி', 'எசா61:1-3a,6a,8b-9', 'திபா89:20-21.24,26', 'திவெ1:5-8', 'எசா61:1ab', 'லூக்4:16-21'),
+('LW06-6Sat', 'பாஸ்கா திருவிழிப்பு', '<ol><li>தொநூ1:1-2:2 அல்லது தொநூ1:1,26-31a\n<ul><li>திபா104:1-2a.5-6.10,12.13-14.24,35c அல்லது திபா33:4-5,6-7,12-13,20+22</li></ul>\n</li>\n<li>தொநூ22:1-18 அல்லது 22:1-2,9-13,15-18\n<ul><li>திபா16:5,8.9-10.11</li></ul>\n</li>\n<li>விப14:15-15:9\n<ul><li>விப15:1-2.3-4.5-6.17-18</li></ul>\n</li>\n<li>எசா54:5-14\n<ul><li>திபா30:1,3.4-5.10,11a,12b</li></ul>\n</li>\n<li>எசா55:1-11\n<ul><li>எசா12:2-3.4bcd.5-6</li></ul>\n</li>\n<li>பாரூ3:9-15,32-4:4\n<ul><li>திபா19:7.8.9.10</li></ul>\n</li>\n<li>எசே36:16-17a,18-28\n<ul><li>திபா42:2,4bcd;43:3,4 அல்லது திபா51:10-11,12-13,16-17</li></ul>\n</li>\n</ol>\n\n', 'திபா118:1-2.16-17.22-23', 'உரோ6:3-11', '', '<yeartype=''a''>மத்28:1-10</year>\n<yeartype=''b''>மாற்16:1-8</year>\n<yeartype=''c''>லூக்24:1-12</year>'),
+('Nativity of the Lord 1', 'கிறிஸ்து பிறப்பு - திருவிழிப்புத் திருப்பலி', 'எசா62:1-5', 'திபா89:3-4.15-16.26,28', 'திப13:16-17,22-25', 'CW01-Dec25-1', 'மத்1:1-25 அல்லது மத்1:18-25'),
+('Nativity of the Lord 2', 'கிறிஸ்து பிறப்பு - இரவில் திருப்பலி', 'எசா9:2-4,6-7', 'திபா96:1-2.3-4.11-12.13', 'தீத்2:11-14', 'லூக்2:10-11', 'லூக்2:1-14'),
+('Nativity of the Lord 3', 'கிறிஸ்து பிறப்பு -  விடியற்காலைத் திருப்பலி', 'எசா62:11-12', 'திபா97:1-2.5-6.11-12', 'தீத்3:4-7', 'லூக்2:14', 'லூக்2:15-20'),
+('Nativity of the Lord 4', 'கிறிஸ்து பிறப்பு - பகலில் திருப்பலி', 'எசா52:7-10', 'திபா98:1.2-3a.3b-4.5-6', 'எபி1:1-6', 'CW01-Dec25-4', 'யோவா1:1-18 அல்லது யோவா1:1-5,9-14'),
+('Saints Peter and Paul, Apostles - Vigil', 'புனிதர்கள் பேதுரு, பவுல் - திருத்தூதர்கள் - திருவிழிப்புத் திருப்பலி', 'திப3:1-10', 'திபா19:1-2.3-4', 'கலா1:11-20', 'யோவா21:17d', 'யோவா21:15-19');
 
 -- --------------------------------------------------------
 
@@ -1961,10 +1939,10 @@ ALTER TABLE `readings__list`
   ADD PRIMARY KEY (`dayID`);
 
 --
--- Indexes for table `readings__list_stub`
+-- Indexes for table `readings__list_multiple`
 --
-ALTER TABLE `readings__list_stub`
-  ADD PRIMARY KEY (`dayID`);
+ALTER TABLE `readings__list_multiple`
+  ADD PRIMARY KEY (`dayID`,`name`);
 
 --
 -- Indexes for table `readings__text`

@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
+$IS_ADMIN = ! TRUE;
+
 include_once 'lib/TamilLectionary.php';
 include_once 'lib/TamilLectionaryRenderHTML.php';
 

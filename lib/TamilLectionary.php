@@ -11,9 +11,10 @@ class TamilLectionary {
 	public $rcy;
 
 	private $database;
-
-	private $sundayType, $sundayType_After_Advent, $OWType;
+	
 	// Sunday A, B or C; Ordinary Week 1 or 2
+	private $sundayType, $sundayType_After_Advent, $OWType;
+
 	function __construct($year = null, $calcConfig) {
 		$this->database = new medoo ( array (
 				'database_type' => 'mysql',
@@ -34,6 +35,20 @@ class TamilLectionary {
 		$this->OWType = ($this->rcy->currentYear % 2) == 0 ? 2 : 1;
 		
 		$this->getReadings ();
+
+		file_put_contents($this->rcy->calcConfig ['feastsListLoc'] . $this->rcy->currentYear . '.TXT', var_export($this->rcy, true));
+		
+		/*
+		 $content = serialize($my_variable);
+file_put_contents($file, $content);
+$content = unserialize(file_get_contents($file));
+		 */
+		
+		/*
+		// Retrieve cache
+		$myDataArray = unserialize(file_get_contents($cachePath));
+		
+		//$txtCnt = file_get_contents ( $fileName ); */
 	}
 
 	function getReadings() {
@@ -58,7 +73,7 @@ class TamilLectionary {
 							) 
 					) );
 					
-					if ($ReadingList) { // If you have reading... Should always be true...
+					if ($ReadingList) { // If you have reading...
 						for($i = 1; $i < sizeof ( $ReadingList ); $i ++) {
 							$ReadingList [0] = array_merge ( $ReadingList [0], array_filter ( $ReadingList [$i] ) ); // merge all arrays to get the final reading list
 						}
@@ -79,7 +94,7 @@ class TamilLectionary {
 					foreach ( $this->rcy->calcConfig ['calendars'] as $calName ) {
 						// Immaculate heart of mary has gospel proper; Only this is set here manually because date varies every year
 						if ($this->rcy->fullYear [$month] [$days] [$feastCount] ['code'] !== 'OW00-ImmaculateHeart') {
-							// Get proper reading for saints from DB
+							// Get proper reading for saints from DB as no recomended readings are listed in the lectionary
 							$saintsProper = $this->database->get ( 'general' . $calName, array (
 									'common',
 									'proper' 
@@ -112,16 +127,16 @@ class TamilLectionary {
 						}
 					}
 					
-					// Checking for Vigil Readings Here
-					$ReadingList_Vigil = $this->database->select ( 'readings__list_stub', '*', array (
-							'dayID' => $fet ['code'] . ' - Vigil' 
+					// Checking for Vigil Readings or multiple readings for same feast like christmas
+					$ReadingList_Multiple = $this->database->select ( 'readings__list_multiple', '*', array (
+							'dayID[~]' => $fet ['code'] . '%' 
 					) );
 					
-					if ($ReadingList_Vigil) {
-						$this->rcy->fullYear [$month] [$days] [$feastCount] ['readingList_Vigil'] = $ReadingList_Vigil [0];
+					if ($ReadingList_Multiple) {
+						$this->rcy->fullYear [$month] [$days] [$feastCount] ['readingList_multiple'] = $ReadingList_Multiple;
 					}
 					// TODO Get sequence text here
-					// TODO Set christmas, easter and palm sunday seperately
+					// TODO Set easter vigil and palm sunday seperately
 				}
 			}
 		}

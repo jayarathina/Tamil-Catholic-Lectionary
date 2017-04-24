@@ -20,6 +20,13 @@ td.dt, td.Col{
 	width: 0.1% !important;
 }
 
+a:link    {
+  text-decoration:  none;
+  } 
+a:hover   {
+  text-decoration:  underline;
+  } 
+
 td.dayTitle {
 	width: 250px !important;
 }

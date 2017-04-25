@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2017 at 08:04 PM
+-- Generation Time: Apr 26, 2017 at 12:41 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -243,7 +243,7 @@ INSERT INTO `generalcalendar` (`feast_month`, `feast_date`, `feast_code`, `feast
 (12, 8, 'Immaculate Conception of the Blessed Virgin Mary', 'தூய கன்னி மரியாவின் அமலோற்பவம்', 'Solemnity', '', ''),
 (12, 9, 'Saint Juan Diego', 'புனித ஜான் தியேகோ', 'OpMem', 'புனிதர், புனிதையர்', ''),
 (12, 11, 'Saint Damasus I, pope', 'புனித முதலாம் தமசுஸ் - திருத்தந்தை', 'OpMem', 'மேய்ப்பர் (திருத்தந்தை}', ''),
-(12, 12, 'Our Lady of Guadalupe', 'புனித குவாதெலுப் அன்னை', 'OpMem', 'புனிதர், புனிதையர் (துறவியர்)', ''),
+(12, 12, 'Our Lady of Guadalupe', 'புனித குவாதெலுப் அன்னை', 'OpMem', 'தூய கன்னி மரியா', ''),
 (12, 13, 'Saint Lucy of Syracuse, virgin and martyr', 'புனித லூசியா - கன்னியர், மறைச்சாட்சி', 'Mem', 'மறைச்சாட்சியர் or கன்னியர்', ''),
 (12, 14, 'Saint John of the Cross, priest and doctor', 'சிலுவையின் புனித யோவான் - மறைப்பணியாளர், மறைவல்லுநர்', 'Mem', 'மேய்ப்பர் or மறைவல்லுநர்', ''),
 (12, 21, 'Saint Peter Canisius, priest and doctor', 'புனித பீட்டர் கனீசியு - மறைப்பணியாளர், மறைவல்லுநர்', 'OpMem', 'மேய்ப்பர் or மறைவல்லுநர்', ''),

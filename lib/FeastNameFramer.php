@@ -7,8 +7,6 @@
 include_once 'lib/TamilLectionaryUtil.php';
 class FeastNameFramer {
 
-	public $rcy;
-
 	private $database;
 
 	function __construct($database) {
@@ -16,30 +14,30 @@ class FeastNameFramer {
 	}
 
 	/**
-	 * Set names in the place of codes.
+	 * Converts day codes to proper names.
 	 * This has to be language specific. Here an english language example is given.
 	 * For feast names, one has to derive it from the database. For weekday codes names can be set here.
 	 */
 	function setDayNames(RomanCalendarYear $rcy) {
-		$this->rcy = $rcy;
-		
-		foreach ( $this->rcy->fullYear as $monthVal => $dateList ) {
+		foreach ( $rcy->fullYear as $monthVal => $dateList ) {
 			foreach ( $dateList as $datVal => $dayFeastList ) {
 				
 				foreach ( $dayFeastList as $feastIndex => $singleFeast ) {
 					if (preg_match ( "/^[C|L|E|O|A]W\d{2}-/", $singleFeast ['code'] ) === 1) {
-						$rcy->fullYear [$monthVal] [$datVal] [$feastIndex] ['name'] = $this->getSingleTitle ( $singleFeast ['code'] );
+						$rcy->fullYear [$monthVal] [$datVal] [$feastIndex] ['name'] = $this->getSingleTitle ( $singleFeast ['code'], $rcy->calcConfig ['feastSettings'] ['EPIPHANY_ON_A_SUNDAY'] );
 					} else {
 						$nameSet = false;
 						// Get from database if different language
-						foreach ( $this->rcy->calcConfig ['calendars'] as $calName ) {
+						foreach ( $rcy->calcConfig ['calendars'] as $calName ) {
 							
 							$res = $this->database->get ( 'general' . $calName, 'feast_ta', array (
 									'feast_code' => $singleFeast ['code'] 
 							) );
 							
 							if (! empty ( $res )) {
-								$this->rcy->fullYear [$monthVal] [$datVal] [$feastIndex] ['name'] = $res;
+								$rcy->fullYear [$monthVal] [$datVal] [$feastIndex] ['name'] = $res;
+								if (! empty ( $rcy->calcConfig ['calendarSuffix'] [$calName] ))
+									$rcy->fullYear [$monthVal] [$datVal] [$feastIndex] ['calendar'] = $calName;
 								$nameSet = true;
 								break;
 							}
@@ -51,10 +49,10 @@ class FeastNameFramer {
 				}
 			}
 		}
-		return $this->rcy;
+		return $rcy;
 	}
 
-	function getSingleTitle($dayCode) {
+	function getSingleTitle($dayCode, $isEpiphanySunday) {
 		$TLUtil = new TamilLectionaryUtil ();
 		
 		$RomanCalendarDayException = array (
@@ -78,8 +76,7 @@ class FeastNameFramer {
 				'OW00-SacredHeart' => 'இயேசுவின் திருஇதயம்',
 				'OW00-ImmaculateHeart' => 'தூய கன்னி மரியாவின் மாசற்ற இதயம்',
 				'OW34-0Sun' => 'இயேசு கிறிஸ்து அனைத்துலக அரசர்' 
-		)
-		;
+		);
 		
 		if (isset ( $RomanCalendarDayException [$dayCode] ))
 			return $RomanCalendarDayException [$dayCode];
@@ -105,7 +102,7 @@ class FeastNameFramer {
 						$fTitle = 'சனவரி ' . substr ( $dayCode, - 1 );
 						break;
 					case 3 : // After Epiphany
-						if ($this->rcy->calcConfig ['feastSettings'] ['EPIPHANY_ON_A_SUNDAY']) {
+						if ($isEpiphanySunday) {
 							$fTitle = 'திருக்காட்சி விழாவுக்குப் பின் ' . $TLUtil->tamilDayFull [substr ( $dayCode, - 1 )];
 						} else {
 							$fTitle = 'சனவரி ' . (6 + substr ( $dayCode, - 1 ));

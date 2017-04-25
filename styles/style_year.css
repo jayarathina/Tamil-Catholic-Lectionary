@@ -1,9 +1,9 @@
 @font-face {
-  font-family: 'Arima Madurai';
-  src: url('ArimaMadurai-Light.otf');
+	font-family: 'Arima Madurai';
+	src: url('ArimaMadurai-Light.otf');
 }
 
-body{
+body {
 	font-family: 'Arima Madurai';
 }
 
@@ -16,16 +16,17 @@ table, th, td {
 	border-collapse: collapse;
 }
 
-td.dt, td.Col{
+td.dt, td.Col {
 	width: 0.1% !important;
 }
 
-a:link    {
-  text-decoration:  none;
-  } 
-a:hover   {
-  text-decoration:  underline;
-  } 
+a:link {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
 
 td.dayTitle {
 	width: 250px !important;

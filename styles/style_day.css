@@ -1,0 +1,13 @@
+@font-face {
+	font-family: 'Arima Madurai';
+	src: url('ArimaMadurai-Light.otf');
+}
+
+body {
+	font-family: 'Arima Madurai';
+}
+
+h1,h2, h3{
+	color: red;
+	text-align: center;
+}

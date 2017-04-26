@@ -20,6 +20,8 @@ class TamilLectionaryRenderHTML {
 	 * @return string Feast listings formated as HTML code
 	 */
 	function renderHTML($fileName) {
+		if (! file_exists ( $filename ))  return '';
+		
 		$txtCnt = file_get_contents ( $fileName );
 		$rcy = json_decode ( $txtCnt, true );
 		
@@ -62,18 +64,18 @@ class TamilLectionaryRenderHTML {
 						if ('LW06-6Sat' == $fet ['code'] || 'LW06-0Sun' == $fet ['code']) {
 							// FIXME Palm sunday and Easter Vigil should have seperate links
 							$readingListMultiple = $fet ['readingList_multiple'] [0];
-							$rowHeading = "<td class='Col{$fet ['color']} dayTitle'><a href='viewDay.php?cdm={$readingListMultiple['dayID']}'>{$readingListMultiple['name']} $type</a></td>";
+							$rowHeading = "<td class='Col{$fet ['color']} dayTitle'><a href='viewDay.php?cdm={$readingListMultiple['dayID']}&yr={$rcy['currentYear']}'>{$readingListMultiple['name']} $type</a></td>";
 							$dayHTML .= $rowStart . $rowHeading . '</tr>';
 						} else
 							
 							foreach ( $fet ['readingList_multiple'] as $readingListMultiple ) {
 								$dayID_Vigil = $readingListMultiple ['dayID'];
-								$rowHeading = "<td class='Col{$fet ['color']} dayTitle'><a href='viewDay.php?cdm={$readingListMultiple['dayID']}'>{$readingListMultiple['name']} $type</a></td>";
+								$rowHeading = "<td class='Col{$fet ['color']} dayTitle'><a href='viewDay.php?cdm={$readingListMultiple['dayID']}&yr={$rcy['currentYear']}'>{$readingListMultiple['name']} $type</a></td>";
 								$dayHTML .= $rowStart . $rowHeading . $this->processRow ( $fet ['color'], $readingListMultiple ) . '</tr>';
 							}
 					}
 					
-					$rowHeading = "<td class='Col{$fet ['color']} dayTitle'><a href='viewDay.php?cd={$fet ['code']}'>{$fet ['name']}$type</a></td>";
+					$rowHeading = "<td class='Col{$fet ['color']} dayTitle'><a href='viewDay.php?cd={$fet ['code']}&yr={$rcy['currentYear']}'>{$fet ['name']}$type</a></td>";
 					if (isset ( $fet ['readingList'] )) {
 						$dayHTML .= $rowStart . $rowHeading . $this->processRow ( $fet ['color'], $fet ['readingList'] ) . '</tr>';
 					} elseif (isset ( $fet ['readingList_Proper'] ['common'] )) { // No reading is mentioned in lectionary; Have to choose on on own from commons

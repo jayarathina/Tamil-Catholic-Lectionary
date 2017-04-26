@@ -25,7 +25,7 @@ class TamilLectionary {
 		}
 		$filename = $dirName . '/' . 'year.json';
 		if (! file_exists ( $filename )) {
-			$database = new Medoo ( array (
+			$database = new medoo ( array (
 					'database_type' => 'mysql',
 					'database_name' => 'liturgy_lectionary',
 					'server' => 'localhost',
@@ -44,7 +44,7 @@ class TamilLectionary {
 		return $filename;
 	}
 
-	private function getReadings(RomanCalendarYear $rcy, Medoo $database) {
+	private function getReadings(RomanCalendarYear $rcy, medoo $database) {
 		// Sunday A, B or C; Ordinary Week 1 or 2
 		$sundayType = chr ( (($rcy->currentYear - 1) % 3) + 65 );
 		$sundayType_After_Advent = chr ( ($rcy->currentYear % 3) + 65 );

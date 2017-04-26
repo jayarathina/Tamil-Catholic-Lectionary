@@ -20,7 +20,7 @@ class TamilLectionaryRenderHTML {
 	 * @return string Feast listings formated as HTML code
 	 */
 	function renderHTML($fileName) {
-		if (! file_exists ( $filename ))  return '';
+		if (! file_exists ( $fileName ))  return '';
 		
 		$txtCnt = file_get_contents ( $fileName );
 		$rcy = json_decode ( $txtCnt, true );

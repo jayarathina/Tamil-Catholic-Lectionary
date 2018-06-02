@@ -1,13 +1,15 @@
 <?php
 header ( 'Content-Type: text/html; charset=utf-8' );
-
 include_once 'lib/TamilLectionarySingleDay.php';
 ?>
-
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" type="text/css" href="styles/style_day.css">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Daily Mass Reading in Tamil">
+		<meta name="keywords" content="Tamil Lectionary, Tamil Catholic, Tamil Mass Reading">
+		<meta name="author" content="Jayarathina Madarasan">
 	</head>
 <body>
 <?php 

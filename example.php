@@ -8,8 +8,13 @@ include_once 'lib/TamilLectionaryRenderHTML.php';
 ?>
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" type="text/css" href="styles/style_year.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="UTF-8">
+		<meta name="description" content="Daily Mass Reading in Tamil">
+		<meta name="keywords" content="Tamil Lectionary, Tamil Catholic, Tamil Mass Reading">
+		<meta name="author" content="Jayarathina Madarasan">
+		
 	</head>
 <body>
 

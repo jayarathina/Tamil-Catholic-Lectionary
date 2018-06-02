@@ -1,5 +1,10 @@
 # Tamil-Catholic-Lectionary
 
-This is a project to generate daily catholic mass readings (Lectionary) in Tamil. The project depends on [Roman-Calendar](https://github.com/jayarathina/Roman-Calendar) for calculating feasts. Currently only MySQL DB is uploaded. Soon a PHP API will be added too.
+This is a project to generate daily catholic mass readings (Lectionary) in Tamil. The project depends on [Roman-Calendar](https://github.com/jayarathina/Roman-Calendar) for calculating feasts. 
 
-This is a work in progress.
+* `lib` folder contains PHP library to access and display the database
+* `MySQL` folder contains the table dumps
+
+This is a work in progress. So there will be errors and bugs. If you find any please report them.
+
+To know more about this project, please visit [the home page](http://lectionary.madharasan.com).

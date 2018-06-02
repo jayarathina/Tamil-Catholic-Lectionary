@@ -1621,7 +1621,7 @@
                 {
                     "code": "LW04-0Sun",
                     "rank": 2.1,
-                    "color": "purple",
+                    "color": "rose",
                     "name": "தவக்காலம் 4ஆம் வாரம் - ஞாயிறு",
                     "readingList": {
                         "dayID": "LW04-0Sun B",
@@ -1883,7 +1883,7 @@
                 {
                     "code": "LW06-0Sun",
                     "rank": 2.1,
-                    "color": "purple",
+                    "color": "red",
                     "name": "ஆண்டவருடைய திருப்பாடுகளின் குருத்து ஞாயிறு",
                     "readingList_multiple": [
                         {
@@ -1950,12 +1950,12 @@
                 {
                     "code": "LW06-4Thu",
                     "rank": 1.1,
-                    "color": "purple",
+                    "color": "white",
                     "name": "ஆண்டவரின் இராவுணவுத் திருப்பலி",
                     "readingList": {
                         "dayID": "LW06-4Thu",
                         "reading1": "விப12:1-8,11-14",
-                        "psalms": "திபா116:12-13,15-16,17-18",
+                        "psalms": "திபா116:12-13.15-16.17-18~MT",
                         "reading2": "1கொரி11:23-26",
                         "alleluia": "யோவா13:34",
                         "gospel": "யோவா13:1-15"
@@ -1977,7 +1977,7 @@
                 {
                     "code": "LW06-5Fri",
                     "rank": 1.1,
-                    "color": "purple",
+                    "color": "red",
                     "name": "திருப்பாடுகளின் வெள்ளி",
                     "readingList": {
                         "dayID": "LW06-5Fri",
@@ -1993,7 +1993,7 @@
                 {
                     "code": "LW06-6Sat",
                     "rank": 1.1,
-                    "color": "purple",
+                    "color": "white",
                     "name": "பாஸ்கா  திருவிழிப்பு",
                     "readingList_multiple": [
                         {
@@ -3054,7 +3054,7 @@
                     "code": "EW08-Pentecost",
                     "rank": 2,
                     "type": "Solemnity",
-                    "color": "white",
+                    "color": "red",
                     "name": "தூய ஆவி ஞாயிறு",
                     "readingList": {
                         "dayID": "EW08-Pentecost B",
@@ -3106,7 +3106,7 @@
                     "code": "OW00-MaryMotherofChurch",
                     "rank": 10,
                     "type": "Mem",
-                    "color": "green",
+                    "color": "white",
                     "name": "தூய கன்னி மரியா திரு அவையின் அன்னை",
                     "readingList": {
                         "dayID": "OW00-MaryMotherofChurch",
@@ -3285,7 +3285,7 @@
                     "code": "OW00-Trinity",
                     "rank": 3,
                     "type": "Solemnity",
-                    "color": "green",
+                    "color": "white",
                     "name": "மூவொரு கடவுள்",
                     "readingList": {
                         "dayID": "OW00-Trinity B",
@@ -3437,7 +3437,7 @@
                     "code": "OW00-CorpusChristi",
                     "rank": 3,
                     "type": "Solemnity",
-                    "color": "green",
+                    "color": "white",
                     "name": "கிறிஸ்துவின் திருவுடல், திருஇரத்தம்",
                     "readingList": {
                         "dayID": "OW00-CorpusChristi B",
@@ -3554,7 +3554,7 @@
                     "code": "OW00-SacredHeart",
                     "rank": 3,
                     "type": "Solemnity",
-                    "color": "green",
+                    "color": "white",
                     "name": "இயேசுவின் திருஇதயம்",
                     "readingList": {
                         "dayID": "OW00-SacredHeart B",
@@ -3603,7 +3603,7 @@
                     "code": "OW00-ImmaculateHeart",
                     "rank": 10,
                     "type": "Mem",
-                    "color": "green",
+                    "color": "white",
                     "name": "தூய கன்னி மரியாவின் மாசற்ற இதயம்",
                     "readingList": {
                         "dayID": "OW00-ImmaculateHeart",
@@ -8106,7 +8106,7 @@
                     "code": "OW34-0Sun",
                     "rank": 3,
                     "type": "Solemnity",
-                    "color": "green",
+                    "color": "white",
                     "name": "இயேசு கிறிஸ்து அனைத்துலக அரசர்",
                     "readingList": {
                         "dayID": "OW34-0Sun B",
@@ -8569,7 +8569,7 @@
                 {
                     "code": "AW03-0Sun",
                     "rank": 2.1,
-                    "color": "purple",
+                    "color": "rose",
                     "name": "திருவருகைக்காலம் 3ஆம் வாரம் - ஞாயிறு",
                     "readingList": {
                         "dayID": "AW03-0Sun C",

@@ -205,8 +205,8 @@ class TamilLectionarySingleDay {
 				'purple' => 'clrPurple',
 				
 		);
-		//echo "<style> .clrDef {color:{$colsD[$dayDat['color']]};</style>";
 		
+		// Change color of the text based on todays color
 		$rt = str_replace ( 'clrDef', 'clr' . $dayDat['color'], $rt );
 		
 		return $rt;
@@ -261,9 +261,6 @@ class TamilLectionarySingleDay {
 		$fTxt = str_replace ( "§", "</p><p class='readingTxt'>", $fTxt );
 		
 		return $fTxt;
-	}
-
-	function formatPsalm($param) {
 	}
 
 	/**

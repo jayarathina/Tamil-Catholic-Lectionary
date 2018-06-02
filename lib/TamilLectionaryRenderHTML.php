@@ -157,9 +157,11 @@ class TamilLectionaryRenderHTML {
 	 *         This is displayed with color in the browser.
 	 */
 	function isTheVerseEnteredinDB($verse) {
+		
 		if (empty ( $verse ))
 			return;
-			// return '';
+		// return '';
+		
 		$database = new medoo ( array (
 				'database_type' => 'mysql',
 				'database_name' => 'liturgy_lectionary',
@@ -176,7 +178,7 @@ class TamilLectionaryRenderHTML {
 				) 
 		) );
 		
-		return $listWD == 0 ? '✖' : '✔';
-		// return $listWD == 0 ? '💗' : '💚';
+		//return $listWD == 0 ? '✖' : '✔';
+		return $listWD == 0 ? '💗' : '💚';
 	}
 }

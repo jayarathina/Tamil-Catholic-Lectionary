@@ -3,6 +3,7 @@
 /**
  * RomanLectionary 1.0
  * @author Br. Jayarathina Madharasan SDR
+ * Formats the day code to name for the day
  */
 include_once 'lib/TamilLectionaryUtil.php';
 class FeastNameFramer {

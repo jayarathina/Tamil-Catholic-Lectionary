@@ -53,22 +53,23 @@ class TamilLectionarySingleDay {
 	}
 
 	function getDayHTML($dayDetails) {
-		print_r ( $dayDetails );
+		// print_r ( $dayDetails );
 		if (isset ( $dayDetails ['readingList'] )) {
 			
 			// Break alternative verses
-			$readL = array();
-			foreach ($dayDetails ['readingList'] as $val) {
+			$readL = array ();
+			foreach ( $dayDetails ['readingList'] as $val ) {
 				$val1 = explode ( 'அல்லது', $val );
-				foreach ($val1 as $value) {
-					array_push($readL, trim($value) );
+				foreach ( $val1 as $value ) {
+					$v = explode('~', $value )[0];
+					array_push ( $readL, trim ( $v ) );
 				}
 			}
-
+			
 			$readL = implode ( "','", array_values ( $readL ) );
 			$sql = "SELECT `refKey`, `Content` FROM `readings__text` WHERE `refKey` IN ('" . $readL . "')";
 			$this->readingsText = $this->database->query ( $sql )->fetchAll ( PDO::FETCH_KEY_PAIR );
-
+			
 			/*
 			 * Array
 			 * (
@@ -85,10 +86,10 @@ class TamilLectionarySingleDay {
 			 * * * [alleluia] => திபா95:8
 			 * * * [gospel] => மத்12:38-42
 			 * * )
-			 * * 
+			 * *
 			 * )
 			 */
-
+			
 			$dayDat = array ();
 			$dayDat ['title-H1'] = $dayDetails ['name'];
 			$dayDat ['title-H2'] = '';
@@ -123,7 +124,6 @@ class TamilLectionarySingleDay {
 	}
 
 	function printHTML($dayDat) {
-				
 		$rt = "<h1 class='clrDef'>{$dayDat['title-H1']}</h1>";
 		
 		if (isset ( $dayDat ['title-H2'] ))
@@ -138,39 +138,40 @@ class TamilLectionarySingleDay {
 		);
 		
 		// முதல் வாசகம்
-		$rt .= $this->formatReading ( 'முதல் வாசகம்', $dayDat ['reading1'] ); 
+		$rt .= $this->formatReading ( 'முதல் வாசகம்', $dayDat ['reading1'] );
 		
 		// பதிலுரைப் பாடல்
 		if (! empty ( $dayDat ['psalms'] )) {
 			$rtTemp = "<h4 class='clrDef'>பதிலுரைப் பாடல்</h4>";
 			$verses = explode ( 'அல்லது', $dayDat ['psalms'] );
-
+			
 			foreach ( $verses as &$ver ) {
 				$TLUtil = new TamilLectionaryUtil ();
-				$psalmText = $this->database->get('readings__text_psalms', array(
+				$psalmText = $this->database->get ( 'readings__text_psalms', array (
 						'ResponseVs',
-						'Response',
-				), array(
-						"refKey" => $ver
-				));
+						'Response' 
+				), array (
+						"refKey" => $ver 
+				) );
 				
-				$rtTemp .= '<h5>' . $TLUtil->formatVerseToPrint ( $ver ) . ' (பல்லவி: '.$psalmText['ResponseVs'].') </h5>';
-				$rtTemp .= '<p style="font-style:italic;"><span class="clrDef" >பல்லவி:</span> ' . $psalmText['Response'] . '</p>';
-
-				if(isset( $this->readingsText [$ver]))
-				$rtTemp .=  $this->readingsText [$ver];
+				$rtTemp .= '<h5>' . $TLUtil->formatVerseToPrint ( $ver ) . ' (பல்லவி: ' . $psalmText ['ResponseVs'] . ') </h5>';
+				$rtTemp .= '<p style="font-style:italic;"><span class="clrDef" >பல்லவி:</span> ' . $psalmText ['Response'] . '</p>';
+				
+				if (isset ( $this->readingsText [$ver] )){
+					$rtTemp .= $this->readingsText [$ver];
+				}elseif (isset ( $this->readingsText [explode('~', $ver )[0]] )){
+					$rtTemp .= $this->readingsText [explode('~', $ver )[0]];
+				}
 			}
 		}
 		$rtTemp = str_replace ( '℟', ' - <span class="clrDef">பல்லவி</span></p><p>', $rtTemp );
-		
 		$rtTemp = str_replace ( "§", "<br/>", $rtTemp );
 		
-		
-		$rt .= $rtTemp;
+		$rt .= '<p>'.$rtTemp.'</p>';
 		
 		// இரண்டாம் வாசகம்
 		$rt .= $this->formatReading ( 'இரண்டாம் வாசகம்', $dayDat ['reading2'] );
-
+		
 		// அல்லேலூயா
 		if (! empty ( $dayDat ['alleluia'] )) {
 			$rtT = "<h4 class='clrDef'>நற்செய்திக்கு முன் வாழ்த்தொலி</h4>";
@@ -181,12 +182,12 @@ class TamilLectionarySingleDay {
 					$TLUtil = new TamilLectionaryUtil ();
 					$rtTemp .= ' (' . $TLUtil->formatVerseToPrint ( $ver ) . ')';
 				}
-				if (isset ( $this->readingsText [$ver] )){
+				if (isset ( $this->readingsText [$ver] )) {
 					$rtTemp .= "<p class='alleluiaTxt'>அல்லேலூயா, அல்லேலூயா! " . $this->readingsText [$ver] . ' அல்லேலூயா.</p>';
 				}
 				$ver = $rtTemp;
 			}
-
+			
 			$rtT .= implode ( '<h4 class="clrDef">அல்லது</h4>', $verses );
 			if ($this->isItLentSeason ()) { // No alleluia during lent
 				$rtT = str_replace ( 'நற்செய்திக்கு முன் வாழ்த்தொலி', 'நற்செய்திக்கு முன் வசனம்', $rtT );
@@ -195,19 +196,19 @@ class TamilLectionarySingleDay {
 			}
 			$rt .= $rtT;
 		}
-		$rt .= $this->formatReading ( 'நற்செய்தி வாசகம்', $dayDat ['gospel'] ); // நற்செய்தி வாசகம்
+		// நற்செய்தி வாசகம்
+		$rt .= $this->formatReading ( 'நற்செய்தி வாசகம்', $dayDat ['gospel'] );
 		
-		$colsD =array(
+		$colsD = array (
 				'red' => 'clrRed',
 				'white' => 'clrWhite',
 				'green' => 'clrGreen',
 				'rose' => 'clrRose',
-				'purple' => 'clrPurple',
-				
+				'purple' => 'clrPurple' 
 		);
 		
 		// Change color of the text based on todays color
-		$rt = str_replace ( 'clrDef', 'clr' . $dayDat['color'], $rt );
+		$rt = str_replace ( 'clrDef', 'clr' . $dayDat ['color'], $rt );
 		
 		return $rt;
 	}
@@ -254,7 +255,6 @@ class TamilLectionarySingleDay {
 		$fTxt = '';
 		$fTxt .= "<h4 class='readingHeading'>" . $rdHeading . "</h4><div style='clear:both;'></div>";
 		$fTxt .= "<p>" . $this->expandBibleRef ( $readingCode ) . "</p>";
-		
 		$fTxt .= "<p class='readingTxt'>" . $rdTxt . "</p>";
 		$fTxt .= "<p  class='readingTxt'>ஆண்டவரின் அருள்வாக்கு.</p>";
 		

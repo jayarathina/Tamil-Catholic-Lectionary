@@ -7,7 +7,83 @@ body {
 	font-family: 'Arima Madurai';
 }
 
+h1,h2, h3, h4{
+	margin: 0;
+}
+
 h1,h2, h3{
-	color: red;
 	text-align: center;
+}
+
+.readingTxt{
+	text-align: justify;
+	text-indent: 25px;
+}
+
+.readingHeading{
+	text-align: right;
+	float:right;
+	width:50%;
+}
+
+.alleluiaTxt{
+	margin-left: 25px;
+	text-align: justify;
+}
+
+
+
+.clrDef {
+	color: red;
+}
+
+hr.clrDef {
+	border-top: 1px solid red;
+}
+
+.clrPurple {
+	color: indigo;
+}
+hr.clrPurple {
+	border-top: 1px solid indigo;
+}
+
+hr.clrRose {
+	border-top: 1px solid mediumvioletred;
+}
+.clrRose {
+	color: mediumvioletred;
+}
+
+
+hr.clrGreen {
+	border-top: 1px solid darkgreen;
+}
+.clrGreen {
+	color: darkgreen;
+}
+
+
+hr.clrWhite {
+	border-top: 1px solid darkgoldenrod;
+}
+.clrWhite {
+	color: darkgoldenrod;
+}
+
+
+hr.clrRed {
+	border-top: 1px solid firebrick;
+}
+.clrRed {
+	color: firebrick;
+}
+
+
+@media screen and (max-width: 600px) {
+	.readingHeading{
+		text-align: right;
+		float:right;
+		width:100%;
+	}
 }

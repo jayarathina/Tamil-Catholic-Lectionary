@@ -11,13 +11,17 @@ include_once 'lib/TamilLectionarySingleDay.php';
 	</head>
 <body>
 <?php 
-if (! isset ( $_GET ['cd'] ) || ! isset ( $_GET ['yr'] )) {
+if (! isset ( $_GET ['cd'] ) || ! isset ( $_GET ['dt'] )) {
 	die ();
 }
 
 $dayCode = $_GET ['cd'];
-$cYear = $_GET ['yr'];
+$cDate = $_GET ['dt'];
 
 $singleDay = new TamilLectionarySingleDay(parse_ini_file ( 'settings.ini' ));
 
-echo $singleDay->printDayReading($dayCode, $cYear);
+echo $singleDay->printDayReading($dayCode, $cDate);
+
+?>
+</body>
+</html>

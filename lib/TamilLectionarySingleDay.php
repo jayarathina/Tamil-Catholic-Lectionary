@@ -7,9 +7,10 @@
 require_once 'mods/Medoo.php';
 include_once 'lib/includeExternal.php';
 include_once 'lib/FeastNameFramer.php';
+include_once 'lib/TamilLectionaryUtil.php';
 class TamilLectionarySingleDay {
 
-	private $calcConfig, $database;
+	private $calcConfig, $database, $readingsText, $currentDate;
 
 	function __construct($calcConfig) {
 		$this->calcConfig = $calcConfig;
@@ -24,7 +25,10 @@ class TamilLectionarySingleDay {
 		) );
 	}
 
-	function printDayReading($dayCode, $cYear) {
+	function printDayReading($dayCode, $cDate) {
+		$this->currentDate = $cDate;
+		$cYear = substr ( $cDate, - 4 );
+		
 		$fileName = $this->calcConfig ['feastsListLoc'] . $cYear . '/' . 'year.json';
 		
 		if (! file_exists ( $fileName )) {
@@ -41,7 +45,7 @@ class TamilLectionarySingleDay {
 				foreach ( $feasts as $fet ) {
 					if (strcmp ( $fet ['code'], $dayCode ) === 0) {
 						return $this->getDayHTML ( $fet );
-						// break 3;
+						break 3;
 					}
 				}
 			}
@@ -51,36 +55,44 @@ class TamilLectionarySingleDay {
 	function getDayHTML($dayDetails) {
 		print_r ( $dayDetails );
 		if (isset ( $dayDetails ['readingList'] )) {
-			$sql = "SELECT `refKey`, `Content` FROM `readings__text` WHERE `refKey` IN ('" . implode ( "','", array_values ( $dayDetails ['readingList'] ) ) . "')";
-			$readings = $this->database->query ( $sql )->fetchAll ( PDO::FETCH_KEY_PAIR );
-			// print_r ( $red );
 			
+			// Break alternative verses
+			$readL = array();
+			foreach ($dayDetails ['readingList'] as $val) {
+				$val1 = explode ( 'அல்லது', $val );
+				foreach ($val1 as $value) {
+					array_push($readL, trim($value) );
+				}
+			}
+
+			$readL = implode ( "','", array_values ( $readL ) );
+			$sql = "SELECT `refKey`, `Content` FROM `readings__text` WHERE `refKey` IN ('" . $readL . "')";
+			$this->readingsText = $this->database->query ( $sql )->fetchAll ( PDO::FETCH_KEY_PAIR );
+
 			/*
-			 *
-			 *
 			 * Array
 			 * (
-			 * [code] => OW16-1Mon
-			 * [rank] => 13.4
-			 * [color] => green
-			 * [name] => பொதுக்காலம் 16ஆம் வாரம் - திங்கள்
-			 * [readingList] => Array
-			 * (
-			 * [dayID] => OW16-1Mon 1
-			 * [reading1] => விப14:5-18
-			 * [psalms] => விப15:1bc-2.3-4.5-6
-			 * [reading2] =>
-			 * [alleluia] => திபா95:8
-			 * [gospel] => மத்12:38-42
+			 * * [code] => OW16-1Mon
+			 * * [rank] => 13.4
+			 * * [color] => green
+			 * * [name] => பொதுக்காலம் 16ஆம் வாரம் - திங்கள்
+			 * * [readingList] => Array
+			 * * (
+			 * * * [dayID] => OW16-1Mon 1
+			 * * * [reading1] => விப14:5-18
+			 * * * [psalms] => விப15:1bc-2.3-4.5-6
+			 * * * [reading2] =>
+			 * * * [alleluia] => திபா95:8
+			 * * * [gospel] => மத்12:38-42
+			 * * )
+			 * * 
 			 * )
-			 *
-			 * )
-			 *
-			 *
 			 */
-			
+
+			$dayDat = array ();
 			$dayDat ['title-H1'] = $dayDetails ['name'];
 			$dayDat ['title-H2'] = '';
+			
 			if (isset ( $dayDetails ['readingList'] ['dayID'] )) {
 				$yearCat = array (
 						'1' => 'முதல் ஆண்டு',
@@ -89,7 +101,6 @@ class TamilLectionarySingleDay {
 						'B' => 'இரண்டாம் ஆண்டு',
 						'C' => 'மூன்றாம் ஆண்டு' 
 				);
-				$dayDat = array ();
 				
 				if (preg_match ( '/.* ([1|2|A|B|C])$/', $dayDetails ['readingList'] ['dayID'], $matches ) === 1) {
 					$dayDat ['title-H2'] = $yearCat [$matches [1]];
@@ -101,22 +112,22 @@ class TamilLectionarySingleDay {
 				$dayDat ['alleluia'] = $dayDetails ['readingList'] ['alleluia'];
 				$dayDat ['gospel'] = $dayDetails ['readingList'] ['gospel'];
 				
-				// $dayDat['title-H2']
+				$dayDat ['color'] = $dayDetails ['color'];
 				
-				return $this->printHTML ( $dayDat, $readings );
+				return $this->printHTML ( $dayDat );
 			}
 		} else {
 			// displayCommons()
+			print_r ( $dayDetails );
 		}
 	}
 
-	function printHTML($dayDat, $readings) {
-		$rt = '';
-		$rt .= "<h1>{$dayDat['title-H1']}</h1>";
-		if (isset ( $dayDat ['title-H2'] ))
-			$rt .= "<h2>{$dayDat['title-H2']}</h2>";
+	function printHTML($dayDat) {
+				
+		$rt = "<h1 class='clrDef'>{$dayDat['title-H1']}</h1>";
 		
-		$rt .= "";
+		if (isset ( $dayDat ['title-H2'] ))
+			$rt .= "<h2 class='clrDef'>{$dayDat['title-H2']}</h2>";
 		
 		$listArrBefore = array (
 				'reading1' => 'முதல் வாசகம்',
@@ -125,119 +136,179 @@ class TamilLectionarySingleDay {
 				'alleluia' => 'நற்செய்திக்கு முன் வசனம்',
 				'gospel' => 'நற்செய்தி வாசகம்' 
 		);
-		$listArrAfter = array (
-				'reading1' => 'இது ஆண்டவர் வழங்கும் அருள்வாக்கு.',
-				'psalms' => '',
-				'reading2' => 'இது ஆண்டவர் வழங்கும் அருள்வாக்கு.',
-				'alleluia' => '',
-				'gospel' => 'இது கிறிஸ்து வழங்கும் நற்செய்தி.' 
-		);
-		$listArr = array (
-				'reading1',
-				'psalms',
-				'reading2',
-				'alleluia',
-				'gospel' 
-		);
 		
-		foreach ( $listArr as $value ) {
-			
-			if (! empty ( $dayDat [$value] )) {
+		// முதல் வாசகம்
+		$rt .= $this->formatReading ( 'முதல் வாசகம்', $dayDat ['reading1'] ); 
+		
+		// பதிலுரைப் பாடல்
+		if (! empty ( $dayDat ['psalms'] )) {
+			$rtTemp = "<h4 class='clrDef'>பதிலுரைப் பாடல்</h4>";
+			$verses = explode ( 'அல்லது', $dayDat ['psalms'] );
+
+			foreach ( $verses as &$ver ) {
+				$TLUtil = new TamilLectionaryUtil ();
+				$psalmText = $this->database->get('readings__text_psalms', array(
+						'ResponseVs',
+						'Response',
+				), array(
+						"refKey" => $ver
+				));
 				
-				if (isset ( $readings [$dayDat [$value]] )) {
-					
-					$rt .= "<h3>" . $listArrBefore [$value] . "</h3>";
-					$rt .= "<h4>" . $dayDat [$value] . "</h4>";
-					$rt .= "<p>" . $readings [$dayDat [$value]] . "</p>";
-					$rt .= "<p>" . $listArrAfter [$value] . "</p>";
-				} else {
-					$rt .= "<h4>" . $dayDat [$value] . "</h4>";
-				}
+				$rtTemp .= '<h5>' . $TLUtil->formatVerseToPrint ( $ver ) . ' (பல்லவி: '.$psalmText['ResponseVs'].') </h5>';
+				$rtTemp .= '<p style="font-style:italic;"><span class="clrDef" >பல்லவி:</span> ' . $psalmText['Response'] . '</p>';
+
+				if(isset( $this->readingsText [$ver]))
+				$rtTemp .=  $this->readingsText [$ver];
 			}
 		}
+		$rtTemp = str_replace ( '℟', ' - <span class="clrDef">பல்லவி</span></p><p>', $rtTemp );
 		
-		$rt = str_replace ( "§", "<br/>", $rt );
-		$rt = str_replace ( "℟", " - பல்லவி<br/><br/>", $rt );
+		$rtTemp = str_replace ( "§", "<br/>", $rtTemp );
+		
+		
+		$rt .= $rtTemp;
+		
+		// இரண்டாம் வாசகம்
+		$rt .= $this->formatReading ( 'இரண்டாம் வாசகம்', $dayDat ['reading2'] );
+
+		// அல்லேலூயா
+		if (! empty ( $dayDat ['alleluia'] )) {
+			$rtT = "<h4 class='clrDef'>நற்செய்திக்கு முன் வாழ்த்தொலி</h4>";
+			$verses = explode ( 'அல்லது', $dayDat ['alleluia'] );
+			foreach ( $verses as &$ver ) {
+				$rtTemp = '';
+				if ($this->expandBibleRef ( $ver ) !== false) { // To Check whether verse is from bible or not
+					$TLUtil = new TamilLectionaryUtil ();
+					$rtTemp .= ' (' . $TLUtil->formatVerseToPrint ( $ver ) . ')';
+				}
+				if (isset ( $this->readingsText [$ver] )){
+					$rtTemp .= "<p class='alleluiaTxt'>அல்லேலூயா, அல்லேலூயா! " . $this->readingsText [$ver] . ' அல்லேலூயா.</p>';
+				}
+				$ver = $rtTemp;
+			}
+
+			$rtT .= implode ( '<h4 class="clrDef">அல்லது</h4>', $verses );
+			if ($this->isItLentSeason ()) { // No alleluia during lent
+				$rtT = str_replace ( 'நற்செய்திக்கு முன் வாழ்த்தொலி', 'நற்செய்திக்கு முன் வசனம்', $rtT );
+				$rtT = str_replace ( "<p class='alleluiaTxt'>அல்லேலூயா, அல்லேலூயா! ", "<p class='alleluiaTxt'>", $rtT );
+				$rtT = str_replace ( ' அல்லேலூயா.</p>', '', $rtT );
+			}
+			$rt .= $rtT;
+		}
+		$rt .= $this->formatReading ( 'நற்செய்தி வாசகம்', $dayDat ['gospel'] ); // நற்செய்தி வாசகம்
+		
+		$colsD =array(
+				'red' => 'clrRed',
+				'white' => 'clrWhite',
+				'green' => 'clrGreen',
+				'rose' => 'clrRose',
+				'purple' => 'clrPurple',
+				
+		);
+		//echo "<style> .clrDef {color:{$colsD[$dayDat['color']]};</style>";
+		
+		$rt = str_replace ( 'clrDef', 'clr' . $dayDat['color'], $rt );
 		
 		return $rt;
 	}
 
-	private $tamilAbbr = array (
-			'தொநூ' => 'தொடக்க நூலிலிருந்து',
-			'விப' => 'விடுதலைப் பயண நூலிலிருந்து',
-			'லேவி' => 'லேவியர் நூலிலிருந்து',
-			'எண்' => 'எண்ணிக்கை நூலிலிருந்து',
-			'இச' => 'இணைச்சட்ட நூலிலிருந்து',
-			'யோசு' => 'யோசுவா நூலிலிருந்து',
-			'நீத' => 'நீதித்தலைவர்கள் நூலிலிருந்து',
-			'ரூத்' => 'ரூத்து நூலிலிருந்து',
-			'1 சாமு' => 'சாமுவேலின் முதல் நூலிலிருந்து',
-			'2 சாமு' => 'சாமுவேலின் இரண்டாம் நூலிலிருந்து',
-			'1 அர' => 'அரசர்கள் முதல் நூலிலிருந்து',
-			'2 அர' => 'அரசர்கள் இரண்டாம் நூலிலிருந்து',
-			'1 குறி' => 'குறிப்பேடு முதல் நூலிலிருந்து',
-			'2 குறி' => 'குறிப்பேடு இரண்டாம் நூலிலிருந்து',
-			'எஸ்ரா' => 'எஸ்ரா நூலிலிருந்து வாசகம்',
-			'நெகே' => 'இறைவாக்கினர் நெகேமியா நூலிலிருந்து',
-			'எஸ்' => 'எஸ்தர் நூலிலிருந்து வாசகம்',
-			'யோபு' => 'யோபு நூலிலிருந்து',
-			'திபா' => 'திருப்பாடல் நூலிலிருந்து',
-			'நீமொ' => 'நீதிமொழிகள் நூலிலிருந்து',
-			'சஉ' => 'சபை உரையாளர் நூலிலிருந்து',
-			'இபா' => 'இனிமைமிகு பாடலிலிருந்து',
-			'எசா' => 'இறைவாக்கினர் எசாயா நூலிலிருந்து',
-			'எரே' => 'இறைவாக்கினர் எரேமியா நூலிலிருந்து',
-			'புல' => 'புலம்பல் நூலிலிருந்து வாசகம்',
-			'எசே' => 'இறைவாக்கினர் எசேக்கியேல் நூலிலிருந்து',
-			'தானி' => 'இறைவாக்கினர் தானியேல் நூலிலிருந்து',
-			'ஓசே' => 'இறைவாக்கினர் ஓசேயா நூலிலிருந்து',
-			'யோவே' => 'இறைவாக்கினர் யோவேல் நூலிலிருந்து',
-			'ஆமோ' => 'இறைவாக்கினர் ஆமோஸ் நூலிலிருந்து',
-			'ஒப' => 'இறைவாக்கினர் ஒபதியா நூலிலிருந்து',
-			'யோனா' => 'இறைவாக்கினர் யோனா நூலிலிருந்து',
-			'மீக்' => 'இறைவாக்கினர் மீக்கா நூலிலிருந்து',
-			'நாகூ' => 'இறைவாக்கினர் நாகூம் நூலிலிருந்து',
-			'அப' => 'இறைவாக்கினர் அபக்கூக்கு நூலிலிருந்து',
-			'செப்' => 'இறைவாக்கினர் செப்பனியா நூலிலிருந்து',
-			'ஆகா' => 'இறைவாக்கினர் ஆகாய் நூலிலிருந்து',
-			'செக்' => 'இறைவாக்கினர் செக்கரியா நூலிலிருந்து',
-			'மலா' => 'இறைவாக்கினர் மலாக்கி நூலிலிருந்து வாசகம்',
-			'தோபி' => '',
-			'யூதி' => '',
-			'எஸ் (கி)' => 'எஸ்தர் (கி) நூலிலிருந்து வாசகம்',
-			'சாஞா' => 'சாலமோனின் ஞான நூலிலிருந்து',
-			'சீஞா' => 'சீராக்கின் ஞான நூலிருந்து',
-			'பாரூ' => 'இறைவாக்கினர் பாரூக்கு நூலிலிருந்து',
-			'தானி (இ)' => 'இறைவாக்கினர் தானியேல் (இ) நூலிலிருந்து',
-			'1 மக்' => 'மக்கபேயர் இரண்டாம் நூலிலிருந்து',
-			'2 மக்' => 'மக்கபேயர் இரண்டாம் நூலிலிருந்து',
+	/**
+	 * Formats first, second and gospel reading
+	 *
+	 * @param string $readingHeading        	
+	 * @param string $readingCd        	
+	 * @return string - Formated reading
+	 */
+	function formatReading($readingHeading, $readingCd) {
+		if (empty ( $readingCd ))
+			return '';
+		$rt = "<h3 class='clrDef'>$readingHeading</h3>";
+		$verses = explode ( 'அல்லது', $readingCd );
+		foreach ( $verses as &$ver ) {
+			$ver = $this->formatReadingText ( $ver );
+		}
+		$rt .= implode ( '<hr class="clrDef"/><h4 class="clrDef">அல்லது</h4>', $verses );
+		return $rt;
+	}
+
+	/**
+	 * Reading Text is retrived here from database and formated
+	 *
+	 * @param unknown $readingCode        	
+	 * @return string
+	 */
+	function formatReadingText($readingCode) {
+		$rdTxt = '';
+		if (isset ( $this->readingsText [$readingCode] ))
+			$rdTxt = $this->readingsText [$readingCode];
+		
+		$rdHeading = '';
+		
+		if (strpos ( $rdTxt, '---' ) !== false) {
+			$rdHeading = explode ( '---', $rdTxt, 2 );
 			
-			'மத்' => '✠ மத்தேயு எழுதிய நற்செய்தியிலிருந்து',
-			'மாற்' => '✠ மாற்கு எழுதிய நற்செய்தியிலிருந்து',
-			'லூக்' => '✠ லூக்கா எழுதிய நற்செய்தியிலிருந்து',
-			'யோவா' => '✠ யோவான் எழுதிய நற்செய்தியிலிருந்து',
-			'திப' => 'திருத்தூதர் பணிகள் நூலிலிருந்து',
-			'உரோ' => 'திருத்தூதர் பவுல் உரோமையருக்கு எழுதிய திருமுகத்திலிருந்து',
-			'1 கொரி' => 'திருத்தூதர் பவுல் கொரிந்தியருக்கு எழுதிய முதல் திருமுகத்திலிருந்து',
-			'2 கொரி' => 'திருத்தூதர் பவுல் கொரிந்தியருக்கு எழுதிய இரண்டாம் திருமுகத்திலிருந்து',
-			'கலா' => 'திருத்தூதர் பவுல் கலாத்தியருக்கு எழுதிய திருமுகத்திலிருந்து',
-			'எபே' => 'திருத்தூதர் பவுல் எபேசியருக்கு எழுதிய திருமுகத்திலிருந்து',
-			'பிலி' => 'திருத்தூதர் பவுல் பிலிப்பியருக்கு எழுதிய திருமுகத்திலிருந்து',
-			'கொலோ' => 'திருத்தூதர் பவுல் கொலோசையருக்கு எழுதிய திருமுகத்திலிருந்து',
-			'1 தெச' => 'திருத்தூதர் பவுல் தெசலோனிக்கருக்கு எழுதிய முதல் திருமுகத்திலிருந்து',
-			'2 தெச' => 'திருத்தூதர் பவுல் தெசலோனிக்கருக்கு எழுதிய இரண்டாம் திருமுகத்திலிருந்து',
-			'1 திமொ' => 'திருத்தூதர் பவுல் திமொத்தேயுவுக்கு எழுதிய முதல்  திருமுகத்திலிருந்து',
-			'2 திமொ' => 'திருத்தூதர் பவுல் திமொத்தேயுவுக்கு எழுதிய இரண்டாம் திருமுகத்திலிருந்து',
-			'தீத்' => 'திருத்தூதர் பவுல் தீத்துக்கு எழுதிய திருமுகத்திலிருந்து',
-			'பில' => 'திருத்தூதர் பவுல் பிலமோனுக்கு எழுதிய திருமுகத்திலிருந்து',
-			'எபி' => 'எபிரேயருக்கு எழுதப்பட்ட திருமுகத்திலிருந்து',
-			'யாக்' => 'திருத்தூதர் யாக்கோபு எழுதிய திருமுகத்திலிருந்து',
-			'1 பேது' => 'திருத்தூதர் பேதுரு எழுதிய முதல் திருமுகத்திலிருந்து',
-			'2 பேது' => 'திருத்தூதர் பேதுரு எழுதிய இரண்டாம் திருமுகத்திலிருந்து',
-			'1 யோவா' => 'திருத்தூதர் யோவான் எழுதிய முதல் திருமுகத்திலிருந்து',
-			'2 யோவா' => 'திருத்தூதர் யோவான் எழுதிய இரண்டாம் திருமுகத்திலிருந்து',
-			'3 யோவா' => 'திருத்தூதர் யோவான் எழுதிய மூன்றாம் திருமுகத்திலிருந்து',
-			'யூதா' => 'திருத்தூதர் யூதா எழுதிய திருமுகத்திலிருந்து',
-			'திவெ' => 'திருத்தூதர் யோவான் எழுதிய திருவெளிப்பாட்டிலிருந்து' 
-	);
+			$rdTxt = trim ( $rdHeading [1] );
+			$rdHeading = trim ( $rdHeading [0] );
+		}
+		
+		$fTxt = '';
+		$fTxt .= "<h4 class='readingHeading'>" . $rdHeading . "</h4><div style='clear:both;'></div>";
+		$fTxt .= "<p>" . $this->expandBibleRef ( $readingCode ) . "</p>";
+		
+		$fTxt .= "<p class='readingTxt'>" . $rdTxt . "</p>";
+		$fTxt .= "<p  class='readingTxt'>ஆண்டவரின் அருள்வாக்கு.</p>";
+		
+		$fTxt = str_replace ( "§", "</p><p class='readingTxt'>", $fTxt );
+		
+		return $fTxt;
+	}
+
+	function formatPsalm($param) {
+	}
+
+	/**
+	 * This expands bible relefence to its full.
+	 * For example எண் 6:22-27 will be expanded to எண்ணிக்கை நூலிலிருந்து வாசகம் 6: 22-27
+	 *
+	 * @param string $readingCode        	
+	 * @return boolean|mixed - Returns false if the reference is not from the bible or in standard format. Else returns the formated verse.
+	 */
+	function expandBibleRef($readingCode) {
+		$TLUtil = new TamilLectionaryUtil ();
+		$fVerse = $TLUtil->formatVerseToPrint ( $readingCode );
+		
+		if (strpos ( $fVerse, ' ', 1 ) === 1) {
+			$fVerse = substr_replace ( $fVerse, '', 1, 1 );
+		}
+		
+		$pieces = explode ( ' ', $fVerse, 2 );
+		
+		if (isset ( $TLUtil->tamilAbbr [$pieces [0]] )) {
+			$fVerse = $TLUtil->tamilAbbr [$pieces [0]] . ' வாசகம் ' . $pieces [1];
+		} else {
+			return FALSE;
+		}
+		
+		$fVerse = str_replace ( '✠', '<span class="clrDef">✠</span>', $fVerse );
+		return $fVerse;
+	}
+
+	/**
+	 *
+	 * @todo Depending on need this function may be moved to a general library. Probably TamilLectionaryUtil.php
+	 * @return boolean returns true if current date is in lenten season else returns false.
+	 */
+	function isItLentSeason() {
+		$cYear = substr ( $this->currentDate, - 4 );
+		
+		$eastertideStarts = new DateTime ( $cYear . '-03-21' );
+		$eastertideStarts->modify ( '+ ' . easter_days ( $cYear ) . ' days' ); // Lent Ends
+		
+		$lentStart = clone $eastertideStarts;
+		$lentStart->modify ( '-46 days' );
+		
+		$todaysDate = new DateTime ( $cYear . '-' . substr ( $this->currentDate, 2, 2 ) . '-' . substr ( $this->currentDate, 0, 2 ) );
+		
+		return ($lentStart <= $todaysDate && $todaysDate < $eastertideStarts);
+	}
 }

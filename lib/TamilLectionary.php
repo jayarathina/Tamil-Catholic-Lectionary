@@ -99,6 +99,16 @@ class TamilLectionary {
 							) );
 						}
 						
+						if ($rcy->fullYear [$month] [$days] [$feastCount] ['code'] !== 'OW00-MaryMotherofChurch') {
+							// Get proper reading for saints from DB as no recomended readings are listed in the lectionary
+							$saintsProper = $database->get ( 'general' . $calName, array (
+									'common',
+									'proper' 
+							), array (
+									'feast_code' => $fet ['code'] 
+							) );
+						}
+						
 						if ($saintsProper) {
 							$saintsProper = array_filter ( $saintsProper ); // Remove empty elements
 							if (sizeof ( $saintsProper ) > 0)

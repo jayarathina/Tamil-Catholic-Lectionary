@@ -75,6 +75,8 @@ class FeastNameFramer {
 				'OW00-CorpusChristi' => 'கிறிஸ்துவின் திருவுடல், திருஇரத்தம்',
 				'OW00-SacredHeart' => 'இயேசுவின் திருஇதயம்',
 				'OW00-ImmaculateHeart' => 'தூய கன்னி மரியாவின் மாசற்ற இதயம்',
+				'OW00-MaryMotherofChurch' => 'தூய கன்னி மரியா திரு அவையின் அன்னை',
+				
 				'OW34-0Sun' => 'இயேசு கிறிஸ்து அனைத்துலக அரசர்' 
 		);
 		

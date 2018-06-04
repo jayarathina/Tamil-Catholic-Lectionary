@@ -1,12 +1,10 @@
 <?php
-require_once ('../mods/medoo.php');
 include_once 'menu.php';
 
 // Prefix 'general' is added to table name to avoid unnecessary securtiy risk
 $ReadingListWD_ = $database->select ( 'readings__list', '*', array (
 		'dayID[~]' => 'EW%' 
 ) );
-
 
 $ReadingList = array ();
 

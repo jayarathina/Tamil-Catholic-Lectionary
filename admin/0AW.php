@@ -1,5 +1,4 @@
 <?php
-require_once ('../mods/medoo.php');
 include_once 'menu.php';
 
 $ReadingList = array ();

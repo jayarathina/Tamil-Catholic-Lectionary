@@ -5,23 +5,25 @@
  * @author Br. Jayarathina Madharasan SDR
  */
 require_once 'mods/Medoo.php';
+include_once 'lib/dbConfig.php';
 include_once 'lib/includeExternal.php';
 include_once 'lib/FeastNameFramer.php';
 include_once 'lib/TamilLectionaryUtil.php';
 class TamilLectionarySingleDay {
 
-	private $calcConfig, $database, $readingsText, $currentDate;
+	private $calcConfig, $readingsText, $currentDate;
 
 	function __construct($calcConfig) {
 		$this->calcConfig = $calcConfig;
-		
-		$this->database = new Medoo ( array (
+
+		$this->database = new medoo( array(
 				'database_type' => 'mysql',
-				'database_name' => 'liturgy_lectionary',
 				'server' => 'localhost',
-				'username' => 'root',
-				'password' => '',
-				'charset' => 'utf8' 
+				'charset' => 'utf8',
+				'username' => DB_USER,
+				'password' => DB_PASSWORD,
+				'database_name' => DB_NAME,
+				'prefix' => DB_TBL_PREFIX,
 		) );
 	}
 

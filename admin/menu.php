@@ -1,18 +1,34 @@
-<a href='0AW.php'>Advent</a> | 
-<a href='1CW.php'>Christmas</a> | 
-<a href='3LW.php'>Lent</a> | 
-<a href='4EW.php'>Easter</a> | 
-<a href='5OW.php'>Ordinary</a> | 
-<a href='6Saints.php'>Saints</a> | 
-<a href='../example.php'>Year</a> | 
+<?php session_start(); /* Starts the session */
+if(!isset($_SESSION['UserData']['Username'])){
+header("location:login.php");
+exit;
+}
+require_once ('../mods/medoo.php');
+?>
+<a href='0AW.php'>Advent</a>
+|
+<a href='1CW.php'>Christmas</a>
+|
+<a href='3LW.php'>Lent</a>
+|
+<a href='4EW.php'>Easter</a>
+|
+<a href='5OW.php'>Ordinary</a>
+|
+<a href='6Saints.php'>Saints</a>
+|
+<a href='../'>Year</a>
+| 
+<a href='logout.php'>Logout</a>
+| 
 
-<?php 
-
+<?php
+// These are required to print list of lows
 function print_row($Daykey, $ReadingVal) {
 	if (! isset ( $ReadingVal ['reading2'] )) {
 		$ReadingVal ['reading2'] = '';
 	}
-
+	
 	echo '<tr>';
 	echo '<td>' . $Daykey . '</td>';
 	echo '<td>' . sanitizeVerse ( $ReadingVal ['reading1'] ) . '</td>';
@@ -26,70 +42,67 @@ function print_row($Daykey, $ReadingVal) {
 function sanitizeVerse($verse) {
 	if (empty ( $verse ))
 		return '';
-
-		$verse = explode ( 'அல்லது', $verse );
-
-		if (sizeof ( $verse ) == 1) {
-			$ver = addspacetoVerse ( $verse [0] );
-			$verse = check_verse_all( $verse[0]) . "<a href='edit.php?vs={$verse[0]}'>$ver</a>";
-		} else {
-			foreach ( $verse as &$val ) {
-				$val1 = addspacetoVerse ( $val );
-				$val = check_verse_all( $val) . "<a href='edit.php?vs={$val}'>$val1</a>";
-			}
-			$verse = implode ( '<br/><small>அல்லது</small><br/>', $verse );
+	
+	$verse = explode ( 'அல்லது', $verse );
+	
+	if (sizeof ( $verse ) == 1) {
+		$ver = addspacetoVerse ( $verse [0] );
+		$verse = check_verse_all ( $verse [0] ) . "<a href='edit.php?vs={$verse[0]}'>$ver</a>";
+	} else {
+		foreach ( $verse as &$val ) {
+			$val1 = addspacetoVerse ( $val );
+			$val = check_verse_all ( $val ) . "<a href='edit.php?vs={$val}'>$val1</a>";
 		}
-		return $verse;
+		$verse = implode ( '<br/><small>அல்லது</small><br/>', $verse );
+	}
+	return $verse;
 }
 
 function addspacetoVerse($verse) {
 	$rt = trim ( $verse );
-
-	$rt = preg_replace ( '/(\.)/', '${1} ', $rt, -1, $count );
-	if($count === 0){//If there is a dot '.' it means it is responsorial verse.
+	
+	$rt = preg_replace ( '/(\.)/', '${1} ', $rt, - 1, $count );
+	if ($count === 0) { // If there is a dot '.' it means it is responsorial verse.
 		$rt = preg_replace ( '/(,)/', '${1} ', $rt );
 	}
 	
-	//Not the eligant way to code this. But hey! It gets work done....
-	$rt = preg_replace ( '/(;)/', '${1} ', $rt );//
+	// Not the eligant way to code this. But hey! It gets work done....
+	$rt = preg_replace ( '/(;)/', '${1} ', $rt ); //
 	$rt = preg_replace ( '/(காண்க)/', ' ${1} ', $rt );
-	$rt = preg_replace ( '/(\d+:)/', ' ${1} ', $rt );//Space after chapter colon
-	$rt = preg_replace ( '/^(\d+)/', '${1} ', $rt );//Space after digits at start of verse eg: 1சாமு
-	$rt = preg_replace ( '/(\()/', ' ${1}', $rt );// Space before ( -> எஸ் (கி)
-	$rt = preg_replace('/\s\s+/', ' ', $rt);//Excess space
+	$rt = preg_replace ( '/(\d+:)/', ' ${1} ', $rt ); // Space after chapter colon
+	$rt = preg_replace ( '/^(\d+)/', '${1} ', $rt ); // Space after digits at start of verse eg: 1சாமு
+	$rt = preg_replace ( '/(\()/', ' ${1}', $rt ); // Space before ( -> எஸ் (கி)
+	$rt = preg_replace ( '/\s\s+/', ' ', $rt ); // Excess space
 	return $rt;
 }
 
+include_once '../lib/dbConfig.php';
 
-$database = new medoo ( array (
+$database = new Medoo ( array (
 		'database_type' => 'mysql',
-		'database_name' => 'liturgy_lectionary',
+		'database_name' => DB_NAME,
 		'server' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'charset' => 'utf8'
+		'username' => DB_USER,
+		'password' => DB_PASSWORD,
+		'charset' => 'utf8',
+		'prefix' => '' 
 ) );
 
 function check_verse_all($verse) {
-
-	if( empty( $verse) ){
+	if(DB_PRODUCTION)	return '';
+	
+	if (empty ( $verse )) {
 		return;
 	}
-
+	
 	$listWD = $GLOBALS ['database']->count ( 'readings__text', '*', array (
 			'AND' => array (
 					'refKey' => $verse,
-					'Content[!]' => ''
-			)
+					'Content[!]' => '' 
+			) 
 	) );
-
-	if ($listWD > 0) {
-		return  '💚 '; //✅
-	} else {
-		return '💗';
-	}
+	return ($listWD > 0)? '💚 ': '💗';
 }
-
 
 $tamilAbbr = array (
 		'தொநூ' => 1,
@@ -166,6 +179,6 @@ $tamilAbbr = array (
 		'2யோவா' => 72,
 		'3யோவா' => 73,
 		'யூதா' => 74,
-		'திவெ' => 75
+		'திவெ' => 75 
 );
 ?>

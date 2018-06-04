@@ -5,7 +5,9 @@
  * @author Br. Jayarathina Madharasan SDR
  */
 require_once 'mods/Medoo.php';
-include_once '../Roman-Calendar/Lib/RomanCalendar.php'; //This is roman calendar library available at: https://github.com/jayarathina/Roman-Calendar
+include_once 'lib/dbConfig.php';
+include_once 'lib/includeExternal.php';
+
 include_once 'lib/FeastNameFramer.php';
 class TamilLectionary {
 
@@ -25,13 +27,17 @@ class TamilLectionary {
 		}
 		$filename = $dirName . '/' . 'year.json';
 		if (! file_exists ( $filename )) {
-			$database = new medoo ( array (
+			
+			
+			$database = new Medoo( array(
 					'database_type' => 'mysql',
-					'database_name' => 'liturgy_lectionary',
 					'server' => 'localhost',
-					'username' => 'root',
-					'password' => '',
-					'charset' => 'utf8' 
+					'charset' => 'utf8',
+					
+					'username' => DB_USER,
+					'password' => DB_PASSWORD,
+					'database_name' => DB_NAME,
+					'prefix' => DB_TBL_PREFIX,
 			) );
 			
 			$rc = new RomanCalendar ( $year, $calcConfig );

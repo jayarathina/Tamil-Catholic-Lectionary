@@ -1,9 +1,8 @@
 <?php
-require_once ('../mods/medoo.php');
 include_once 'menu.php';
 
 // Prefix 'general' is added to table name to avoid unnecessary securtiy risk
-$ReadingList = $database->select ( 'generalcalendar__saintscommon', '*');
+$ReadingList = $database->select ( 'generalcalendar__saintscommon', '*' );
 
 ?>
 
@@ -28,13 +27,13 @@ $ReadingList = $database->select ( 'generalcalendar__saintscommon', '*');
  
  <?php
 	
- foreach ($ReadingList as $value) {
- 	echo '<tr>';
- 	echo '<td>'.$value['dayID'].'</td>';
- 	echo '<td>'.check_verse_all( $value['refKey']) . "<a href='edit.php?vs={$value['refKey']}'>{$value['refKey']}</a>" .'</td>';
- 	echo '<td>'.$value['Category'].'</td>';
- 	echo '</tr>';
- }
+	foreach ( $ReadingList as $value ) {
+		echo '<tr>';
+		echo '<td>' . $value ['dayID'] . '</td>';
+		echo '<td>' . check_verse_all ( $value ['refKey'] ) . "<a href='edit.php?vs={$value['refKey']}'>{$value['refKey']}</a>" . '</td>';
+		echo '<td>' . $value ['Category'] . '</td>';
+		echo '</tr>';
+	}
 	?>
 		</tbody>
 	</table>

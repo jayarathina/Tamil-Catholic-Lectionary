@@ -157,18 +157,19 @@ class TamilLectionaryRenderHTML {
 	 *         This is displayed with color in the browser.
 	 */
 	function isTheVerseEnteredinDB($verse) {
-		
+		if(DB_PRODUCTION) return '';
 		if (empty ( $verse ))
 			return;
-		// return '';
 		
-		$database = new medoo ( array (
+		include_once ('lib/dbConfig.php');
+		$database = new Medoo( array(
 				'database_type' => 'mysql',
-				'database_name' => 'liturgy_lectionary',
 				'server' => 'localhost',
-				'username' => 'root',
-				'password' => '',
-				'charset' => 'utf8' 
+				'charset' => 'utf8',
+				'prefix' => DB_TBL_PREFIX,
+				'username' => DB_USER,
+				'password' => DB_PASSWORD,
+				'database_name' => DB_NAME,
 		) );
 		
 		$listWD = $database->count ( 'readings__text', '*', array (

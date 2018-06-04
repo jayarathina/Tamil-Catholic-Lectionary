@@ -1,12 +1,9 @@
 <?php
-require_once ('../mods/medoo.php');
 include_once 'menu.php';
-
 // Prefix 'general' is added to table name to avoid unnecessary securtiy risk
 $ReadingListWD_ = $database->select ( 'readings__list', '*', array (
 		'dayID[~]' => 'LW%' 
 ) );
-
 
 $ReadingList = array ();
 
@@ -53,11 +50,9 @@ $arrWeekDay = array (
 	
 	for($wkNo = 0; $wkNo < 7; $wkNo ++) {
 		
-		$dayNo = ($wkNo == 0)?3:0;
+		$dayNo = ($wkNo == 0) ? 3 : 0;
 		
 		for(; $dayNo < 7; $dayNo ++) {
-			
-			
 			
 			$Daykey = 'LW' . str_pad ( $wkNo, 2, '0', STR_PAD_LEFT ) . '-' . $arrWeekDay [$dayNo];
 			$dayisset = false;
@@ -73,7 +68,7 @@ $arrWeekDay = array (
 				}
 			}
 			if (! $dayisset) {
-				echo ( 'UHHHHH???' . $Daykey );
+				echo ('UHHHHH???' . $Daykey);
 			}
 		}
 	}

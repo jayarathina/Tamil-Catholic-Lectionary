@@ -1,11 +1,8 @@
 <?php
-require_once ('../mods/medoo.php');
 include_once 'menu.php';
-
 $ReadingListWD_ = $database->select ( 'readings__list', '*', array (
 		'dayID[~]' => 'CW%' 
 ) );
-
 
 $ReadingList = array ();
 
@@ -47,7 +44,7 @@ $arrWeekDay = array (
 		<tbody>
  
  <?php
-
+	
 	foreach ( $ReadingList as $Daykey => $ReadingVal ) {
 		print_row ( $Daykey, $ReadingVal );
 	}

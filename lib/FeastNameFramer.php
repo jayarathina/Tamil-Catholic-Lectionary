@@ -8,12 +8,6 @@
 include_once 'lib/TamilLectionaryUtil.php';
 class FeastNameFramer {
 
-	private $database;
-
-	function __construct($database) {
-		$this->database = $database;
-	}
-
 	/**
 	 * Converts day codes to proper names.
 	 * This has to be language specific. Here an english language example is given.
@@ -31,7 +25,19 @@ class FeastNameFramer {
 						// Get from database if different language
 						foreach ( $rcy->calcConfig ['calendars'] as $calName ) {
 							
-							$res = $this->database->get ( 'general' . $calName, 'feast_ta', array (
+							include_once ('lib/dbConfig.php');
+							$database = new Medoo( array(
+									'database_type' => 'mysql',
+									'server' => 'localhost',
+									'charset' => 'utf8',
+									'prefix' => DB_TBL_PREFIX,
+									'username' => DB_USER,
+									'password' => DB_PASSWORD,
+									'database_name' => DB_NAME,
+							) );
+							
+							
+							$res = $database->get ( 'general' . $calName, 'feast_ta', array (
 									'feast_code' => $singleFeast ['code'] 
 							) );
 							

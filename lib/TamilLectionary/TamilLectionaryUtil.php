@@ -14,7 +14,7 @@ class TamilLectionaryUtil {
 	 *        	- Verse to be formated. Eg: 1 சாமு 2:1.4-5.6-7.8
 	 * @return string - Formated Verse. Eg: 1 சாமு 2: 1. 4 - 5. 6 - 7. 8
 	 */
-	function formatVerseToPrint($verse) {
+	public static function formatVerseToPrint($verse) {
 		$rt = trim ( $verse );
 		
 		$rt = preg_replace ( '/(\.)/', '${1} ', $rt, - 1, $count );
@@ -35,7 +35,7 @@ class TamilLectionaryUtil {
 		$rt = explode ( '~', $rt );
 		return $rt [0];
 	}
-	public $tamilAbbr = array (
+	public static $tamilAbbr = array (
 			'தொநூ' => 'தொடக்க நூலிலிருந்து',
 			'விப' => 'விடுதலைப் பயண நூலிலிருந்து',
 			'லேவி' => 'லேவியர் நூலிலிருந்து',
@@ -116,7 +116,7 @@ class TamilLectionaryUtil {
 	);
 	
 	// @formatter:off
-	public $tamilDayFull = array (
+	public static $tamilDayFull = array (
 			'ஞாயிறு',
 			'திங்கள்',
 			'செவ்வாய்',
@@ -125,7 +125,7 @@ class TamilLectionaryUtil {
 			'வெள்ளி',
 			'சனி' 
 	);
-	public $tamilDayShort = array (
+	public static $tamilDayShort = array (
 			'ஞா',
 			'தி',
 			'செ',
@@ -134,7 +134,7 @@ class TamilLectionaryUtil {
 			'வெ',
 			'ச' 
 	);
-	public $tamilMonthFull = array (
+	public static $tamilMonthFull = array (
 			'',
 			'சனவரி',
 			'பிப்ரவரி',
@@ -149,7 +149,7 @@ class TamilLectionaryUtil {
 			'நவம்பர்',
 			'டிசம்பர்' 
 	);
-	public $tamilMonthShort = array (
+	public static $tamilMonthShort = array (
 			'',
 			'சன',
 			'பிப்',

@@ -8,24 +8,12 @@ use Medoo\Medoo;
 include_once ('lib/dbConfig.php');
 include_once 'lib/TamilLectionary/TamilLectionaryUtil.php';
 class FeastNameFramer {
-	
 	/**
-	 * Converts day codes to proper names.
-	 * For feast names, one has to derive it from the database. 
-	 * For weekday codes names can be set here.
+	 * Converts day codes to full names.
+	 * Weekday codes names are set here. Feast names are taken from the database.
+	 * 
 	 */
-	function setDayNames(RomanCalendarYear $rcy) {
-		foreach ( $rcy->fullYear as $monthVal => $dateList ) {
-			foreach ( $dateList as $datVal => $dayFeastList ) {
-				foreach ( $dayFeastList as $feastIndex => $singleFeast ) {
-					$rcy->fullYear [$monthVal] [$datVal] [$feastIndex] ['name'] = $this->getSingleTitle ( $singleFeast ['code'], $rcy->calcConfig ['feastSettings'] ['EPIPHANY_ON_A_SUNDAY'], $rcy->calcConfig ['calendars'] );
-				}
-			}
-		}
-		return $rcy;
-	}
-	
-	function getSingleTitle($dayCode, $isEpiphanySunday, $calList) {
+	public static function getSingleTitle($dayCode, $isEpiphanySunday, $calList) {
 		$TLUtil = new TamilLectionaryUtil ();
 		
 		$RomanCalendarDayException = array (
@@ -66,7 +54,7 @@ class FeastNameFramer {
 				if ($wkNo == 5)
 					$fTitle = 'திருவருகைக் கால வார நாள்கள் - டிசம்பர் ' . substr ( $dayCode, - 2 );
 				else
-					$fTitle = 'திருவருகைக்காலம் ' . $wkNo . 'ஆம் வாரம் - ' . $TLUtil->tamilDayFull [$wkDay];
+					$fTitle = 'திருவருகைக்காலம் ' . $wkNo . 'ஆம் வாரம் - ' . TamilLectionaryUtil::$tamilDayFull [$wkDay];
 				break;
 			case 'CW' :
 				switch ($wkNo) {
@@ -78,7 +66,7 @@ class FeastNameFramer {
 						break;
 					case 3 : // After Epiphany
 						if ($isEpiphanySunday) {
-							$fTitle = 'திருக்காட்சி விழாவுக்குப் பின் ' . $TLUtil->tamilDayFull [substr ( $dayCode, - 1 )];
+							$fTitle = 'திருக்காட்சி விழாவுக்குப் பின் ' . TamilLectionaryUtil::$tamilDayFull [substr ( $dayCode, - 1 )];
 						} else {
 							$fTitle = 'சனவரி ' . (6 + substr ( $dayCode, - 1 ));
 						}
@@ -88,24 +76,24 @@ class FeastNameFramer {
 			case 'LW' :
 				switch ($wkNo) {
 					case 0 :
-						$fTitle = 'திருநீற்றுப் புதனுக்குப் பின் வரும் ' . $TLUtil->tamilDayFull [$wkDay];
+						$fTitle = 'திருநீற்றுப் புதனுக்குப் பின் வரும் ' . TamilLectionaryUtil::$tamilDayFull [$wkDay];
 						break;
 					case 6 :
-						$fTitle = 'புனித வாரம் - ' . $TLUtil->tamilDayFull [$wkDay];
+						$fTitle = 'புனித வாரம் - ' . TamilLectionaryUtil::$tamilDayFull [$wkDay];
 						break;
 					default :
-						$fTitle = 'தவக்காலம் ' . $wkNo . 'ஆம் வாரம் - ' . $TLUtil->tamilDayFull [$wkDay];
+						$fTitle = 'தவக்காலம் ' . $wkNo . 'ஆம் வாரம் - ' . TamilLectionaryUtil::$tamilDayFull [$wkDay];
 						break;
 				}
 				break;
 			case 'EW' :
 				if ($wkNo == 1)
-					$fTitle = 'பாஸ்கா எண்கிழமை - ' . $TLUtil->tamilDayFull [$wkDay];
+					$fTitle = 'பாஸ்கா எண்கிழமை - ' . TamilLectionaryUtil::$tamilDayFull [$wkDay];
 				else
-					$fTitle = 'பாஸ்கா ' . $wkNo . 'ஆம் வாரம் - ' . $TLUtil->tamilDayFull [$wkDay];
+					$fTitle = 'பாஸ்கா ' . $wkNo . 'ஆம் வாரம் - ' . TamilLectionaryUtil::$tamilDayFull [$wkDay];
 				break;
 			case 'OW' :
-				$fTitle = 'பொதுக்காலம் ' . $wkNo . 'ஆம் வாரம் - ' . $TLUtil->tamilDayFull [$wkDay];
+				$fTitle = 'பொதுக்காலம் ' . $wkNo . 'ஆம் வாரம் - ' . TamilLectionaryUtil::$tamilDayFull [$wkDay];
 				break;
 		}
 		

@@ -13,24 +13,18 @@ include_once 'lib/TamilLectionary/FeastNameFramer.php';
 class RomanCalendarRenderHTML_TA {
 	private $rcy;
 	function printYearHTML(RomanCalendarYear $rcy) {
-		
-		$fnf = new FeastNameFramer();
-		
 		$this->rcy = $rcy;
-		
-		//$this->setDayNames ();
-		
 		$rows = '<tr> <th colspan="3">' . $rcy->currentYear . '</th> </tr>';
 		foreach ( $this->rcy->fullYear as $month => $value ) {
 			foreach ( $value as $days => $feasts ) {
 				$tempDt2 = new DateTime ( $rcy->__get ( 'currentYear' ) . "-$month-$days" );
 				foreach ( $feasts as $fet ) {
-					$feastName = $fnf->getSingleTitle($fet ['code'], $rcy->calcConfig ['feastSettings'] ['EPIPHANY_ON_A_SUNDAY'], $rcy->calcConfig ['calendars']);
+					$feastName = FeastNameFramer::getSingleTitle($fet ['code'], $rcy->calcConfig ['feastSettings'] ['EPIPHANY_ON_A_SUNDAY'], $rcy->calcConfig ['calendars']);
 					
 					$rows .= '<tr class="Col' . $fet ['color'] . '">';
 					$rows .= '<td class="dt">' . $tempDt2->format ( 'd M' ) . '</td>';
 					$type = isset ( $fet ['type'] ) ? ' (' . $fet ['type'] . ')' : '';
-					$rows .= '<td class="col ColD' . $fet ['color'] . '"></td><td class="dayTitle">' . $feastName . $type . '</td>';
+					$rows .= '<td class="col ColD' . $fet ['color'] . '"></td><td class="dayTitle"><a href="viewDay.php?dayID='.$fet ['code'].'">' . $feastName . '</a>' . $type . '</td>';
 					$rows .= '</tr>';
 				}
 			}

@@ -24,6 +24,7 @@ Please not that this is a work in progress.<br/>
  
  You can help too. Please Contact me if you can spare a couple of minutes. All you need to do is copy and paste. 😉
 
+
 <?php
 // @formatter:on
 $time_start = microtime ( true );

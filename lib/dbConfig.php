@@ -1,7 +1,9 @@
 <?php
+error_reporting(E_ALL); 
 const DB_NAME = 'liturgy_lectionary';
 const DB_USER = 'root';
 const DB_PASSWORD = '';
-const DB_TBL_PREFIX = '';//'liturgy_';
+const DB_BIBLE_NAME = 'liturgy_bible';
+const DB_BIBLE_USER = 'root';
+const DB_BIBLE_PASSWORD = '';
 
-const DB_PRODUCTION = FALSE;

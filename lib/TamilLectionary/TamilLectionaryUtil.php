@@ -29,6 +29,7 @@ class TamilLectionaryUtil {
 		$rt = preg_replace ( '/(\d+:)/', ' ${1} ', $rt ); // Space after chapter number and colon
 		$rt = preg_replace ( '/^(\d+)/', '${1} ', $rt ); // Space after digits at start of verse eg: 1சாமு
 		$rt = preg_replace ( '/(\()/', ' ${1}', $rt ); // Space before ( -> எஸ் (கி)
+		$rt = preg_replace ( '/\s([a-z])/', '${1}', $rt ); // Excess space in front of Alphabets 1-4a, c (OW03-5Fri2)
 		$rt = preg_replace ( '/\s\s+/', ' ', $rt ); // Excess space
 		                                            
 		// Verse after '~' is not to be printed or shown

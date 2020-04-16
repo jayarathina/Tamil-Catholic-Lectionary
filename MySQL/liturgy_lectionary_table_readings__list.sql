@@ -72,7 +72,8 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('_Doctor', 6.02, 'மத்7:21-29'),
 ('_Doctor', 6.03, 'மத்13:47-52'),
 ('_Doctor', 6.04, 'மத்23:8-12'),
-('_Doctor', 6.05, 'மாற்4:1-10,13-20 ors மாற்4:1-9'),
+('_Doctor', 6.05, 'மாற்4:1-10,13-20'),
+('_Doctor', 6.051, 'மாற்4:1-9'),
 ('_Doctor', 6.06, 'லூக்6:43-45'),
 ('_Martyr', 1.01, '2குறி24:18-22'),
 ('_Martyr', 1.02, '2மக்6:18,21,24-31'),
@@ -140,7 +141,8 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('_Mary', 5.04, 'லூக்11:28'),
 ('_Mary', 5.05, 'Mary-5AL05'),
 ('_Mary', 5.06, 'Mary-5AL06'),
-('_Mary', 6.01, 'மத்1:1-16,18-23or1:18-23'),
+('_Mary', 6.01, 'மத்1:1-16,18-23'),
+('_Mary', 6.011, 'மத்1:18-23'),
 ('_Mary', 6.02, 'மத்2:13-15,19-23'),
 ('_Mary', 6.03, 'மத்12:46-50'),
 ('_Mary', 6.04, 'லூக்1:26-38'),
@@ -238,7 +240,8 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('_Saint', 2.09, 'திபா131:1.2.3'),
 ('_Saint', 3.01, 'உரோ8:26-30'),
 ('_Saint', 3.02, '1கொரி1:26-31'),
-('_Saint', 3.03, '1கொரி12:31-13:13or13:4-13'),
+('_Saint', 3.03, '1கொரி12:31-13:13'),
+('_Saint', 3.031, '1கொரி13:4-13'),
 ('_Saint', 3.04, '2கொரி10:17-11:2'),
 ('_Saint', 3.05, 'கலா2:19-20'),
 ('_Saint', 3.06, 'கலா6:14-16'),
@@ -278,12 +281,15 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('_Saint', 6.09, 'மத்19:27-29'),
 ('_Saint', 6.1, 'மத்22:34-40'),
 ('_Saint', 6.11, 'மத்25:1-13'),
-('_Saint', 6.12, 'மத்25:14-30or25:14-23'),
-('_Saint', 6.1301, 'மத்25:31-46or25:31-40'),
+('_Saint', 6.12, 'மத்25:14-30'),
+('_Saint', 6.121, 'மத்25:14-23'),
+('_Saint', 6.1301, 'மத்25:31-46'),
+('_Saint', 6.1311, 'மத்25:31-40'),
 ('_Saint', 6.14, 'மாற்3:31-35'),
 ('_Saint', 6.1502, 'மாற்9:34-37'),
 ('_Saint', 6.1602, 'மாற்10:13-16'),
-('_Saint', 6.1705, 'மாற்10:17-30or17-27'),
+('_Saint', 6.1705, 'மாற்10:17-30'),
+('_Saint', 6.1715, 'மாற்10:17-27'),
 ('_Saint', 6.18, 'லூக்6:27-38'),
 ('_Saint', 6.1905, 'லூக்9:57-62'),
 ('_Saint', 6.2, 'லூக்10:38-42'),
@@ -1337,11 +1343,11 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW00-SacredHeart B', 2, 'எசா12:2-3.4bcd.5-6'),
 ('OW00-SacredHeart B', 3, 'எபே3:8-12,14-19'),
 ('OW00-SacredHeart B', 6, 'யோவா19:31-37'),
-('OW00-SacredHeart C', 1, 'எசே34:11-16'),
+('OW00-SacredHeart C', 1, 'எசே34:11-16');
+INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW00-SacredHeart C', 2, 'திபா23:1-3a.3b-4.5.6'),
 ('OW00-SacredHeart C', 3, 'உரோ5:5b-11'),
-('OW00-SacredHeart C', 6, 'லூக்15:3-7');
-INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('OW00-SacredHeart C', 6, 'லூக்15:3-7'),
 ('OW00-Trinity', 5, 'திவெ1:8காண்க'),
 ('OW00-Trinity A', 1, 'விப34:4b-6,8-9'),
 ('OW00-Trinity A', 2, 'தானி (இ)1:29ac.30,31.32,33'),
@@ -2718,12 +2724,12 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW27-3Wed', 6, 'லூக்11:1-4'),
 ('OW27-3Wed 1', 1, 'யோனா4:1-11'),
 ('OW27-3Wed 1', 2, 'திபா86:3-4.5-6.9-10'),
-('OW27-3Wed 2', 1, 'கலா2:1-2,7-14'),
+('OW27-3Wed 2', 1, 'கலா2:1-2,7-14');
+INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW27-3Wed 2', 2, 'திபா117:1bc.2'),
 ('OW27-4Thu', 5, 'திப16:14b'),
 ('OW27-4Thu', 6, 'லூக்11:5-13'),
-('OW27-4Thu 1', 1, 'மலா3:13-20b');
-INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('OW27-4Thu 1', 1, 'மலா3:13-20b'),
 ('OW27-4Thu 1', 2, 'திபா1:1-2.3.4,6'),
 ('OW27-4Thu 2', 1, 'கலா3:1-5'),
 ('OW27-4Thu 2', 2, 'லூக்1:69-70.71-72.73-75'),
@@ -3731,9 +3737,9 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saints John Fisher, bishop and martyr and Thomas More, martyr', 6, 'மத்10:34-39'),
 ('Saints Marcellinus and Peter, martyrs', 1, '2கொரி6:4-10'),
 ('Saints Marcellinus and Peter, martyrs', 2, 'திபா124:2-3.4-5.7b-8'),
-('Saints Marcellinus and Peter, martyrs', 5, '2கொரி1:3b-4a'),
-('Saints Marcellinus and Peter, martyrs', 6, 'யோவா17:11b-19');
+('Saints Marcellinus and Peter, martyrs', 5, '2கொரி1:3b-4a');
 INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('Saints Marcellinus and Peter, martyrs', 6, 'யோவா17:11b-19'),
 ('Saints Michael, Gabriel and Raphael, Archangels', 1.1, 'தானி7:9-10,13-14'),
 ('Saints Michael, Gabriel and Raphael, Archangels', 1.2, 'திவெ12:7-12a'),
 ('Saints Michael, Gabriel and Raphael, Archangels', 2, 'திபா138:1-2a.2b-3.4-5'),

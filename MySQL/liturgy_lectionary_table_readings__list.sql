@@ -1220,13 +1220,13 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('LW06-0Sun A', 0, 'மத்21:1-11'),
 ('LW06-0Sun A', 6.1, 'மத்26:14-27:66'),
 ('LW06-0Sun A', 6.11, 'மத்27:11-54'),
+('LW06-0Sun B', 0.1, 'மாற்11:1-10'),
 ('LW06-0Sun B', 0.2, 'யோவா12:12-16'),
 ('LW06-0Sun B', 6.1, 'மாற்14:1-15:47'),
 ('LW06-0Sun B', 6.11, 'மாற்15:1-39'),
 ('LW06-0Sun C', 0, 'லூக்19:28-40'),
 ('LW06-0Sun C', 6.1, 'லூக்22:14-23:56'),
 ('LW06-0Sun C', 6.11, 's லூக்23:1-49'),
-('LW06-0Sun Procession B', 0.1, 'மாற்11:1-10'),
 ('LW06-1Mon', 1, 'எசா42:1-7'),
 ('LW06-1Mon', 2, 'திபா27:1.2.3.13-14'),
 ('LW06-1Mon', 5, 'LW06-1Mon'),
@@ -1245,6 +1245,11 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('LW06-4Thu', 3, '1கொரி11:23-26'),
 ('LW06-4Thu', 5, 'யோவா13:34'),
 ('LW06-4Thu', 6, 'யோவா13:1-15'),
+('LW06-4Thu~Chrism', 1, 'எசா61:1-3a,6a,8b-9'),
+('LW06-4Thu~Chrism', 2, 'திபா89:20-21.24,26'),
+('LW06-4Thu~Chrism', 3, 'திவெ1:5-8'),
+('LW06-4Thu~Chrism', 5, 'எசா61:1ab'),
+('LW06-4Thu~Chrism', 6, 'லூக்4:16-21'),
 ('LW06-5Fri', 1, 'எசா52:13-53:12'),
 ('LW06-5Fri', 2, 'திபா31:1,5.11-12.14-15.16,24'),
 ('LW06-5Fri', 3, 'எபி4:14-16;5:7-9'),
@@ -1338,13 +1343,13 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW00-SacredHeart A', 1, 'இச7:6-11'),
 ('OW00-SacredHeart A', 2, 'திபா103:1-2.3-4.6-7.8,10'),
 ('OW00-SacredHeart A', 3, '1யோவா4:7-16'),
-('OW00-SacredHeart A', 6, 'மத்11:25-30'),
+('OW00-SacredHeart A', 6, 'மத்11:25-30');
+INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW00-SacredHeart B', 1, 'ஓசே11:1,3-4,8c-9'),
 ('OW00-SacredHeart B', 2, 'எசா12:2-3.4bcd.5-6'),
 ('OW00-SacredHeart B', 3, 'எபே3:8-12,14-19'),
 ('OW00-SacredHeart B', 6, 'யோவா19:31-37'),
-('OW00-SacredHeart C', 1, 'எசே34:11-16');
-INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('OW00-SacredHeart C', 1, 'எசே34:11-16'),
 ('OW00-SacredHeart C', 2, 'திபா23:1-3a.3b-4.5.6'),
 ('OW00-SacredHeart C', 3, 'உரோ5:5b-11'),
 ('OW00-SacredHeart C', 6, 'லூக்15:3-7'),
@@ -2718,14 +2723,14 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW27-2Tue', 6, 'லூக்10:38-42'),
 ('OW27-2Tue 1', 1, 'யோனா3:1-10'),
 ('OW27-2Tue 1', 2, 'திபா130:1b-2.3-4ab.7-8'),
-('OW27-2Tue 2', 1, 'கலா1:13-24'),
+('OW27-2Tue 2', 1, 'கலா1:13-24');
+INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW27-2Tue 2', 2, 'திபா139:1b-3.13-14ab.14c-15'),
 ('OW27-3Wed', 5, 'உரோ8:15'),
 ('OW27-3Wed', 6, 'லூக்11:1-4'),
 ('OW27-3Wed 1', 1, 'யோனா4:1-11'),
 ('OW27-3Wed 1', 2, 'திபா86:3-4.5-6.9-10'),
-('OW27-3Wed 2', 1, 'கலா2:1-2,7-14');
-INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('OW27-3Wed 2', 1, 'கலா2:1-2,7-14'),
 ('OW27-3Wed 2', 2, 'திபா117:1bc.2'),
 ('OW27-4Thu', 5, 'திப16:14b'),
 ('OW27-4Thu', 6, 'லூக்11:5-13'),
@@ -3733,12 +3738,12 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saints Joachim and Anne', 6, 'மத்13:16-17'),
 ('Saints John Fisher, bishop and martyr and Thomas More, martyr', 1, '1பேது4:12-19'),
 ('Saints John Fisher, bishop and martyr and Thomas More, martyr', 2, 'திபா126:1-2ab.2cd-3.4-5.6'),
-('Saints John Fisher, bishop and martyr and Thomas More, martyr', 5, 'மத்5:10'),
+('Saints John Fisher, bishop and martyr and Thomas More, martyr', 5, 'மத்5:10');
+INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saints John Fisher, bishop and martyr and Thomas More, martyr', 6, 'மத்10:34-39'),
 ('Saints Marcellinus and Peter, martyrs', 1, '2கொரி6:4-10'),
 ('Saints Marcellinus and Peter, martyrs', 2, 'திபா124:2-3.4-5.7b-8'),
-('Saints Marcellinus and Peter, martyrs', 5, '2கொரி1:3b-4a');
-INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('Saints Marcellinus and Peter, martyrs', 5, '2கொரி1:3b-4a'),
 ('Saints Marcellinus and Peter, martyrs', 6, 'யோவா17:11b-19'),
 ('Saints Michael, Gabriel and Raphael, Archangels', 1.1, 'தானி7:9-10,13-14'),
 ('Saints Michael, Gabriel and Raphael, Archangels', 1.2, 'திவெ12:7-12a'),

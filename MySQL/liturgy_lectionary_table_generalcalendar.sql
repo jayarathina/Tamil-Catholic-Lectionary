@@ -198,7 +198,7 @@ INSERT INTO `generalcalendar` (`feast_month`, `feast_date`, `feast_code`, `feast
 (11, 2, 'All Souls', 'இறந்த விசுவாசிகள் அனைவர்', 'Solemnity', ''),
 (11, 3, 'Saint Martin de Porres, religious', 'புனித மார்ட்டின் தெ போரஸ் - துறவி', 'OpMem', '_Saint~5'),
 (11, 4, 'Saint Charles Borromeo, bishop', 'புனித சார்லஸ் பொரோமியோ - ஆயர்', 'Mem', '_Pastor'),
-(11, 9, 'Dedication of the Lateran basilica', 'இலாத்தரன் பேராலய நேர்ந்தளிப்பு', 'Feast-Lord', 'The dedication of a church'),
+(11, 9, 'Dedication of the Lateran basilica', 'இலாத்தரன் பேராலய நேர்ந்தளிப்பு', 'Feast-Lord', '_Church'),
 (11, 10, 'Saint Leo the Great, pope and doctor', 'புனித பெரிய லெயோ - திருத்தந்தை, மறைவல்லுநர்', 'Mem', '_Pastor~4 or _Doctor'),
 (11, 11, 'Saint Martin of Tours, bishop', 'தூரின் நகர் புனித மார்ட்டின் - ஆயர்', 'Mem', '_Pastor or _Saint~5'),
 (11, 12, 'Saint Josaphat, bishop and martyr', 'புனித யோசபாத்து - ஆயர், மறைச்சாட்சி', 'Mem', '_Martyr or _Pastor'),

@@ -1,7 +1,16 @@
 /*Readings*/
-
 .dayTitle {
 	text-align: center;
+}
+
+p.sequenceTxt {
+	text-align: justify;
+	text-indent: -25px;
+	margin: 25px;
+}
+
+ol.sequenceTxt li {
+	margin-bottom: 10px;
 }
 
 .readingTxt {

@@ -11,9 +11,9 @@ class TamilLectionaryHTML {
 			'1' => 'முதல் வாசகம்',
 			'2' => 'பதிலுரைப் பாடல்',
 			'3' => 'இரண்டாம் வாசகம்',
-			'4' => '',
+			'4' => 'தொடர்பாடல்',
 			'5' => 'நற்செய்திக்கு முன் வாழ்த்தொலி',
-			'51'=> 'நற்செய்திக்கு முன் வசனம்',
+			'51' => 'நற்செய்திக்கு முன் வசனம்',
 			'6' => 'நற்செய்தி வாசகம்',
 			'7' => '',
 			'8' => '',
@@ -36,6 +36,10 @@ class TamilLectionaryHTML {
 		return $this->getSingleEvent ( $this->fullYear [$month] [$date] [$evtID], TamilLectionaryUtil::isItInLent ( $this->currYear, $month, $date ) );
 	}
 	function getSingleEvent($currtDay, $isLent) {
+		
+		//FIXME Vigil masses have to be printed properly
+		if(isset($currtDay['readings']['Day']))
+			$currtDay['readings'] = $currtDay['readings']['Day'];
 		
 		// There is a doubt whether Alleluia is sung during lent on Solemnities
 		// Currently we follow Tamil Lectionary, so we sing it on solemnities.
@@ -61,6 +65,9 @@ class TamilLectionaryHTML {
 				case 2 : // Responsorial
 					$ret .= $this->getResponsorialTxt ( $readings, $currtDay ['code'] );
 					break;
+				case 4 : // Sequence
+					$ret .= $this->getSequenceTxt ( $readings );
+					break;
 				case 5 : // Alleluia
 					$ret .= $this->getAlleluiaTxt ( $readings, $currtDay ['code'], $isLent );
 					break;
@@ -77,7 +84,6 @@ class TamilLectionaryHTML {
 		
 		return $ret;
 	}
-	
 	function getReadingsTxt($readings, $usedBy = null) {
 		$rt = '';
 		// Set Heading
@@ -99,17 +105,16 @@ class TamilLectionaryHTML {
 			$rdCnt .= "<p class='readingTxt'>ஆண்டவரின் அருள்வாக்கு.</p>";
 			
 			// find out if alternative readings are available, and make them so
-			if(isset($readngType[3]) && intval($readngType[3]) == 1){
+			if (isset ( $readngType [3] ) && intval ( $readngType [3] ) == 1) {
 				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது குறுகிய வாசகம்</h4>" . $rdCnt;
-			}elseif(isset($readngType[2]) && intval($readngType[2]) > 1){
+			} elseif (isset ( $readngType [2] ) && intval ( $readngType [2] ) > 1) {
 				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது</h4>" . $rdCnt;
 			}
-
+			
 			$rt .= $rdCnt;
 		}
 		return $rt;
 	}
-	
 	function getResponsorialTxt($readings, $usedBy = null) {
 		$rt = '';
 		
@@ -161,7 +166,7 @@ class TamilLectionaryHTML {
 			$rdCnt .= '<div class="psalmText">' . $rdCnt_temp . '</div>';
 			
 			// Find alternatives available and mark them so
-			if(isset($readngType[2]) && intval($readngType[2]) !== 0){
+			if (isset ( $readngType [2] ) && intval ( $readngType [2] ) !== 0) {
 				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது</h4>" . $rdCnt;
 			}
 			
@@ -172,7 +177,7 @@ class TamilLectionaryHTML {
 	}
 	function getAlleluiaTxt($readings, $usedBy = null, $isLent = false) {
 		$rt = '';
-
+		
 		// Set Heading
 		$rt .= "<h4 class='clrDay'>{$this->readingType[ intval( array_key_first ( $readings ) ) . $isLent]}</h4>";
 		
@@ -194,12 +199,35 @@ class TamilLectionaryHTML {
 			}
 			
 			// Find alternatives available and mark them so
-			if(isset($readngType[2]) && intval($readngType[2]) !== 0){
+			if (isset ( $readngType [2] ) && intval ( $readngType [2] ) !== 0) {
 				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது</h4>" . $rdCnt;
 			}
 			$rt .= $rdCnt;
 		}
 		
+		return $rt;
+	}
+	
+	function getSequenceTxt($readings) {
+		$rt = '';
+		
+		// Set Heading
+		$rt .= "<h4 class='clrDay'>{$this->readingType[ intval( array_key_first ( $readings ) ) ]}</h4>";
+		
+		$readingTxt = $this->database->get ( 'readings__text', '*', [
+				'refKey' => $readings[4]
+		] );
+		
+		$rt .= "<div class='clrDay italics'>{$readingTxt['introRes']}</div>";
+		
+		$rdCnt = str_replace ( '<ol>', "<ol class='sequenceTxt'>", $readingTxt['Content']);
+		if( strpos($rdCnt, '<ol>') === false){
+			$rdCnt = str_replace ( '§§', "</p><p class='sequenceTxt'>", $rdCnt);
+			$rdCnt = "<p class='sequenceTxt'>$rdCnt</p>";
+		}
+		$rdCnt = str_replace ( '§', '<br/>', $rdCnt);
+
+		$rt .= $rdCnt;
 		return $rt;
 	}
 }

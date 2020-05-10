@@ -1171,7 +1171,8 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('LW05-0Sun A', 2, 'திபா130:1-2.3-4.5-6.7b-8'),
 ('LW05-0Sun A', 3, 'உரோ8:8-11'),
 ('LW05-0Sun A', 5, 'யோவா11:25a,26'),
-('LW05-0Sun A', 6, 'யோவா11:1-45'),
+('LW05-0Sun A', 6.11, 'யோவா11:1-45'),
+('LW05-0Sun A', 6.12, 'யோவா11:3-7,17,20-27,33b-45'),
 ('LW05-0Sun B', 1, 'எரே31:31-34'),
 ('LW05-0Sun B', 2, 'திபா51:1-2.10-11.12-13'),
 ('LW05-0Sun B', 3, 'எபி5:7-9'),
@@ -1340,9 +1341,9 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW00-SacredHeart A', 3, '1யோவா4:7-16'),
 ('OW00-SacredHeart A', 6, 'மத்11:25-30'),
 ('OW00-SacredHeart B', 1, 'ஓசே11:1,3-4,8c-9'),
-('OW00-SacredHeart B', 2, 'எசா12:2-3.4bcd.5-6'),
-('OW00-SacredHeart B', 3, 'எபே3:8-12,14-19');
+('OW00-SacredHeart B', 2, 'எசா12:2-3.4bcd.5-6');
 INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('OW00-SacredHeart B', 3, 'எபே3:8-12,14-19'),
 ('OW00-SacredHeart B', 6, 'யோவா19:31-37'),
 ('OW00-SacredHeart C', 1, 'எசே34:11-16'),
 ('OW00-SacredHeart C', 2, 'திபா23:1-3a.3b-4.5.6'),
@@ -2726,9 +2727,9 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW27-3Wed 1', 2, 'திபா86:3-4.5-6.9-10'),
 ('OW27-3Wed 2', 1, 'கலா2:1-2,7-14'),
 ('OW27-3Wed 2', 2, 'திபா117:1.2'),
-('OW27-4Thu', 5, 'திப16:14b'),
-('OW27-4Thu', 6, 'லூக்11:5-13');
+('OW27-4Thu', 5, 'திப16:14b');
 INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('OW27-4Thu', 6, 'லூக்11:5-13'),
 ('OW27-4Thu 1', 1, 'மலா3:13-4:2a'),
 ('OW27-4Thu 1', 2, 'திபா1:1-2.3.4,6'),
 ('OW27-4Thu 2', 1, 'கலா3:1-5'),

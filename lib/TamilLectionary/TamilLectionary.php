@@ -1,13 +1,35 @@
 <?php
-/**
- * Tamil-Catholic-Lectionary 1.0
- * This function gets the year and settings and creates a json file with readings
- * @author Br. Jayarathina Madharasan SDR
- */
-require_once 'mods/Medoo.php';
-include_once 'lib/Roman-Calendar/lib/RomanCalendar.php';
-include_once 'lib/dbConfig.php';
-include_once 'lib/FeastNameFramer.php';
+include_once ('lib/RomanCalendar/RomanCalendar.php');
+include_once ('lib/RomanCalendar/RomanCalendarRenderHTML.php');
+include_once ('lib/TamilLectionary/TamilLectionaryFeastNameFramer.php');
+include_once ('lib/TamilLectionary/TamilLectionaryReadings.php');
+
 class TamilLectionary {
-	
+    
+	public $fullYear;
+    
+    function __construct($year = null, $calcConfig){
+    	$year = is_numeric ( $year ) ? $year : date ( "Y" );
+    	$dirName = $calcConfig ['feastsListLoc'] . $year;
+        $fileName= $dirName . '/readings.json';
+        
+        if (! file_exists ( $fileName)) { // If the does not exist in the specified path, then create it from DB
+        	$CalcGen = new RomanCalendar ($year, $calcConfig);
+        	$rcy = TamilLectionaryFeastNameFramer::setName($CalcGen->rcy);
+        	
+        	$tlReadings = new TamilLectionaryReadings ();
+        	$rcy = $tlReadings->setReadings($CalcGen->rcy);
+        	
+        	
+        	$t = json_encode ( $rcy->fullYear, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK );
+        	$ret = file_put_contents ( $fileName, $t );
+
+        	if ($ret === FALSE) {
+        		die ( 'Error in writing JSON file' );
+        	}
+        }
+        
+        $txtCnt = file_get_contents ( $fileName );
+        $this->fullYear = json_decode ( $txtCnt, true );
+    }
 }

@@ -49,7 +49,6 @@ class RomanCalendarColor {
 				
 				// The proper color for Feasts of the Lord is white except the Triumph of the Cross in which case it is red
 				'Feast-Lord' => 'white',
-				// 'Triumph of the Cross' => 'red',
 				'Exaltation of the Holy Cross' => 'red',
 				
 				// The proper color of a Feast or a Memorial is white except for martyrs in which case it is red
@@ -57,9 +56,10 @@ class RomanCalendarColor {
 				'Mem' => 'white',
 				'martyr' => 'red',
 				
-				// The proper color for the Chair of Peter (Feast, Feb 22) and the Conversion of St. Paul (Feast, Jan 25) is white
-				'Chair of Peter' => 'white',
-				'Conversion of Paul' => 'white',
+				// Some exceptions for feasts
+				'Chair of Saint Peter, apostle' => 'white',
+				'The Conversion of Saint Paul, apostle' => 'white',
+				'Saint John the Apostle and evangelist' => 'white',
 				
 				// The proper colors of Holy Week
 				'LW06-0Sun' => 'red', // Palm Sunday
@@ -93,10 +93,9 @@ class RomanCalendarColor {
 					break;
 			}
 		}
-		
-		if (stripos ( $feastCode, 'martyr' ) !== false) {
-			$feastClr = $feastClrr ['martyr'];
-		}
+		if (! array_key_exists ( $feastCode, $feastClrr )) // Feast is not in $feastClrr
+			if (stripos ( $feastCode, 'martyr' ) !== false || stripos ( $feastCode, 'apostle' ) !== false || stripos ( $feastCode, 'evangelist' ) !== false) // martyr and apostle are red. Except, St. John, excluded via $feastClrr
+				$feastClr = $feastClrr ['martyr'];
 		
 		return $feastClr;
 	}

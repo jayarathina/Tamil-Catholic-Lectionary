@@ -4,6 +4,7 @@
  * TamilLectionaryUtil - Utility class to help with most commonly used functions
  * @author Br. Jayarathina Madharasan SDR
  */
+
 class TamilLectionaryUtil {
 	
 	/**
@@ -22,21 +23,46 @@ class TamilLectionaryUtil {
 			$rt = preg_replace ( '/(,)/', '${1} ', $rt );
 		}
 		
-		// Not the eligant way to code this. But hey! It gets work done....
+		// Not the eligant way to code this. But hey! It gets it done....
 		$rt = preg_replace ( '/யூதா/', 'யூதா ', $rt ); // Space after semi colon
 		$rt = preg_replace ( '/(;)/', '${1} ', $rt ); // Space after semi colon
 		$rt = preg_replace ( '/(காண்க)/', ' ${1} ', $rt );
 		$rt = preg_replace ( '/(\d+:)/', ' ${1} ', $rt ); // Space after chapter number and colon
 		$rt = preg_replace ( '/^(\d+)/', '${1} ', $rt ); // Space after digits at start of verse eg: 1சாமு
 		$rt = preg_replace ( '/(\()/', ' ${1}', $rt ); // Space before ( -> எஸ் (கி)
-		$rt = preg_replace ( '/\s([a-z])/', '${1}', $rt ); // Excess space in front of Alphabets 1-4a, c (OW03-5Fri2)
 		$rt = preg_replace ( '/\s\s+/', ' ', $rt ); // Excess space
 		                                            
 		// Verse after '~' is not to be printed or shown
 		$rt = explode ( '~', $rt );
 		return $rt [0];
 	}
-	public static $tamilAbbr = array (
+	
+	
+	/**
+	 *
+	 * This expands bible relefence to its full.
+	 * For example எண் 6:22-27 will be expanded to எண்ணிக்கை நூலிலிருந்து வாசகம் 6: 22-27
+	 *
+	 * @param string $readingCode
+	 * @return boolean|mixed - Returns false if the reference is not from the bible or in standard format. Else returns the formated verse.
+	 */
+	public static function expandBibleRef($readingCode) {
+		$fVerse = TamilLectionaryUtil::formatVerseToPrint ( $readingCode );
+		if (strlen ( $readingCode ) === 0)
+			return false; // For alleluia
+			if (strpos ( $fVerse, ' ', 1 ) === 1) {
+				$fVerse = substr_replace ( $fVerse, '', 1, 1 );
+			}
+			$pieces = explode ( ' ', $fVerse, 2 );
+			if (isset ( TamilLectionaryUtil::$tamilAbbr [$pieces [0]] )) {
+				$fVerse = TamilLectionaryUtil::$tamilAbbr [$pieces [0]] . ' வாசகம் ' . $pieces [1];
+			} else {
+				return FALSE;
+			}
+			return $fVerse;
+	}
+	
+	public static $tamilAbbr = [ 
 			'தொநூ' => 'தொடக்க நூலிலிருந்து',
 			'விப' => 'விடுதலைப் பயண நூலிலிருந்து',
 			'லேவி' => 'லேவியர் நூலிலிருந்து',
@@ -114,10 +140,8 @@ class TamilLectionaryUtil {
 			'3யோவா' => 'திருத்தூதர் யோவான் எழுதிய மூன்றாம் திருமுகத்திலிருந்து',
 			'யூதா' => 'திருத்தூதர் யூதா எழுதிய திருமுகத்திலிருந்து',
 			'திவெ' => 'திருத்தூதர் யோவான் எழுதிய திருவெளிப்பாட்டிலிருந்து' 
-	);
-	
-	// @formatter:off
-	public static $tamilDayFull = array (
+	];
+	public static $tamilDayFull = [ 
 			'ஞாயிறு',
 			'திங்கள்',
 			'செவ்வாய்',
@@ -125,8 +149,8 @@ class TamilLectionaryUtil {
 			'வியாழன்',
 			'வெள்ளி',
 			'சனி' 
-	);
-	public static $tamilDayShort = array (
+	];
+	public static $tamilDayShort = [ 
 			'ஞா',
 			'தி',
 			'செ',
@@ -134,8 +158,8 @@ class TamilLectionaryUtil {
 			'வி',
 			'வெ',
 			'ச' 
-	);
-	public static $tamilMonthFull = array (
+	];
+	public static $tamilMonthFull = [ 
 			'',
 			'சனவரி',
 			'பிப்ரவரி',
@@ -149,8 +173,8 @@ class TamilLectionaryUtil {
 			'அக்டோபர்',
 			'நவம்பர்',
 			'டிசம்பர்' 
-	);
-	public static $tamilMonthShort = array (
+	];
+	public static $tamilMonthShort = [ 
 			'',
 			'சன',
 			'பிப்',
@@ -164,6 +188,17 @@ class TamilLectionaryUtil {
 			'அக்',
 			'நவ',
 			'டிச' 
-	);
-	// @formatter:on
+	];
+	public static $tamilFeastType = [ 
+			'' => '',
+			'Solemnity' => 'பெருவிழா',
+			'Solemnity-PrincipalPartron-Place' => 'பெருவிழா',
+			'Feast-Lord' => 'விழா',
+			'Feast' => 'விழா',
+			'Feast-PrincipalPartron-Place' => 'விழா',
+			'Mem' => 'நினைவு',
+			'OpMem' => 'வி.நினைவு',
+			'Commomeration' => 'நினைவுக்காப்பு',
+			'All Souls' => ''
+	];
 }

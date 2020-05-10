@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
+include_once 'lib/TamilLectionary/TamilLectionary.php';
+include_once 'lib/TamilLectionary/TamilLectionaryHTML.php';
 
-include_once ('lib/RomanCalendar/RomanCalendar.php');
-include_once ('lib/RomanCalendar/RomanCalendarRenderHTML_TA.php');
 ?>
 <html>
 	<head>
@@ -13,11 +13,16 @@ include_once ('lib/RomanCalendar/RomanCalendarRenderHTML_TA.php');
 
 <?php
 
-$CalcGen = new RomanCalendar (2019, parse_ini_file ( 'lib/RomanCalendar/settings.ini' ) );
+$CalcGen = new TamilLectionary (date("Y"), parse_ini_file ( 'lib/RomanCalendar/settings.ini' ) );
 
-$rcYr = $CalcGen->rcy;
+/* * /
+print_r($CalcGen->fullYear);
+die();
+/* */
 
-$rHTML = new RomanCalendarRenderHTML_TA ();
-$rHTML->printYearHTML ( $rcYr );
+$printer = new TamilLectionaryHTML($CalcGen->fullYear);
+
+echo $printer->getDay(29, 3);
+
 
 ?>

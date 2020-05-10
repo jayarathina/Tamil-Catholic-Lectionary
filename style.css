@@ -1,56 +1,66 @@
-table {
+/*Readings*/
+
+.dayTitle {
+	text-align: center;
+}
+
+.readingTxt {
+	text-align: justify;
+	text-indent: 25px;
+	margin: 0;
+}
+
+.readingHeading {
+	text-align: right;
+	font-style: italic;
+}
+
+.alleluiaTxt {
+	margin-left: 25px;
+	text-align: justify;
+}
+
+.psalmTitle {
+	text-align: left;
+	margin-top: 20px;
+}
+
+div.psalmText {
 	width: 100%;
+	overflow: hidden;
 }
 
-table, th, td {
-	border: 1px solid #000;
-	border-collapse: collapse;
+div.psalmText>div:nth-child(2n-1) {
+	width: 40px;
+	float: left;
 }
 
-td.dt, td.Col{
-	width: 0.1% !important;
+div.psalmText>div:nth-child(2n) {
+	overflow: hidden;
+	text-align: justify;
 }
 
-td.dayTitle {
-	width: 250px !important;
+.italics {
+	font-style: italic;
+	margin: 0;
 }
 
-.Colred {
-	background-color: #FFE4E4;
+.clrwhite {
+	color: DarkGoldenRod;
 }
 
-.ColDred {
-	background-color: #CC0000;
+.clrred {
+	color: firebrick;
 }
 
-.Colgreen {
-	background-color: #F0F8DB;
+.clrrose {
+	color: Orchid;
 }
 
-.ColDgreen {
-	background-color: #669900;
+.clrpurple {
+	color: RebeccaPurple;
 }
 
-.Colwhite {
-	background-color: #FFF6DF;
-}
-
-.ColDwhite {
-	background-color: #FFBD21;
-}
-
-.Colpurple {
-	background-color: #F5EAFA;
-}
-
-.ColDpurple {
-	background-color: #9933CC;
-}
-
-.Colrose {
-	background-color: #FFE6F6;
-}
-
-.ColDrose {
-	background-color: #C9368F;
+.clrgreen {
+	color: Green;
 }

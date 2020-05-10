@@ -3,13 +3,11 @@
 /**
  * RomanCalendar 3.0
  * @author Br. Jayarathina Madharasan SDR
- * 
  */
 class RomanCalendarFixed {
-	private $dayRanks, $RCYr, $calName;
+	private $RCYr, $calName;
 	function __construct(RomanCalendarYear $RCYear, $feastList, $calName) {
 		$this->RCYr = $RCYear;
-		$this->dayRanks = new RomanCalendarRanks ();
 		$this->calName = $calName;
 		$this->addSolemnityToYear ( $feastList );
 		$this->addFeastToYear ( $feastList );
@@ -26,7 +24,8 @@ class RomanCalendarFixed {
 			if (preg_match ( "/^Solemnity/", $feastDet ['feast_type'] ) !== 1)
 				continue;
 			
-			$feastRank = $this->dayRanks->getRank ( $feastDet ['feast_type'] );
+			$dayRanks = new RomanCalendarRanks ();
+			$feastRank = $dayRanks->getRank ( $feastDet ['feast_type'] );
 			
 			$currentDay = $this->RCYr->fullYear [$feastDet ['feast_month']] [$feastDet ['feast_date']];
 			$currentDayRank = $currentDay [0] ['rank'];
@@ -34,8 +33,11 @@ class RomanCalendarFixed {
 			if ($feastRank < $currentDayRank) {
 				$this->RCYr->setDayCode ( $feastDet ['feast_month'], $feastDet ['feast_date'], $feastDet ['feast_code'], $feastDet ['feast_type'] );
 			} else {
+				// Conflict is between ranks 1 to 4; See RomanCalendarRanks.php for ranks
+				
 				// If a fixed date Solemnity occurs on a Sunday of Lent or Advent, the Solemnity is transferred to the following Monday.
 				// This affects Joseph, Husband of Mary (Mar 19), Annunciation (Mar 25), and Immaculate Conception (Dec 8).
+				
 				$tempDate = new DateTime ( $this->RCYr->__get ( 'currentYear' ) . '-' . $feastDet ['feast_month'] . '-' . $feastDet ['feast_date'] );
 				
 				if ($feastDet ['feast_date'] == 19 && preg_match ( "/^LW06/", $currentDay [0] ['code'] ) === 1) {
@@ -51,15 +53,17 @@ class RomanCalendarFixed {
 					$tempDate = new DateTime ( $this->RCYr->__get ( 'currentYear' ) . '-03-21' );
 					$tempDate->modify ( '+ ' . easter_days ( $this->RCYr->__get ( 'currentYear' ) ) . ' days' ); // Easter Date
 					$tempDate->modify ( '+ 8 days' );
-				} elseif ($tempDate->format ( 'w' ) == 0) { // Make sure it is a sunday
-					$tempDate->modify ( '+ 1 days' );
 				} else {
-					print_r ( $feastDet );
-					print_r ( $currentDay );
-					
-					// TODO Solemities of Particular Calendars (Rank 4) should be implemented seperately
-					// Those solemnities should be moved to the nearest day where there is a free space
-					die ( 'Solemities of Particular Calendars overwriting is not yet implemented' );
+					// Other solemnities that clash
+					// - with Sundays of Lent or Advent or Eastertide
+					// - with each other [General Calendar: 24 June 2022, Birth of St. John the Baptist and Sacred Heart]
+					// - Particular Calendar (Rank 4) and General Calendar
+					// These should be moved to the nearest ferial day
+					do {
+						// Go to next day and check for its rank
+						$tempDate->modify ( '+ 1 days' );
+						$currentDay_ = $this->RCYr->fullYear [$tempDate->format ( 'n' )] [$tempDate->format ( 'j' )];
+					} while ( $feastRank > $currentDay_ [0] ['rank'] );
 				}
 				
 				$this->RCYr->setDayCode ( $tempDate->format ( 'n' ), $tempDate->format ( 'j' ), $feastDet ['feast_code'], $feastDet ['feast_type'] );
@@ -75,8 +79,8 @@ class RomanCalendarFixed {
 		foreach ( $FeastList as $feastDet ) {
 			if (preg_match ( "/^Feast/", $feastDet ['feast_type'] ) !== 1)
 				continue;
-			
-			$feastRank = $this->dayRanks->getRank ( $feastDet ['feast_type'] );
+			$dayRanks = new RomanCalendarRanks ();
+			$feastRank = $dayRanks->getRank ( $feastDet ['feast_type'] );
 			$currentDayRank = $this->RCYr->fullYear [$feastDet ['feast_month']] [$feastDet ['feast_date']] [0] ['rank'];
 			if ($feastRank < $currentDayRank) {
 				$this->RCYr->setDayCode ( $feastDet ['feast_month'], $feastDet ['feast_date'], $feastDet ['feast_code'], $feastDet ['feast_type'] );

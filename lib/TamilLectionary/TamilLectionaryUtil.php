@@ -37,6 +37,20 @@ class TamilLectionaryUtil {
 		return $rt [0];
 	}
 	
+	public static function isItInLent($curYear, $curMnth, $curdate){
+		$eastertideStarts = new DateTime ( $curYear . '-03-21' );
+		$eastertideStarts->modify ( '+ ' . easter_days ( $curYear ) . ' days' );
+		
+		$lentStart = clone $eastertideStarts;
+		$lentStart->modify ( '-46 days' );
+		
+		
+		$givenDate = new DateTime ( "$curYear-$curMnth-$curdate" );
+		
+		return ($givenDate >=$lentStart && $givenDate < $eastertideStarts); 
+
+	}
+	
 	
 	/**
 	 *

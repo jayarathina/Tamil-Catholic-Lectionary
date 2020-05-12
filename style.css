@@ -3,6 +3,30 @@
 	text-align: center;
 }
 
+.daySubTitle {
+	text-align: right;
+}
+
+.notice {
+	color: inherit;
+	font-style: italic;
+	margin: 0;
+	text-align: justify;
+	border-top: 1px dashed;
+	border-bottom: 1px dashed;
+}
+
+.notice a {
+	color: inherit;
+	text-decoration: none;
+	font-style: oblique;
+	font-weight: bold;
+}
+
+.notice a:hover {
+	text-decoration: underline;
+}
+
 p.sequenceTxt {
 	text-align: justify;
 	text-indent: -25px;
@@ -13,13 +37,22 @@ ol.sequenceTxt li {
 	margin-bottom: 10px;
 }
 
+.readings{
+/*	display: none; */
+/* Use this to display reading one by one with javascript*/
+}
+
+.readingsTitle{
+	font-weight: bold;
+}
+
 .readingTxt {
 	text-align: justify;
 	text-indent: 25px;
 	margin: 0;
 }
 
-.readingHeading {
+.readingIntro {
 	text-align: right;
 	font-style: italic;
 }

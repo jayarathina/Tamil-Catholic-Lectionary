@@ -41,7 +41,7 @@ class TamilLectionaryReadings {
 						$rcy->fullYear [$month] [$days] [1] = $this->getChrismMass ();
 				}
 				
-				// For readings proper to memory. "வாசகம் இந்த நினைவுக்கு உரியது"
+				// For moving readings proper from memory to current. [வாசகம் இந்த நினைவுக்கு உரியது]
 				foreach ( $feasts as $key => $feast ) {
 					
 					// Skip the first entry.
@@ -49,26 +49,35 @@ class TamilLectionaryReadings {
 						continue;
 					
 					// traverse through the reading of remaining entries
-					$rd = $rcy->fullYear [$month] [$days] [$key] ['readings'];
-					
-					foreach ( $rd as $type => $ref ) {
+					// other memories which have proper readings to be used today
+					$readings_to_replace = array_filter ( $rcy->fullYear [$month] [$days] [$key] ['readings'], function ($readingsType) {
+						return preg_match ( "/^\d\.\d\d[19]/", $readingsType );
+					}, ARRAY_FILTER_USE_KEY );
+
+					$firstKey = array_key_first ( $readings_to_replace );
+					if(intval($firstKey) == 6){ //If Gospel is changed, then alleluia should also follow
+						$readings_alleluia = array_filter ( $rcy->fullYear [$month] [$days] [$key] ['readings'], function ($readingsType) {
+							return preg_match ( "/^5/", $readingsType );
+						}, ARRAY_FILTER_USE_KEY );
 						
-						if (preg_match ( '/^\d\.\d\d9$/', $type ) === 1) { // if Dedication of the basilicas of Saints Peter and Paul, whole readings have to change
-							$rcy->fullYear [$month] [$days] [0] ['readings'] = $rd; // Substitute reading
-							$rcy->fullYear [$month] [$days] [0] ['readings_proper_feast_key'] = $key; // to know whether the readings are taken
-							break;
-						} elseif (preg_match ( '/^\d\.\d\d1$/', $type ) === 1) { // other memories which have proper readings to be used in a day
-						                                                         // Remove reading type (gospel or first reading) from current day
-							foreach ( $rcy->fullYear [$month] [$days] [0] ['readings'] as $type_0 => $ref_0 )
-								if (intval ( $type ) === intval ( $type_0 ))
-									unset ( $rcy->fullYear [$month] [$days] [0] ['readings'] [$type_0] );
-							
-							$rcy->fullYear [$month] [$days] [0] ['readings'] [$type] = $ref; // Add the readings
-							$rcy->fullYear [$month] [$days] [0] ['readings_proper_feast_key'] = $key; // to know whether the readings are taken
-							
-							break;
+						//Don't use array_merge, numeric keys will be renumbered; See phpDoc
+						$readings_to_replace = $readings_to_replace + $readings_alleluia;
+					}
+					
+					foreach ( $readings_to_replace as $type => $ref ) {
+						foreach ( $rcy->fullYear [$month] [$days] [0] ['readings'] as $type_0 => $ref_0 ){// Remove reading type (gospel or first reading) from current day
+							if (intval ( $type ) === intval ( $type_0 )){
+								unset ( $rcy->fullYear [$month] [$days] [0] ['readings'] [$type_0] );
+							}
 						}
 					}
+					
+					if(!empty($readings_to_replace)){
+						$rcy->fullYear [$month] [$days] [0] ['readings'] = $rcy->fullYear [$month] [$days] [0] ['readings'] + $readings_to_replace;
+						ksort($rcy->fullYear [$month] [$days] [0] ['readings']); //to resort the array
+						$rcy->fullYear [$month] [$days] [0] ['readings_proper_feast_key'] = $key; //Set the key of envent from where the readings are taken.
+					}
+
 				}
 			}
 		}
@@ -124,18 +133,7 @@ class TamilLectionaryReadings {
 		foreach ( $ReadingList as $val ) {
 			$redings_val [$val ['type']] = $val ['ref'];
 		}
-		
-		foreach ( $calendars as $calName ) {
-			$ReaingsCommon = $this->database->get ( 'general' . $calName, 'common', [ 
-					'feast_code' => $dayCode 
-			] );
-			
-			if (! empty ( $ReaingsCommon )) {
-				$redings_val [9] = $ReaingsCommon;
-				break;
-			}
-		}
-		
+
 		if (empty ( $redings_val )) {
 			die ( 'FATAL ERROR: NO READINGS SET FOR ' . $dayCode );
 		}

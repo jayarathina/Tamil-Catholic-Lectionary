@@ -23,14 +23,19 @@ class TamilLectionary {
         	$rcy = $tlReadings->setReadings($CalcGen->rcy);
 
         	$t = json_encode ( $rcy->fullYear, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK );
+        	/**/
         	$ret = file_put_contents ( $fileName, $t );
 
         	if ($ret === FALSE) {
         		die ( 'Error in writing JSON file' );
         	}
+        	/* */
+        	$this->fullYear = $rcy->fullYear;
+        }else{
+        	$txtCnt = file_get_contents ( $fileName );
+        	$this->fullYear = json_decode ( $txtCnt, true );
         }
         
-        $txtCnt = file_get_contents ( $fileName );
-        $this->fullYear = json_decode ( $txtCnt, true );
+
     }
 }

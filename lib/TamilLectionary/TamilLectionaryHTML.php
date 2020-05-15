@@ -122,6 +122,7 @@ class TamilLectionaryHTML {
 			if (empty ( $readings ))
 				continue;
 			$currReadings = '';
+			
 			switch ($i) {
 				case 0 : // Palm Sunday Procession Reading
 				case 1 : // First Reading
@@ -145,7 +146,7 @@ class TamilLectionaryHTML {
 					print_r ( $readings );
 					break;
 			}
-			
+			//If notice ID is negative, it is to be displayed before else after
 			$noticeBefore = isset ( $notices_collection [$i * - 1] ) ? $this->formatNotice ( $notices_collection [$i * - 1] ) : '';
 			$noticeAfter = isset ( $notices_collection [$i] ) ? $this->formatNotice ( $notices_collection [$i] ) : '';
 			
@@ -153,22 +154,17 @@ class TamilLectionaryHTML {
 				// For Alleluia title will change during lent
 				$SecTitle = ($i == 5) ? $this->readingType [$i . $isLent] : $this->readingType [$i];
 				
-				// Set Heading
+				// Add Heading for readings
 				$currReadings = "<p class='clrDay readingsTitle'>$SecTitle</p>$currReadings";
 				$allReadings .= "<div class='readings' data-readingName='$SecTitle' id='read$i'>$noticeBefore $currReadings</div>" . $noticeAfter;
-			} elseif (! empty ( $noticeBefore ) || ! empty ( $noticeAfter )) {
-				$allReadings .= $noticeBefore . $noticeAfter;
 			}
 		}
 		
 		// Add Day Title
 		$DayTitle = "<h4 class='dayTitle clr{$currtDay['color']}'>{$currtDay['ta_name']}</h4>";
-		$subTitle = '';
-		if (isset ( $currtDay ['type'] )) {
-			$subTitle = "<div class='daySubTitle clr{$currtDay['color']}'>" . TamilLectionaryUtil::$tamilFeastType [$currtDay ['type']] . "</div>";
-		}
+		$DayType = isset ( $currtDay ['type'] ) ? "<div class='daySubTitle clrDay'>" . TamilLectionaryUtil::$tamilFeastType [$currtDay ['type']] . "</div>" : '';
 		
-		$allReadings = $DayTitle . $subTitle . $this->formatNotice ( $notice ) . $allReadings;
+		$allReadings = $DayTitle . $DayType . $this->formatNotice ( $notice ) . $allReadings;
 		// Replace Colour Value
 		$allReadings = str_replace ( 'clrDay', 'clr' . $currtDay ['color'], $allReadings );
 		
@@ -176,10 +172,10 @@ class TamilLectionaryHTML {
 	}
 	
 	/**
-	 * This function printout readings for Easter Vigil.
+	 * This function prints out readings for Easter Vigil.
 	 *
-	 * @param array $currtDay
-	 * @return string - readings of easter vigil
+	 * @param array $currtDay readings
+	 * @return string - HTML formated readings of Easter Vigil
 	 */
 	function getEasterVigil($currtDay) {
 		// 'LW06-6Sat'

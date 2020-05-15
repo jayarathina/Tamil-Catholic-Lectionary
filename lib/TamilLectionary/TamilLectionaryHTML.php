@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Displayes a day with all the readings properly formatted.
+ *
+ * @author Br. Jayarathina Madharasan SDR
+ *
+ */
 use Medoo\Medoo;
 require_once 'lib/Medoo.php';
 require_once 'lib/dbConfig.php';
@@ -8,6 +15,7 @@ class TamilLectionaryHTML {
 	public $fullYear;
 	public $currYear;
 	private $readingType = [ 
+			'0' => 'குருத்தோலைப் பவனி நற்செய்தி வாசகம்',
 			'1' => 'முதல் வாசகம்',
 			'2' => 'பதிலுரைப் பாடல்',
 			'3' => 'இரண்டாம் வாசகம்',
@@ -33,57 +41,80 @@ class TamilLectionaryHTML {
 				'charset' => 'utf8' 
 		] );
 	}
+	/**
+	 * Get the readings for the current day.
+	 *
+	 * @param string $date
+	 *        	- Date of the day
+	 * @param string $month
+	 *        	- Month of the Day
+	 * @param number $evtID
+	 *        	- ID of the event you want readings of.
+	 *        	ID is 0 for the default readings.
+	 *        	Other memories and optional memories are numbered consecutively.
+	 * @return string - HTML formated day's readings (of specified $evtID)
+	 */
 	function getDay($date, $month, $evtID = 0) {
-		if (! isset ( $this->fullYear [$month] [$date] )) {
+		// For safety, if improper numbers are passsed on
+		if (! isset ( $this->fullYear [$month] [$date] ))
 			return '';
-		}
 		
-		$notice = '';
-		
-		if (isset ( $this->fullYear [$month] [$date] [$evtID] ['readings_proper_feast_key'] )) {
-			$replacedFrom = $this->fullYear [$month] [$date] [$evtID] ['readings_proper_feast_key'];
-			
-			// FIXME This will be later on needed for retriving reading using `usedby` field. But such dependency ideally should not exist
-			$this->replaceFrom_code = $this->fullYear [$month] [$date] [$replacedFrom] ['code'];
-			
-			// Special case for Dedication of the basilicas of Saints Peter and Paul (Nov 11) where all readings will be replaced.
-			$firstKey = array_key_first ( $this->fullYear [$month] [$date] [$evtID] ['readings'] );
-			if (preg_match ( "/^\d\.\d\d9/", $firstKey ) == 1) {
-				$notice = "இன்றைய வாசகங்கள் <a href='?feastID=$replacedFrom'>{$this->fullYear [$month] [$date][$replacedFrom]['ta_name']}</a> நினைவுக்கு உரியவை.";
-			}
-			
-			// other memories which have proper readings to be used today
-			$replacedReadings = array_filter ( $this->fullYear [$month] [$date] [$evtID] ['readings'], function ($readingsType) {
-				return preg_match ( "/^\d\.\d\d1/", $readingsType );
-			}, ARRAY_FILTER_USE_KEY );
-			
-			if (! empty ( $replacedReadings )) {
-				$firstKey = intval ( array_key_first ( $replacedReadings ) );
-				$notice = "{$this->readingType[intval($firstKey)]} <a href='{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&k=$replacedFrom'>{$this->fullYear [$month] [$date][$replacedFrom]['ta_name']}</a> நினைவுக்கு உரியது.";
-			}
-		}
-		
+		// For ferial days where redings are replaced, a note is displayed saying so.
+		$notice = $this->getReadingsReplacedNotice ( $this->fullYear [$month] [$date], $evtID );
 		return $this->getSingleEvent ( $this->fullYear [$month] [$date] [$evtID], TamilLectionaryUtil::isItInLent ( $this->currYear, $month, $date ), $notice );
 	}
+	
+	/**
+	 * Get HTML formated day's readings for a single day
+	 *
+	 * @param array $currtDay
+	 *        	- current day settings
+	 * @param boolean $isLent
+	 *        	- whether this days falls withing lent. (For displaying Alleluia)
+	 * @param string $notice
+	 *        	- Any notice to display (probably from getReadingsReplacedNotice())
+	 * @return string - HTML formated day's readings
+	 */
 	function getSingleEvent($currtDay, $isLent, $notice = '') {
 		switch ($currtDay ['code']) {
-			case 'LW06-6Sat' :
+			case 'LW06-6Sat' : // Easter Vigil has special formating
 				return $this->getEasterVigil ( $currtDay );
 				break;
 		}
+		print_r ( $currtDay );
 		
 		// FIXME Vigil masses have to be printed properly
 		if (isset ( $currtDay ['readings'] ['Day'] ))
 			$currtDay ['readings'] = $currtDay ['readings'] ['Day'];
 		
-		// There is a doubt whether Alleluia is sung during lent on Solemnities
-		// Currently we follow Tamil Lectionary, so we sing it on solemnities.
+		/*
+		 * There is a doubt whether Alleluia is sung during lent on Solemnities
+		 * Some websites mention that we do not sing,
+		 * Currently we follow Tamil Lectionary, so we sing it on solemnities.
+		 */
 		if (isset ( $currtDay ['type'] ) && $currtDay ['type'] == 'Solemnity')
 			$isLent = false;
+
+		/*** Process special notes to be displayed  ***/
+		$notices = $this->database->select ( 'readings__notes', '*', [ 
+				'dayID' => $currtDay ['code'] 
+		] );
+
+		$notices_collection = [ ];
+
+		foreach ( $notices as $key => $value ) {
+			$notices_collection [$value ['notesPos']] = $value ['Content'];
+		}
 		
+		//By default 0 notification will be displayed at the begining
+		if (isset ( $notices_collection [0] ) && ! isset ( $currtDay ['readings'] [0] /*Palm Sunday*/ ))
+			$notice .= $notices_collection [0];
+		
+		/*** Process Readiings ***/
 		$allReadings = '';
 		
-		for($i = 1; $i < 10; $i ++) {
+		for($i = 0; $i < 10; $i ++) {
+			//Filter readings of a single type
 			$readings = array_filter ( $currtDay ['readings'], function ($readingsType) use ($i) {
 				return preg_match ( "/^$i\.*/", $readingsType );
 			}, ARRAY_FILTER_USE_KEY );
@@ -92,6 +123,7 @@ class TamilLectionaryHTML {
 				continue;
 			$currReadings = '';
 			switch ($i) {
+				case 0 : // Palm Sunday Procession Reading
 				case 1 : // First Reading
 				case 3 : // Second Reading
 				case 6 : // Gospel Reading
@@ -114,13 +146,18 @@ class TamilLectionaryHTML {
 					break;
 			}
 			
+			$noticeBefore = isset ( $notices_collection [$i * - 1] ) ? $this->formatNotice ( $notices_collection [$i * - 1] ) : '';
+			$noticeAfter = isset ( $notices_collection [$i] ) ? $this->formatNotice ( $notices_collection [$i] ) : '';
+			
 			if (! empty ( $currReadings )) {
 				// For Alleluia title will change during lent
 				$SecTitle = ($i == 5) ? $this->readingType [$i . $isLent] : $this->readingType [$i];
 				
 				// Set Heading
 				$currReadings = "<p class='clrDay readingsTitle'>$SecTitle</p>$currReadings";
-				$allReadings .= "<div class='readings' data-readingName='$SecTitle' id='read$i'>$currReadings</div>";
+				$allReadings .= "<div class='readings' data-readingName='$SecTitle' id='read$i'>$noticeBefore $currReadings</div>" . $noticeAfter;
+			} elseif (! empty ( $noticeBefore ) || ! empty ( $noticeAfter )) {
+				$allReadings .= $noticeBefore . $noticeAfter;
 			}
 		}
 		
@@ -131,19 +168,22 @@ class TamilLectionaryHTML {
 			$subTitle = "<div class='daySubTitle clr{$currtDay['color']}'>" . TamilLectionaryUtil::$tamilFeastType [$currtDay ['type']] . "</div>";
 		}
 		
-		if (! empty ( $notice ))
-			$notice = "<div class='clrDay italics notice'>{$notice}</div>";
-		
-		$allReadings = $DayTitle . $subTitle . $notice . $allReadings;
+		$allReadings = $DayTitle . $subTitle . $this->formatNotice ( $notice ) . $allReadings;
 		// Replace Colour Value
 		$allReadings = str_replace ( 'clrDay', 'clr' . $currtDay ['color'], $allReadings );
 		
 		return $allReadings;
 	}
+	
+	/**
+	 * This function printout readings for Easter Vigil.
+	 *
+	 * @param array $currtDay
+	 * @return string - readings of easter vigil
+	 */
 	function getEasterVigil($currtDay) {
 		// 'LW06-6Sat'
-		print_r ( $currtDay );
-		
+		// print_r ( $currtDay );
 		$readingType = [ 
 				'1' => 'முதல் வாசகம்',
 				'2' => 'இரண்டாம் வாசகம்',
@@ -156,13 +196,12 @@ class TamilLectionaryHTML {
 				'9' => 'நற்செய்தி வாசகம்' 
 		];
 		
-		$ret = '';
-		
-		$readingTxt = $this->database->get ( 'readings__text', 'Content', [ 
-				'refKey' => $currtDay ['readings'] [0],
-				'usedBy' => 'LW06-6Sat' 
+		$notices = $this->database->select ( 'readings__notes', '*', [ 
+				'dayID' => $currtDay ['code'] 
 		] );
-		$ret .= "<div class='clrDay notice'>{$readingTxt}</div>";
+		
+		$ret = '';
+		$ret .= "<div class='clrDay notice'>{$notices[0]['Content']}</div>";
 		
 		for($i = 1; $i <= 9; $i ++) {
 			// Reading
@@ -175,36 +214,42 @@ class TamilLectionaryHTML {
 			}
 			$currReadings = $this->getReadingsTxt ( $readings, $currtDay ['code'] );
 			
-			//Some special cases
-			if($i == 9)//For Gospel
-				$currReadings .= $this->getReadingsTxt ( [6=> $currtDay['readings'] [6] ], $currtDay ['code'] );
-			elseif ($i == 3)//After 'crossing of the red sea' reading, no ஆண்டவரின் அருள்வாக்கு
+			// Some special cases
+			if ($i == 9) // For Gospel
+				$currReadings .= $this->getReadingsTxt ( [ 
+						6 => $currtDay ['readings'] [6] 
+				], $currtDay ['code'] );
+			elseif ($i == 3) // After 'crossing of the red sea' reading, no ஆண்டவரின் அருள்வாக்கு
 				$currReadings = str_replace ( "<p class='readingTxt'>ஆண்டவரின் அருள்வாக்கு.</p>", '', $currReadings );
 			
 			$SecTitle = $readingType [$i]; // Set Heading
 			$currReadings = "<p class='clrDay readingsTitle'>$SecTitle</p>$currReadings";
 			$ret .= "<div class='readings' data-readingName='$SecTitle' id='readTxt$i'>$currReadings</div>";
 			
-			if($i == 9)//No responsorial after Gospel
+			if ($i == 9) // No responsorial after Gospel
 				continue;
 			
 			// Responsorial
 			$responsorial = array_filter ( $currtDay ['readings'], function ($readingsType) use ($i) {
 				return preg_match ( "/^2\.$i\.*/", $readingsType );
 			}, ARRAY_FILTER_USE_KEY );
+			
 			foreach ( $responsorial as $key => $value ) {
 				unset ( $responsorial [$key] );
 				$k_ = preg_replace ( '/(\d\.)(\d)(.*)/', '${1}1${3}', $key );
 				$k_ = preg_replace ( '/2.12/', '2.2', $k_ );
 				$responsorial [$k_] = $value;
 			}
-			print_r ( $responsorial );
 			$currReadings = $this->getResponsorialTxt ( $responsorial, $currtDay ['code'] );
+			
+			if ($i == 7) {
+				$nt = "<div class='clrDay notice'>{$notices[1]['Content']}</div>";
+				$currReadings = str_replace ( "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது</h4>", $nt, $currReadings );
+			}
+			
 			$currReadings = "<p class='clrDay readingsTitle'>பதிலுரைப் பாடல்</p>$currReadings";
 			$ret .= "<div class='readings' data-readingName='பதிலுரைப் பாடல்' id='readRes$i'>$currReadings</div>";
 		}
-		
-		// $ret .= $this->getReadingsTxt ( [6=> $currtDay['readings'] [6] ], $currtDay ['code'] );
 		
 		// Add Day Title
 		$title = "<h4 class='dayTitle clr{$currtDay['color']}'>{$currtDay['ta_name']}</h4>";
@@ -364,7 +409,7 @@ class TamilLectionaryHTML {
 				'_Doctor' => 'மறைவல்லுநர்',
 				'_Virgin' => 'கன்னியர்',
 				'_Saint' => 'புனிதர், புனிதையர்',
-				'VM-HolyName' => 'இயேசுவின் திருப்பெயர் - நேர்ச்சித் திருப்பலி (வாசக நூல் IV)' 
+				'_VM-HolyName' => 'இயேசுவின் திருப்பெயர் - நேர்ச்சித் திருப்பலி (வாசக நூல் IV)' 
 		];
 		
 		$commonsSunList = [ 
@@ -388,7 +433,7 @@ class TamilLectionaryHTML {
 				$rt1 = $commonsList [$comnsRef];
 			}
 			// TODO Add votive mass readings in DB
-			if ($comnsRef !== 'VM-HolyName') {
+			if ($comnsRef !== '_VM-HolyName') {
 				$comnsRef = "<a href='commons.php?t=$comnsRef'>$rt1 பொது</a>";
 			} else {
 				$comnsRef = $rt1;
@@ -397,6 +442,56 @@ class TamilLectionaryHTML {
 			array_push ( $rt_arr, $comnsRef );
 		}
 		return implode ( ' அல்லது ', $rt_arr );
+	}
+	function formatNotice($notice) {
+		return ! empty ( $notice ) ? "<div class='clrDay italics notice'>$notice</div>" : "";
+	}
+	
+	/**
+	 * For ferial days where redings are replaced, this function returns a note to be displayed with that information.
+	 *
+	 * @param array $currentDay
+	 *        	- Current day readings (all events including alternatives)
+	 * @param array $evtID
+	 *        	- Current event for which note is to be displayed, if any.
+	 * @return string - note to be displayed. (No formating)
+	 */
+	function getReadingsReplacedNotice($currentDay, $evtID) {
+		$notice = '';
+		// If reading replaced key is set in ferial day.
+		if (isset ( $currentDay [$evtID] ['readings_proper_feast_key'] )) {
+			$replacedFrom = $currentDay [$evtID] ['readings_proper_feast_key'];
+			
+			// FIXME This will be later on needed for retriving reading using `usedby` field. But such dependency ideally should not exist
+			$this->replaceFrom_code = $currentDay [$replacedFrom] ['code'];
+			
+			// Special case for Dedication of the basilicas of Saints Peter and Paul (Nov 11) where all readings will be replaced.
+			$firstKey = array_key_first ( $currentDay [$evtID] ['readings'] );
+			if (preg_match ( "/^\d\.\d\d9/", $firstKey ) == 1) {
+				$notice = "இன்றைய வாசகங்கள் <a href='{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&k=$replacedFrom'>{$currentDay[$replacedFrom]['ta_name']}</a> நினைவுக்கு உரியது.";
+			}
+			
+			// other memories which have proper readings (first reading or gospel to be used today
+			$replacedReadings = array_filter ( $currentDay [$evtID] ['readings'], function ($readingsType) {
+				return preg_match ( "/^\d\.\d\d1/", $readingsType );
+			}, ARRAY_FILTER_USE_KEY );
+			
+			if (! empty ( $replacedReadings )) {
+				$firstKey = intval ( array_key_first ( $replacedReadings ) );
+				$notice .= "{$this->readingType[intval($firstKey)]} <a href='{$_SERVER['PHP_SELF']}?{$_SERVER['QUERY_STRING']}&k=$replacedFrom'>{$currentDay[$replacedFrom]['ta_name']}</a> நினைவுக்கு உரியது.";
+			}
+		} else {
+			// This is to display a not in memory from where we take the ferial day's replacement
+			$readings_proper = array_filter ( $currentDay [$evtID] ['readings'], function ($readingsType) {
+				return preg_match ( "/^\d\.\d\d1/", $readingsType );
+			}, ARRAY_FILTER_USE_KEY );
+			
+			if (! empty ( $readings_proper )) {
+				$firstKey = array_key_first ( $readings_proper );
+				$notice = 'இன்றைய ' . $this->readingType [intval ( $firstKey )] . ' இந்த நினைவுக்கு உரியது.';
+			}
+		}
+		return $notice;
 	}
 }
 

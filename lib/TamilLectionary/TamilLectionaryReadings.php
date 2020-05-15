@@ -1,15 +1,14 @@
 <?php
 /**
  * Tamil-Catholic-Lectionary 1.0
- * Formats the day code to name for the day
+ * @author Br. Jayarathina Madharasan SDR
+ * 
  */
 use Medoo\Medoo;
 include_once 'lib/dbConfig.php';
 include_once 'lib/TamilLectionary/TamilLectionaryUtil.php';
 /**
- *
- * @author Br. Jayarathina Madharasan SDR
- *        
+ * Class that set readings for all event in a particular day
  */
 class TamilLectionaryReadings {
 	private $database, $sundayType, $sundayType_From_Advent, $OWType;
@@ -41,43 +40,43 @@ class TamilLectionaryReadings {
 						$rcy->fullYear [$month] [$days] [1] = $this->getChrismMass ();
 				}
 				
-				// For moving readings proper from memory to current. [வாசகம் இந்த நினைவுக்கு உரியது]
+				// For moving readings proper of memory to ferial day. [வாசகம் இந்த நினைவுக்கு உரியது]
 				foreach ( $feasts as $key => $feast ) {
 					
-					// Skip the first entry.
+					// Skip the first entry which will be a ferial day.
 					if ($key === 0)
 						continue;
 					
-					// traverse through the reading of remaining entries
-					// other memories which have proper readings to be used today
+					// traverse through the reading of remaining entries and find
+					// memories which have proper readings to be used today
 					$readings_to_replace = array_filter ( $rcy->fullYear [$month] [$days] [$key] ['readings'], function ($readingsType) {
 						return preg_match ( "/^\d\.\d\d[19]/", $readingsType );
 					}, ARRAY_FILTER_USE_KEY );
-
+					
 					$firstKey = array_key_first ( $readings_to_replace );
-					if(intval($firstKey) == 6){ //If Gospel is changed, then alleluia should also follow
+					if (intval ( $firstKey ) == 6) { // If Gospel is changed, then alleluia should also follow
 						$readings_alleluia = array_filter ( $rcy->fullYear [$month] [$days] [$key] ['readings'], function ($readingsType) {
 							return preg_match ( "/^5/", $readingsType );
 						}, ARRAY_FILTER_USE_KEY );
 						
-						//Don't use array_merge, numeric keys will be renumbered; See phpDoc
+						// Don't use array_merge, numeric keys will be renumbered; See phpDoc
 						$readings_to_replace = $readings_to_replace + $readings_alleluia;
 					}
 					
 					foreach ( $readings_to_replace as $type => $ref ) {
-						foreach ( $rcy->fullYear [$month] [$days] [0] ['readings'] as $type_0 => $ref_0 ){// Remove reading type (gospel or first reading) from current day
-							if (intval ( $type ) === intval ( $type_0 )){
+						foreach ( $rcy->fullYear [$month] [$days] [0] ['readings'] as $type_0 => $ref_0 ) {
+							// Remove reading type (gospel or first reading) from current day
+							if (intval ( $type ) === intval ( $type_0 )) {
 								unset ( $rcy->fullYear [$month] [$days] [0] ['readings'] [$type_0] );
 							}
 						}
 					}
 					
-					if(!empty($readings_to_replace)){
+					if (! empty ( $readings_to_replace )) {
 						$rcy->fullYear [$month] [$days] [0] ['readings'] = $rcy->fullYear [$month] [$days] [0] ['readings'] + $readings_to_replace;
-						ksort($rcy->fullYear [$month] [$days] [0] ['readings']); //to resort the array
-						$rcy->fullYear [$month] [$days] [0] ['readings_proper_feast_key'] = $key; //Set the key of envent from where the readings are taken.
+						ksort ( $rcy->fullYear [$month] [$days] [0] ['readings'] ); // to resort the array
+						$rcy->fullYear [$month] [$days] [0] ['readings_proper_feast_key'] = $key; // Set the key of envent from where the readings are taken.
 					}
-
 				}
 			}
 		}
@@ -85,7 +84,7 @@ class TamilLectionaryReadings {
 	}
 	
 	/**
-	 * Sets the vsrisbles of Sunday (A, B or C) and Ordinary Week (1 or 2) value.
+	 * Sets the variables of Sunday Type (A, B or C) and Ordinary Week (1 or 2) value.
 	 * To be used to retrive readings suitable to current year.
 	 *
 	 * @param int $year
@@ -98,6 +97,7 @@ class TamilLectionaryReadings {
 	}
 	
 	/**
+	 * Returns readings for the given day Code
 	 *
 	 * @param string $dayCode
 	 *        	- Day Code
@@ -133,7 +133,7 @@ class TamilLectionaryReadings {
 		foreach ( $ReadingList as $val ) {
 			$redings_val [$val ['type']] = $val ['ref'];
 		}
-
+		
 		if (empty ( $redings_val )) {
 			die ( 'FATAL ERROR: NO READINGS SET FOR ' . $dayCode );
 		}
@@ -152,6 +152,12 @@ class TamilLectionaryReadings {
 		
 		return $return_val;
 	}
+	
+	/**
+	 * Returns readings for Vigil Masses if any
+	 *
+	 * @return array of readings
+	 */
 	function getVigilMass($dayCode) {
 		$ReadingList = $this->database->select ( 'readings__list', '*', [ 
 				'dayID' => $dayCode . ' - Vigil' 
@@ -163,6 +169,12 @@ class TamilLectionaryReadings {
 		}
 		return $ReadingList_;
 	}
+	
+	/**
+	 * Returns readings for Chrism Mass
+	 *
+	 * @return array of readings
+	 */
 	function getChrismMass() {
 		$return_val = [ 
 				'code' => 'LW06-4Thu~Chrism',
@@ -182,6 +194,12 @@ class TamilLectionaryReadings {
 		$return_val ['readings'] = $ReadingList_;
 		return $return_val;
 	}
+	
+	/**
+	 * Returns readings for Christmas Day
+	 *
+	 * @return array of readings
+	 */
 	function setChristmasDayReadings() {
 		$return_val = [ ];
 		$ReadingList = $this->database->select ( 'readings__list', '*', [ 

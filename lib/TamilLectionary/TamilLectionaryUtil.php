@@ -37,6 +37,12 @@ class TamilLectionaryUtil {
 		return $rt [0];
 	}
 	
+	/**
+	 * @param unknown $curYear
+	 * @param unknown $curMnth
+	 * @param unknown $curdate
+	 * @return boolean
+	 */
 	public static function isItInLent($curYear, $curMnth, $curdate){
 		$eastertideStarts = new DateTime ( $curYear . '-03-21' );
 		$eastertideStarts->modify ( '+ ' . easter_days ( $curYear ) . ' days' );

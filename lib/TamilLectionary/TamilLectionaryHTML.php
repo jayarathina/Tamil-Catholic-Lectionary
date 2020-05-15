@@ -94,27 +94,31 @@ class TamilLectionaryHTML {
 		 */
 		if (isset ( $currtDay ['type'] ) && $currtDay ['type'] == 'Solemnity')
 			$isLent = false;
-
-		/*** Process special notes to be displayed  ***/
+		
+		/**
+		 * Notes to be displayed
+		 */
 		$notices = $this->database->select ( 'readings__notes', '*', [ 
 				'dayID' => $currtDay ['code'] 
 		] );
-
+		
 		$notices_collection = [ ];
-
+		
 		foreach ( $notices as $key => $value ) {
 			$notices_collection [$value ['notesPos']] = $value ['Content'];
 		}
 		
-		//By default 0 notification will be displayed at the begining
+		// By default 0 notification will be displayed at the begining
 		if (isset ( $notices_collection [0] ) && ! isset ( $currtDay ['readings'] [0] /*Palm Sunday*/ ))
 			$notice .= $notices_collection [0];
 		
-		/*** Process Readiings ***/
+		/**
+		 * Readiings
+		 */
 		$allReadings = '';
 		
 		for($i = 0; $i < 10; $i ++) {
-			//Filter readings of a single type
+			// Filter readings of a single type
 			$readings = array_filter ( $currtDay ['readings'], function ($readingsType) use ($i) {
 				return preg_match ( "/^$i\.*/", $readingsType );
 			}, ARRAY_FILTER_USE_KEY );
@@ -146,7 +150,7 @@ class TamilLectionaryHTML {
 					print_r ( $readings );
 					break;
 			}
-			//If notice ID is negative, it is to be displayed before else after
+			// If notice ID is negative, it is to be displayed before else after
 			$noticeBefore = isset ( $notices_collection [$i * - 1] ) ? $this->formatNotice ( $notices_collection [$i * - 1] ) : '';
 			$noticeAfter = isset ( $notices_collection [$i] ) ? $this->formatNotice ( $notices_collection [$i] ) : '';
 			
@@ -174,12 +178,12 @@ class TamilLectionaryHTML {
 	/**
 	 * This function prints out readings for Easter Vigil.
 	 *
-	 * @param array $currtDay readings
+	 * @param array $currtDay
+	 *        	readings list
 	 * @return string - HTML formated readings of Easter Vigil
 	 */
 	function getEasterVigil($currtDay) {
 		// 'LW06-6Sat'
-		// print_r ( $currtDay );
 		$readingType = [ 
 				'1' => 'முதல் வாசகம்',
 				'2' => 'இரண்டாம் வாசகம்',
@@ -191,13 +195,20 @@ class TamilLectionaryHTML {
 				'8' => 'திருமுகம்',
 				'9' => 'நற்செய்தி வாசகம்' 
 		];
+		$ret = '';
 		
+		/**
+		 * Notes to be displayed
+		 */
 		$notices = $this->database->select ( 'readings__notes', '*', [ 
 				'dayID' => $currtDay ['code'] 
 		] );
+		$ret .= $this->formatNotice ( $notices [0] ['Content'] );
 		
-		$ret = '';
-		$ret .= "<div class='clrDay notice'>{$notices[0]['Content']}</div>";
+		/**
+		 * Readings: For easter vigil, all readings are coupled with a psalm
+		 * and stored in the database with that relation based on the Type column
+		 */
 		
 		for($i = 1; $i <= 9; $i ++) {
 			// Reading
@@ -218,18 +229,19 @@ class TamilLectionaryHTML {
 			elseif ($i == 3) // After 'crossing of the red sea' reading, no ஆண்டவரின் அருள்வாக்கு
 				$currReadings = str_replace ( "<p class='readingTxt'>ஆண்டவரின் அருள்வாக்கு.</p>", '', $currReadings );
 			
-			$SecTitle = $readingType [$i]; // Set Heading
+			$SecTitle = $readingType [$i]; // Add Heading to current reading
 			$currReadings = "<p class='clrDay readingsTitle'>$SecTitle</p>$currReadings";
 			$ret .= "<div class='readings' data-readingName='$SecTitle' id='readTxt$i'>$currReadings</div>";
 			
 			if ($i == 9) // No responsorial after Gospel
-				continue;
+				break;
 			
 			// Responsorial
 			$responsorial = array_filter ( $currtDay ['readings'], function ($readingsType) use ($i) {
 				return preg_match ( "/^2\.$i\.*/", $readingsType );
 			}, ARRAY_FILTER_USE_KEY );
 			
+			// This modification of array key is done to use getResponsorialTxt so that அல்லது can be avoided
 			foreach ( $responsorial as $key => $value ) {
 				unset ( $responsorial [$key] );
 				$k_ = preg_replace ( '/(\d\.)(\d)(.*)/', '${1}1${3}', $key );
@@ -239,7 +251,7 @@ class TamilLectionaryHTML {
 			$currReadings = $this->getResponsorialTxt ( $responsorial, $currtDay ['code'] );
 			
 			if ($i == 7) {
-				$nt = "<div class='clrDay notice'>{$notices[1]['Content']}</div>";
+				$nt = $this->formatNotice ( $notices [1] ['Content'] );
 				$currReadings = str_replace ( "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது</h4>", $nt, $currReadings );
 			}
 			
@@ -248,12 +260,22 @@ class TamilLectionaryHTML {
 		}
 		
 		// Add Day Title
-		$title = "<h4 class='dayTitle clr{$currtDay['color']}'>{$currtDay['ta_name']}</h4>";
+		$title = "<h4 class='dayTitle clrDay'>{$currtDay['ta_name']}</h4>";
 		$ret = $title . $ret;
 		// Set Colour Value
 		$ret = str_replace ( 'clrDay', 'clr' . $currtDay ['color'], $ret );
 		return $ret;
 	}
+	
+	/**
+	 * Returns HTML formated texts for First, Ssecond and Gospel readings
+	 *
+	 * @param array $readings
+	 *        	- Readings list
+	 * @param string $usedBy
+	 *        	- Which event is using the current text. This should be removed in the future.
+	 * @return string - HTML formated readings
+	 */
 	function getReadingsTxt($readings, $usedBy = null) {
 		$rt = '';
 		

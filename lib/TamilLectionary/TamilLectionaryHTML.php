@@ -306,6 +306,15 @@ class TamilLectionaryHTML {
 		}
 		return $rt;
 	}
+	
+	/**
+	 *
+	 * @param array $readings
+	 *        	- Readings list
+	 * @param string $usedBy
+	 *        	- Which event is using the current text. This should be removed in the future.
+	 * @return string - Returns HTML formated texts for Responsorial Psalm
+	 */
 	function getResponsorialTxt($readings, $usedBy = null) {
 		$rt = '';
 		
@@ -356,7 +365,7 @@ class TamilLectionaryHTML {
 			// Enclose the formated veses into psalmText class
 			$rdCnt .= '<div class="psalmText">' . $rdCnt_temp . '</div>';
 			
-			// find out if alternatives are available, and make them so
+			// find out if this is an alternative, and make them so
 			if (isset ( $readngType [2] ) && intval ( $readngType [2] ) > 1) {
 				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது</h4>" . $rdCnt;
 			}

@@ -4,7 +4,6 @@
  * TamilLectionaryUtil - Utility class to help with most commonly used functions
  * @author Br. Jayarathina Madharasan SDR
  */
-
 class TamilLectionaryUtil {
 	
 	/**
@@ -38,50 +37,73 @@ class TamilLectionaryUtil {
 	}
 	
 	/**
-	 * @param unknown $curYear
-	 * @param unknown $curMnth
-	 * @param unknown $curdate
-	 * @return boolean
+	 * Find out whether the given date falls in lent in the current year
+	 *
+	 * @param int $yr
+	 *        	- Year
+	 * @param int $mnth
+	 *        	- Month
+	 * @param int $dt
+	 *        	- Date
+	 * @return boolean - True if it false in lent else false
 	 */
-	public static function isItInLent($curYear, $curMnth, $curdate){
-		$eastertideStarts = new DateTime ( $curYear . '-03-21' );
-		$eastertideStarts->modify ( '+ ' . easter_days ( $curYear ) . ' days' );
+	public static function isItInLent($yr, $mnth, $dt) {
+		// Easter Date
+		$eastertideStarts = new DateTime ( $yr . '-03-21' );
+		$eastertideStarts->modify ( '+ ' . easter_days ( $yr ) . ' days' );
 		
+		// Ash Wednesday
 		$lentStart = clone $eastertideStarts;
 		$lentStart->modify ( '-46 days' );
 		
+		$givenDate = new DateTime ( "$yr-$mnth-$dt" );
 		
-		$givenDate = new DateTime ( "$curYear-$curMnth-$curdate" );
-		
-		return ($givenDate >=$lentStart && $givenDate < $eastertideStarts); 
-
+		return ($givenDate >= $lentStart && $givenDate < $eastertideStarts);
 	}
-	
 	
 	/**
 	 *
-	 * This expands bible relefence to its full.
+	 * This expands bible relefence to its full to use in readings.
 	 * For example எண் 6:22-27 will be expanded to எண்ணிக்கை நூலிலிருந்து வாசகம் 6: 22-27
 	 *
 	 * @param string $readingCode
-	 * @return boolean|mixed - Returns false if the reference is not from the bible or in standard format. Else returns the formated verse.
+	 * @return boolean|string - Returns `false` if the reference is not from the bible or in standard format, else returns the formated verse.
 	 */
 	public static function expandBibleRef($readingCode) {
 		$fVerse = TamilLectionaryUtil::formatVerseToPrint ( $readingCode );
 		if (strlen ( $readingCode ) === 0)
 			return false; // For alleluia
-			if (strpos ( $fVerse, ' ', 1 ) === 1) {
-				$fVerse = substr_replace ( $fVerse, '', 1, 1 );
-			}
-			$pieces = explode ( ' ', $fVerse, 2 );
-			if (isset ( TamilLectionaryUtil::$tamilAbbr [$pieces [0]] )) {
-				$fVerse = TamilLectionaryUtil::$tamilAbbr [$pieces [0]] . ' வாசகம் ' . $pieces [1];
-			} else {
-				return FALSE;
-			}
-			return $fVerse;
+		if (strpos ( $fVerse, ' ', 1 ) === 1) {
+			$fVerse = substr_replace ( $fVerse, '', 1, 1 );
+		}
+		$pieces = explode ( ' ', $fVerse, 2 );
+		if (isset ( TamilLectionaryUtil::$tamilAbbr [$pieces [0]] )) {
+			$fVerse = TamilLectionaryUtil::$tamilAbbr [$pieces [0]] . ' வாசகம் ' . $pieces [1];
+		} else {
+			return FALSE;
+		}
+		return $fVerse;
 	}
 	
+	/**
+	 * This encodes parameter to use in hyperlink.
+	 * This is to avoid duplicate values when using in hyperlink.
+	 *
+	 * @param string $paramKey
+	 *        	- variable name
+	 * @param string $val
+	 *        	- value to be assigned
+	 * @param string $uriParams
+	 *        	- Current list of parameters
+	 * @return string
+	 */
+	public static function formHyperLink($paramKey, $val, $uriParams = null) {
+		if(is_null($uriParams))
+			$uriParams = $_SERVER['QUERY_STRING'];
+		parse_str ( $uriParams, $params );
+		$params [$paramKey] = $val;
+		return http_build_query ( $params );
+	}
 	public static $tamilAbbr = [ 
 			'தொநூ' => 'தொடக்க நூலிலிருந்து',
 			'விப' => 'விடுதலைப் பயண நூலிலிருந்து',
@@ -219,6 +241,41 @@ class TamilLectionaryUtil {
 			'Mem' => 'நினைவு',
 			'OpMem' => 'வி.நினைவு',
 			'Commomeration' => 'நினைவுக்காப்பு',
-			'All Souls' => ''
+			'All Souls' => '' 
 	];
+	
+	
+	public static $commonsList = [
+			'_Church' => 'கோவில் நேர்ந்தளிப்பு அண்டு நாள்',
+			'_Mary' => 'தூய கன்னி மரியா - பொது',
+			'_Martyr' => 'மறைச்சாட்சியர் - பொது',
+			'_Pastor' => 'மறைப்பணியாளர் - பொது',
+			'_Doctor' => 'மறைவல்லுநர் - பொது',
+			'_Virgin' => 'கன்னியர் - பொது',
+			'_Saint' => 'புனிதர், புனிதையர் - பொது',
+			'_VM-HolyName' => 'இயேசுவின் திருப்பெயர் - நேர்ச்சித் திருப்பலி (வாசக நூல் IV)'
+	];
+	
+	public static $commonsSubList = [
+			'0' => '',
+			'1' => 'அறச்செயலில் ஈடுபட்டோர்',
+			'2' => 'கல்விப் பணியாற்றியோர்',
+			'3' => 'கைம்பெண்கள்',
+			'4' => 'திருத்தந்தை',
+			'5' => 'துறவியர்',
+			'6' => 'மறைபரப்புப் பணியாளர்'
+	];
+	public static $commonsSubList_ = [
+			'0' => '',
+			'1' => 'அறச்செயலில் ஈடுபட்டோர் திருப்பலியில்',
+			'2' => 'கல்விப் பணியாற்றியோர்',
+			'3' => 'கைம்பெண்கள் திருப்பலியில்',
+			'4' => 'திருத்தந்தைக்குரிய  திருப்பலியில்',
+			'5' => 'துறவியர் திருப்பலியில்',
+			'6' => 'மறைபரப்புப் பணியாளர் திருப்பலியில்'
+	];
+	
+	
+	
+	
 }

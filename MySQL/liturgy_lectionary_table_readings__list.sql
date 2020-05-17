@@ -1269,7 +1269,6 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('LW06-5Fri', 3, 'எபி4:14-16;5:7-9'),
 ('LW06-5Fri', 5, 'பிலி2:8-9'),
 ('LW06-5Fri', 6, 'யோவா18:1-19:42'),
-('LW06-6Sat', 0, 'LW06-6Sat~1'),
 ('LW06-6Sat', 1.1, 'தொநூ1:1-2:2'),
 ('LW06-6Sat', 1.11, 'தொநூ1:1,26-31b'),
 ('LW06-6Sat', 1.2, 'தொநூ22:1-18'),
@@ -1280,8 +1279,8 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('LW06-6Sat', 1.6, 'பாரூ3:9-15,32-4:4'),
 ('LW06-6Sat', 1.7, 'எசே36:16-17a,18-28'),
 ('LW06-6Sat', 1.8, 'உரோ6:3-11'),
-('LW06-6Sat', 2.1, 'திபா104:1-2a.5-6.10,12.13-14.24,35c'),
-('LW06-6Sat', 2.11, 'திபா33:4-5.6-7.12-13.20,22'),
+('LW06-6Sat', 2.11, 'திபா104:1-2a.5-6.10,12.13-14.24,35c'),
+('LW06-6Sat', 2.12, 'திபா33:4-5.6-7.12-13.20,22'),
 ('LW06-6Sat', 2.2, 'திபா16:5,8.9-10.11'),
 ('LW06-6Sat', 2.3, 'விப15:1-2.3-4.5-6.17-18'),
 ('LW06-6Sat', 2.4, 'திபா30:1,3.4-5.10,11a,12b'),
@@ -1339,9 +1338,9 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Our Lady of the Rosary', 6, 'லூக்1:26-38'),
 ('Our Lady of the Rosary', 9, '_Mary'),
 ('OW00-CorpusChristi', 4, 'LaudaSion'),
-('OW00-CorpusChristi', 5, 'யோவா6:51-52');
+('OW00-CorpusChristi', 5, 'யோவா6:51-52'),
+('OW00-CorpusChristi A', 1, 'இச8:2-3,14b-16a');
 INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
-('OW00-CorpusChristi A', 1, 'இச8:2-3,14b-16a'),
 ('OW00-CorpusChristi A', 2, 'திபா147:12-13.14-15.19-20'),
 ('OW00-CorpusChristi A', 3, '1கொரி10:16-17'),
 ('OW00-CorpusChristi A', 6, 'யோவா6:51-58'),
@@ -2716,9 +2715,9 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW26-6Sat', 5, 'மத்11:25'),
 ('OW26-6Sat', 6, 'லூக்10:17-24'),
 ('OW26-6Sat 1', 1, 'பாரூ4:5-12,27-29'),
-('OW26-6Sat 1', 2, 'திபா69:32-34.35-36');
+('OW26-6Sat 1', 2, 'திபா69:32-34.35-36'),
+('OW26-6Sat 2', 1, 'யோபு42:1-3,5-6,12-17');
 INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
-('OW26-6Sat 2', 1, 'யோபு42:1-3,5-6,12-17'),
 ('OW26-6Sat 2', 2, 'திபா119:66,71.75,91.125,130'),
 ('OW27-0Sun A', 1, 'எசா5:1-7'),
 ('OW27-0Sun A', 2, 'திபா80:8,11.12-13.14-15.18-19'),
@@ -3748,9 +3747,9 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Peter Julian Eymard, priest', 9, '_Pastor'),
 ('Saint Philip Neri, priest', 1, 'பிலி4:4-9'),
 ('Saint Philip Neri, priest', 2, 'திபா34:1-2.3-4.5-6.7-8.9-10'),
-('Saint Philip Neri, priest', 5, 'யோவா15:9b,5b');
+('Saint Philip Neri, priest', 5, 'யோவா15:9b,5b'),
+('Saint Philip Neri, priest', 6, 'யோவா17:20-26');
 INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
-('Saint Philip Neri, priest', 6, 'யோவா17:20-26'),
 ('Saint Philip Neri, priest', 9, '_Pastor or _Saint~5'),
 ('Saint Pio of Pietrelcina (Padre Pio), priest', 9, '_Pastor or _Saint~5'),
 ('Saint Pius V, pope', 1, '1கொரி4:1-5'),
@@ -3983,7 +3982,7 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('The Conversion of Saint Paul, apostle', 2, 'திபா117:1.2'),
 ('The Conversion of Saint Paul, apostle', 5, 'யோவா15:16காண்க'),
 ('The Conversion of Saint Paul, apostle', 6, 'மாற்16:15-18'),
-('The Most Holy Name of Jesus', 9, 'VM-HolyName'),
+('The Most Holy Name of Jesus', 9, '_VM-HolyName'),
 ('Transfiguration of the Lord', 1, 'தானி7:9-10,13-14'),
 ('Transfiguration of the Lord', 2, 'திபா97:1-2.5-6.9'),
 ('Transfiguration of the Lord', 3, '2பேது1:16-19'),

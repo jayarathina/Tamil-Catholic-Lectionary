@@ -33,7 +33,7 @@ foreach ( $CalcGen->fullYear as $month => $value ) {
 				$rows .= "<td class='dt' rowspan=" . sizeof ( $feasts ) . ">" . str_pad ( $days, 2, "0", STR_PAD_LEFT ) . "</td>";
 			}
 			
-			$type = isset ( $fet ['type'] ) ? ' (' . TamilLectionaryUtil::$tamilFeastType [$fet ['type']] . ')' : '';
+			$type = isset ( $fet ['type'] ) &&  $fet ['type'] !== 'All Souls' ? ' (' . TamilLectionaryUtil::$tamilFeastType [$fet ['type']] . ')' : '';
 			
 			$rows .= "<td class='col ColD{$fet ['color']}'></td>";
 			$rows .= "<td><a class='dayTitle' href='ViewDay.php?d=$days&m=$month&y=$year&k=$key'>{$fet ['ta_name']}$type</a></td>";

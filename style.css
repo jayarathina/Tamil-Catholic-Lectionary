@@ -8,12 +8,12 @@
 }
 
 .notice {
-	color: inherit;
+	color: OrangeRed; /* color: inherit; */ 
 	font-style: italic;
-	margin: 0;
+	margin: 10px;
 	text-align: justify;
-	border-top: 1px dashed;
-	border-bottom: 1px dashed;
+	/* border-top: 1px dashed;
+	border-bottom: 1px dashed;*/
 }
 
 .notice a {
@@ -37,12 +37,13 @@ ol.sequenceTxt li {
 	margin-bottom: 10px;
 }
 
-.readings{
-/*	display: none; */
-/* Use this to display reading one by one with javascript*/
+.readings {
+	/*	display: none; */
+	/* Use this to display reading one by one with javascript*/
+	
 }
 
-.readingsTitle{
+.readingsTitle {
 	font-weight: bold;
 }
 
@@ -82,9 +83,19 @@ div.psalmText>div:nth-child(2n) {
 	text-align: justify;
 }
 
+.commonsTitle {
+	text-align: center;
+	font-size: 20px;
+	margin: 0px;
+}
+.commonsSubTitle{
+	text-align: center;
+	font-size: 15px;
+	margin: 0px;
+}
+
 .italics {
 	font-style: italic;
-	margin: 0;
 }
 
 .clrwhite {
@@ -105,4 +116,8 @@ div.psalmText>div:nth-child(2n) {
 
 .clrgreen {
 	color: Green;
+}
+
+.clrCrimson {
+	color: OrangeRed;
 }

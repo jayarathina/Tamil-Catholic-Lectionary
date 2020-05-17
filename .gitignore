@@ -1,8 +1,7 @@
-lib/dbConfig.php
+
 
 #Local Drive Include File
-lib/includeExternal.php
-admin/login.php
+lib/dbConfig.php
 dat/
 
 .metadata

@@ -82,11 +82,11 @@ class TamilLectionaryHTML {
 			if ($altReadings == 0) {
 				$currtDay ['readings'] = $currtDay ['readings'] ['Day'];
 				$currtDay ['ta_name'] = $currtDay ['ta_name'] . ' <br/><small>பெருவிழாத் திருப்பலி</small>';
-				$rt .= "<br/> <a id='altMass' href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'l', 1 ) . "'>திருவிழிப்புத் திருப்பலி</a>";
+				$rt .= "<br/> <a class='altMass' href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'l', 1 ) . "'>திருவிழிப்புத் திருப்பலி</a>";
 			} else {
 				$currtDay ['readings'] = $currtDay ['readings'] ['Vigil'];
 				$currtDay ['ta_name'] = $currtDay ['ta_name'] . ' <br/><small>திருவிழிப்புத் திருப்பலி</small>';
-				$rt .= "<br/> <a id='altMass' href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'l', 0 ) . "'>பெருவிழாத் திருப்பலி</a>";
+				$rt .= "<br/> <a class='altMass' href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'l', 0 ) . "'>பெருவிழாத் திருப்பலி</a>";
 			}
 		}
 		$rt .= $this->getSingleEvent ( $currtDay, TamilLectionaryUtil::isItInLent ( $this->currYear, $month, $date ), $notice );
@@ -339,8 +339,8 @@ class TamilLectionaryHTML {
 			$rdCnt .= "<p class='alleluiaTxt'>{$readingTxt['Content']}</p>";
 			
 			// Find alternatives available and mark them so
-			if (isset ( $readngType [2] ) && intval ( $readngType [2] ) !== 0) {
-				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது</h4>" . $rdCnt;
+			if (isset ( $readngType [2] ) && intval ( $readngType [2] ) !== 1) {
+				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது </h4>"  . $rdCnt;
 			}
 			$rt .= $rdCnt;
 		}
@@ -553,7 +553,7 @@ class TamilLectionaryHTML {
 		
 		$rt .= "<br/>";
 		for($i = 0; $i < 4; $i ++) {
-			$rt .= " <a id='altMass' href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'l', $i ) . "'> {$ChristmasNames [$i+1]} </a> |";
+			$rt .= " <a class='altMass' href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'l', $i ) . "'> {$ChristmasNames [$i+1]} </a> |";
 		}
 		$rt .= $this->getSingleEvent ( $currtDay );
 		
@@ -592,7 +592,7 @@ class TamilLectionaryHTML {
 			}
 			// TODO Add votive mass readings in DB
 			if ($comnsRef !== '_VM-HolyName') {
-				$comnsRef = "<a href='{$_SERVER['PHP_SELF']}?commons=$comnsRef'>$rt1</a>";
+				$comnsRef = "<a href='{$_SERVER['PHP_SELF']}?".TamilLectionaryUtil::formHyperLink ( 'commons', $comnsRef )."'>$rt1</a>";
 			} else {
 				$comnsRef = $rt1;
 			}
@@ -714,8 +714,6 @@ class TamilLectionaryHTML {
 			}
 			//Wrap in a DIV tag to have uniformity with `getDay()` output
 			$allReadings .= "<div class='readings' data-readingName='" . strip_tags ( $readingType [$i] ) . "' id='read$i'>$currReadings</div>";
-			
-			$allReadings .= $currReadings;
 		}
 		// Add Day Title
 		$DayTitle = "<h4 class='dayTitle clrDay'>".TamilLectionaryUtil::$commonsList [$commonsCode]."</h4>";

@@ -412,7 +412,7 @@ class TamilLectionaryHTML {
 			$this->replaceFrom_code = $currentDay [$replacedFrom] ['code'];
 			
 			// Special case for Dedication of the basilicas of Saints Peter and Paul (Nov 11) where all readings will be replaced.
-			$firstKey = array_key_first ( $currentDay [$evtID] ['readings'] );
+			$firstKey = TamilLectionaryUtil::array_key_first ( $currentDay [$evtID] ['readings'] );
 			if (preg_match ( "/^\d\.\d\d9/", $firstKey ) == 1) {
 				$notice = "இன்றைய வாசகங்கள் <a href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'k', $replacedFrom ) . "'>{$currentDay[$replacedFrom]['ta_name']}</a> நினைவுக்கு உரியது.";
 			}
@@ -423,7 +423,7 @@ class TamilLectionaryHTML {
 			}, ARRAY_FILTER_USE_KEY );
 			
 			if (! empty ( $replacedReadings )) {
-				$firstKey = intval ( array_key_first ( $replacedReadings ) );
+				$firstKey = intval ( TamilLectionaryUtil::array_key_first ( $replacedReadings ) );
 				$notice .= "{$this->readingType[intval($firstKey)]} <a href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'k', $replacedFrom ) . "'>{$currentDay[$replacedFrom]['ta_name']}</a> நினைவுக்கு உரியது.";
 			}
 		} else {
@@ -433,7 +433,7 @@ class TamilLectionaryHTML {
 			}, ARRAY_FILTER_USE_KEY );
 			
 			if (! empty ( $readings_proper )) {
-				$firstKey = array_key_first ( $readings_proper );
+				$firstKey = TamilLectionaryUtil::array_key_first ( $readings_proper );
 				$notice = 'இன்றைய ' . $this->readingType [intval ( $firstKey )] . ' இந்த நினைவுக்கு உரியது.';
 			}
 		}

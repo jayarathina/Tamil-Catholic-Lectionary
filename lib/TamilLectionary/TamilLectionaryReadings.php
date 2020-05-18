@@ -51,7 +51,7 @@ class TamilLectionaryReadings {
 						return preg_match ( "/^\d\.\d\d[19]/", $readingsType );
 					}, ARRAY_FILTER_USE_KEY );
 					
-					$firstKey = array_key_first ( $readings_to_replace );
+					$firstKey = TamilLectionaryUtil::array_key_first ( $readings_to_replace );
 					if (intval ( $firstKey ) == 6) { // If Gospel is changed, then alleluia should also follow
 						$readings_alleluia = array_filter ( $rcy->fullYear [$month] [$days] [$key] ['readings'], function ($readingsType) {
 							return preg_match ( "/^5/", $readingsType );

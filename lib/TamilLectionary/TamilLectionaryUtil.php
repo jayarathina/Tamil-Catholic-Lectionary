@@ -86,6 +86,22 @@ class TamilLectionaryUtil {
 	}
 	
 	/**
+	 * Gets the first key of an array
+	 * This function is supported only in PHP 7.3.0 and above.
+	 * For lower version this acts as substitue
+	 *
+	 * @param array $tempArr
+	 * @return string the first key of array
+	 */
+	public static function array_key_first($tempArr) {
+		if (! function_exists ( 'array_key_first' )) {
+			reset ( $tempArr );
+			return key ( $tempArr );
+		} else
+			return array_key_first ( $tempArr );
+	}
+	
+	/**
 	 * This encodes parameter to use in hyperlink.
 	 * This is to avoid duplicate values when using in hyperlink.
 	 *

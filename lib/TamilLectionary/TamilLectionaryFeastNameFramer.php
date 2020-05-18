@@ -5,8 +5,6 @@
  * @author Br. Jayarathina Madharasan SDR
  */
 use Medoo\Medoo;
-include_once 'lib/dbConfig.php';
-include_once 'lib/TamilLectionary/TamilLectionaryUtil.php';
 
 /**
  * Set the feast day names in Tamil.
@@ -135,7 +133,8 @@ class TamilLectionaryFeastNameFramer {
 		
 		$feastTitle = str_replace ( ' 1ஆம்', ' முதல்', $feastTitle );
 		
-		/* If $feastTitle is still not set then it is not a ferial day, but rather solemnity, feast or a memory.
+		/*
+		 * If $feastTitle is still not set then it is not a ferial day, but rather solemnity, feast or a memory.
 		 * Hence the name of the saint is to be taken from database
 		 */
 		
@@ -161,7 +160,7 @@ class TamilLectionaryFeastNameFramer {
 		}
 		
 		if (! $feastTitle) // should never happen
-			die ( "ERROR: Name for code: $dayCode not in database");
+			die ( "ERROR: Name for code: $dayCode not in database" );
 		return $feastTitle;
 	}
 }

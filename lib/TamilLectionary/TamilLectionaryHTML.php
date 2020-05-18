@@ -7,8 +7,6 @@
  *
  */
 use Medoo\Medoo;
-require_once 'lib/Medoo.php';
-require_once 'lib/dbConfig.php';
 
 include_once 'lib/TamilLectionary/TamilLectionaryUtil.php';
 class TamilLectionaryHTML {
@@ -152,6 +150,12 @@ class TamilLectionaryHTML {
 				case 3 : // Second Reading
 				case 6 : // Gospel Reading
 					$currReadings .= $this->getReadingsTxt ( $readings, $currtDay ['code'] );
+					// For Palm Sunday and Good Friday style for Gospel is different
+					if ($i == 6 && ($currtDay ['code'] == 'LW06-0Sun' || $currtDay ['code'] == 'LW06-5Fri')) {
+						$currReadings = str_replace ( "<span class='clrDay'>✠</span>", '', $currReadings );
+						$currReadings = str_replace ( 'எழுதிய நற்செய்தியிலிருந்து வாசகம்', 'எழுதியபடி நம் ஆண்டவராகிய இயேசு கிறிஸ்துவின் திருப்பாடுகள் ', $currReadings );
+						$currReadings = str_replace ( 'ஆண்டவரின் அருள்வாக்கு.', '', $currReadings );
+					}
 					break;
 				case 2 : // Responsorial
 					$currReadings .= $this->getResponsorialTxt ( $readings, $currtDay ['code'] );
@@ -340,7 +344,7 @@ class TamilLectionaryHTML {
 			
 			// Find alternatives available and mark them so
 			if (isset ( $readngType [2] ) && intval ( $readngType [2] ) !== 1) {
-				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது </h4>"  . $rdCnt;
+				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது </h4>" . $rdCnt;
 			}
 			$rt .= $rdCnt;
 		}
@@ -592,7 +596,7 @@ class TamilLectionaryHTML {
 			}
 			// TODO Add votive mass readings in DB
 			if ($comnsRef !== '_VM-HolyName') {
-				$comnsRef = "<a href='{$_SERVER['PHP_SELF']}?".TamilLectionaryUtil::formHyperLink ( 'commons', $comnsRef )."'>$rt1</a>";
+				$comnsRef = "<a href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'commons', $comnsRef ) . "'>$rt1</a>";
 			} else {
 				$comnsRef = $rt1;
 			}
@@ -629,7 +633,7 @@ class TamilLectionaryHTML {
 				'dayID' => $commonsCode 
 		] );
 		
-		//Reorganize the reding list for easy processing (type=>ref)
+		// Reorganize the reding list for easy processing (type=>ref)
 		$readingList = [ ];
 		foreach ( $readingList_ as $value ) {
 			$readingList [$value ['type']] = $value ['ref'];
@@ -712,11 +716,11 @@ class TamilLectionaryHTML {
 					$currReadings .= $readingType [$i] . $currReadings_;
 					break;
 			}
-			//Wrap in a DIV tag to have uniformity with `getDay()` output
+			// Wrap in a DIV tag to have uniformity with `getDay()` output
 			$allReadings .= "<div class='readings' data-readingName='" . strip_tags ( $readingType [$i] ) . "' id='read$i'>$currReadings</div>";
 		}
 		// Add Day Title
-		$DayTitle = "<h4 class='dayTitle clrDay'>".TamilLectionaryUtil::$commonsList [$commonsCode]."</h4>";
+		$DayTitle = "<h4 class='dayTitle clrDay'>" . TamilLectionaryUtil::$commonsList [$commonsCode] . "</h4>";
 		$allReadings = $DayTitle . $allReadings;
 		
 		// Replace Colour Value

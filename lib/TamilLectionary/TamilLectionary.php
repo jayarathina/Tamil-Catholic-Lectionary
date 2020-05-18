@@ -7,7 +7,6 @@
  *
  */
 include_once ('lib/RomanCalendar/RomanCalendar.php');
-include_once ('lib/RomanCalendar/RomanCalendarRenderHTML.php');
 include_once ('lib/TamilLectionary/TamilLectionaryFeastNameFramer.php');
 include_once ('lib/TamilLectionary/TamilLectionaryReadings.php');
 class TamilLectionary {

@@ -3,11 +3,17 @@ header ( 'Content-Type: text/html; charset=utf-8' );
 include_once 'lib/TamilLectionary/TamilLectionary.php';
 include_once 'lib/TamilLectionary/TamilLectionaryHTML.php';
 
-$year = (isset ( $_GET ['y'] )) ? intval($_GET ['y']) : date ( "Y" );
-$month = (isset ( $_GET ['m'] )) ? intval($_GET ['m']) : date ( "n" );
-$date = (isset ( $_GET ['d'] )) ? intval($_GET ['d']) : date ( "j" );
-$key = (isset ( $_GET ['k'] )) ? intval( $_GET ['k'] ) : 0;
+$cDateF = new DateTime ();
+if (isset ( $_GET ["dt"] )) {
+	try {
+		$cDateF = new DateTime ( $_GET ["dt"] );
+	}
+	catch(Exception $e) {
+		$cDateF = new DateTime ();
+	}
+}
 
+$key = (isset ( $_GET ['k'] )) ? intval( $_GET ['k'] ) : 0;
 $altReadings = (isset ( $_GET ['l'] )) ? intval($_GET ['l']) : 0;
 
 ?>
@@ -20,13 +26,13 @@ $altReadings = (isset ( $_GET ['l'] )) ? intval($_GET ['l']) : 0;
 
 <?php
 
-$CalcGen = new TamilLectionary ( $year, parse_ini_file ( 'lib/RomanCalendar/settings.ini' ) );
+$CalcGen = new TamilLectionary ( $cDateF->format ( 'Y' ), parse_ini_file ( 'lib/RomanCalendar/settings.ini' ) );
 $printer = new TamilLectionaryHTML ( $CalcGen->fullYear, $CalcGen->curYear );
 
 if(isset ( $_GET ['commons'])){
 	echo $printer->getCommons($_GET ['commons']);
 }else{
-	echo $printer->getDay ( $date, $month, $key, $altReadings );
+	echo $printer->getDay ( $cDateF->format ( 'j' ), $cDateF->format ( 'n' ), $key, $altReadings );
 }
 
 

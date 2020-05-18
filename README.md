@@ -1,10 +1,3 @@
 # Tamil-Catholic-Lectionary
-Generates daily catholic mass readings (Lectionary) in Tamil.
+Generates daily catholic mass readings (Lectionary) in Tamil. This is based on my [Roman Catholic Liturgical Calendar Generator](https://github.com/jayarathina/Roman-Calendar).
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)
-`NOT SUITABLE FOR DEPLOYMENT`
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)
-
-![alt text](https://i.imgur.com/VtO3cxF.jpg)
-
-Curently working on it. Will update this file once everything is ready.

@@ -5,8 +5,6 @@
  * 
  */
 use Medoo\Medoo;
-include_once 'lib/dbConfig.php';
-include_once 'lib/TamilLectionary/TamilLectionaryUtil.php';
 /**
  * Class that set readings for all event in a particular day
  */

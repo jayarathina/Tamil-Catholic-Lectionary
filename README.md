@@ -19,7 +19,7 @@ Live demo can be seen at
 - The text is presented as much as possible to look like that of a printed lectionary.
 
 ## Future Improvements
-- Provide votive mass readings and others found in lectionary - IV.
+- Add readings in lectionary - IV - votive mass readings, Sacraments etc.
 
 ## Suggestions or Comments
 If you find any bug or suggest any improvement, please feel free to raise a pull request or contact me.

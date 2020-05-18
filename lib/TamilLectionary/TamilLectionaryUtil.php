@@ -98,8 +98,8 @@ class TamilLectionaryUtil {
 	 * @return string
 	 */
 	public static function formHyperLink($paramKey, $val, $uriParams = null) {
-		if(is_null($uriParams))
-			$uriParams = $_SERVER['QUERY_STRING'];
+		if (is_null ( $uriParams ))
+			$uriParams = $_SERVER ['QUERY_STRING'];
 		parse_str ( $uriParams, $params );
 		$params [$paramKey] = $val;
 		return http_build_query ( $params );
@@ -243,9 +243,7 @@ class TamilLectionaryUtil {
 			'Commomeration' => 'நினைவுக்காப்பு',
 			'All Souls' => '' 
 	];
-	
-	
-	public static $commonsList = [
+	public static $commonsList = [ 
 			'_Church' => 'கோவில் நேர்ந்தளிப்பு அண்டு நாள்',
 			'_Mary' => 'தூய கன்னி மரியா - பொது',
 			'_Martyr' => 'மறைச்சாட்சியர் - பொது',
@@ -253,29 +251,24 @@ class TamilLectionaryUtil {
 			'_Doctor' => 'மறைவல்லுநர் - பொது',
 			'_Virgin' => 'கன்னியர் - பொது',
 			'_Saint' => 'புனிதர், புனிதையர் - பொது',
-			'_VM-HolyName' => 'இயேசுவின் திருப்பெயர் - நேர்ச்சித் திருப்பலி (வாசக நூல் IV)'
+			'_VM-HolyName' => 'இயேசுவின் திருப்பெயர் - நேர்ச்சித் திருப்பலி (வாசக நூல் IV)' 
 	];
-	
-	public static $commonsSubList = [
+	public static $commonsSubList = [ 
 			'0' => '',
 			'1' => 'அறச்செயலில் ஈடுபட்டோர்',
 			'2' => 'கல்விப் பணியாற்றியோர்',
 			'3' => 'கைம்பெண்கள்',
 			'4' => 'திருத்தந்தை',
 			'5' => 'துறவியர்',
-			'6' => 'மறைபரப்புப் பணியாளர்'
+			'6' => 'மறைபரப்புப் பணியாளர்' 
 	];
-	public static $commonsSubList_ = [
+	public static $commonsSubList_ = [ 
 			'0' => '',
 			'1' => 'அறச்செயலில் ஈடுபட்டோர் திருப்பலியில்',
 			'2' => 'கல்விப் பணியாற்றியோர்',
 			'3' => 'கைம்பெண்கள் திருப்பலியில்',
 			'4' => 'திருத்தந்தைக்குரிய  திருப்பலியில்',
 			'5' => 'துறவியர் திருப்பலியில்',
-			'6' => 'மறைபரப்புப் பணியாளர் திருப்பலியில்'
+			'6' => 'மறைபரப்புப் பணியாளர் திருப்பலியில்' 
 	];
-	
-	
-	
-	
 }

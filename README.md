@@ -31,8 +31,7 @@ Currently only the **Logic to display** the calendar and its readings are ready.
   - `readings__notes` - Contains notices to be displayed in certain days
   - `readings__text` - Actual texts of the readings
 ### The Type Field
-- Each readings are marked with a number (in column `type`). It normally denoes the type of the reading
-#### Except for commons `Type` represents:
+- Each readings are marked with a number (in column `type`). It normally denoes the type of the reading. Except for commons `Type` represents:
     1 - First Reading
     2 - Responsorial Psalm
     3 - Second Reading

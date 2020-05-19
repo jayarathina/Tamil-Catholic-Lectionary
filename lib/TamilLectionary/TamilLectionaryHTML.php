@@ -191,13 +191,16 @@ class TamilLectionaryHTML {
 		$DayTitle = $currtDay ['ta_name'];
 		$DayTitle = "<h4 class='dayTitle clrDay'>$DayTitle</h4>";
 		
-		$DayType = TamilLectionaryUtil::$tamilFeastType [$currtDay ['type']];
-		// TODO Add option to add other local calendars
-		if (strpos ( $currtDay ['code'], 'IN ' ) === 0) {
-			$DayType = "இந்தியாவில் $DayType";
+		$DayType = '';
+		if(isset ( $currtDay ['type'] )){
+			$DayType = TamilLectionaryUtil::$tamilFeastType [$currtDay ['type']];
+			
+			// TODO Add option to add other local calendars from `settings.ini`
+			if (strpos ( $currtDay ['code'], 'IN ' ) === 0) {
+				$DayType = "இந்தியாவில் $DayType";
+			}
+			$DayType = "<div class='daySubTitle clrDay'>$DayType</div>";
 		}
-		
-		$DayType = isset ( $currtDay ['type'] ) ? "<div class='daySubTitle clrDay'>$DayType</div>" : '';
 		
 		$allReadings = $DayTitle . $DayType . $this->formatNotice ( $notice ) . $allReadings;
 		

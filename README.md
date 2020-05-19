@@ -20,6 +20,7 @@ Live demo can be seen at
 
 ## Future Improvements
 - Add readings in lectionary - IV - votive mass readings, Sacraments etc.
+- Alternative Alleluiya for seasons should be added
 
 ## Suggestions or Comments
 If you find any bug or suggest any improvement, please feel free to raise a pull request or contact me.

@@ -32,14 +32,14 @@ Currently only the **Logic to display** the calendar and its readings are ready.
   - `readings__text` - Actual texts of the readings
 ### The Type Field
 - Each readings are marked with a number (in column `type`). It normally denoes the type of the reading. Except for commons `Type` represents:
-    1 - First Reading
-    2 - Responsorial Psalm
-    3 - Second Reading
-    4 - Sequence
-    5 - Alleluia
-    6 - Gospel
-    0 - Gospel During Procession (Only for Palm Sunday)
-    9 - Saints Commons
+    - 1 - First Reading
+    - 2 - Responsorial Psalm
+    - 3 - Second Reading
+    - 4 - Sequence
+    - 5 - Alleluia
+    - 6 - Gospel
+    - 0 - Gospel During Procession (Only for Palm Sunday)
+    - 9 - Saints Commons
 - When the type contains fractional part it means:
     - _.1, _.2 etc are alternatives of the given reading. 
     - _.11, _.12 are _short_ alternatives of reading.

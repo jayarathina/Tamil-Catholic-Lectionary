@@ -3634,6 +3634,11 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Margaret of Scotland', 5, 'யோவா13:34'),
 ('Saint Margaret of Scotland', 6, 'யோவா15:9-17'),
 ('Saint Margaret of Scotland', 9, '_Saint~1'),
+('Saint Maria Faustina Kowalska, virgin', 1, 'எபே3:14-19'),
+('Saint Maria Faustina Kowalska, virgin', 2, 'திபா103:1-2.3-4.8-9.13-14.17-18'),
+('Saint Maria Faustina Kowalska, virgin', 5, 'மத்11:28'),
+('Saint Maria Faustina Kowalska, virgin', 6, 'மத்11:25-30'),
+('Saint Maria Faustina Kowalska, virgin', 9, '_Virgin or _Saint'),
 ('Saint Maria Goretti, virgin and martyr', 1, '1கொரி6:13c-15a,17-20'),
 ('Saint Maria Goretti, virgin and martyr', 2, 'திபா31:2cd-3.5,7ab.15b-16'),
 ('Saint Maria Goretti, virgin and martyr', 5, 'யாக்1:12'),
@@ -3742,14 +3747,14 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Peter Damian, bishop and doctor of the Church', 2, 'திபா16:1-2a,5.7-8.11'),
 ('Saint Peter Damian, bishop and doctor of the Church', 5, 'யோவா15:9b,5b'),
 ('Saint Peter Damian, bishop and doctor of the Church', 6, 'யோவா15:1-8'),
-('Saint Peter Damian, bishop and doctor of the Church', 9, '_Pastor or _Doctor or _Saint~5'),
+('Saint Peter Damian, bishop and doctor of the Church', 9, '_Pastor or _Doctor or _Saint~5');
+INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Peter Julian Eymard, priest', 9, '_Pastor'),
 ('Saint Philip Neri, priest', 1, 'பிலி4:4-9'),
 ('Saint Philip Neri, priest', 2, 'திபா34:1-2.3-4.5-6.7-8.9-10'),
 ('Saint Philip Neri, priest', 5, 'யோவா15:9b,5b'),
 ('Saint Philip Neri, priest', 6, 'யோவா17:20-26'),
-('Saint Philip Neri, priest', 9, '_Pastor or _Saint~5');
-INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('Saint Philip Neri, priest', 9, '_Pastor or _Saint~5'),
 ('Saint Pio of Pietrelcina (Padre Pio), priest', 9, '_Pastor or _Saint~5'),
 ('Saint Pius V, pope', 1, '1கொரி4:1-5'),
 ('Saint Pius V, pope', 2, 'திபா110:1.2.3.4'),

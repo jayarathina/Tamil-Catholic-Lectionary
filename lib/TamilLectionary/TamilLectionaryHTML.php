@@ -82,13 +82,13 @@ class TamilLectionaryHTML {
 				$currtDay ['ta_name'] = $currtDay ['ta_name'] . ' <br/><small>பெருவிழாத் திருப்பலி</small>';
 				$rt .= "<br/> <a class='altMass' href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'l', 1 ) . "'>திருவிழிப்புத் திருப்பலி</a>";
 			} else {
+				$currtDay ['code'] = $currtDay ['code'] . ' - Vigil';
 				$currtDay ['readings'] = $currtDay ['readings'] ['Vigil'];
 				$currtDay ['ta_name'] = $currtDay ['ta_name'] . ' <br/><small>திருவிழிப்புத் திருப்பலி</small>';
 				$rt .= "<br/> <a class='altMass' href='{$_SERVER['PHP_SELF']}?" . TamilLectionaryUtil::formHyperLink ( 'l', 0 ) . "'>பெருவிழாத் திருப்பலி</a>";
 			}
 		}
 		$rt .= $this->getSingleEvent ( $currtDay, TamilLectionaryUtil::isItInLent ( $this->currYear, $month, $date ), $notice );
-		
 		return $rt;
 	}
 	

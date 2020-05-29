@@ -353,7 +353,7 @@ class TamilLectionaryHTML {
 			$rdCnt .= "<p class='alleluiaTxt'>{$readingTxt['Content']}</p>";
 			
 			// Find alternatives available and mark them so
-			if (isset ( $readngType [2] ) && intval ( $readngType [2] ) !== 1) {
+			if (isset ( $readngType [2] ) && intval ( $readngType [2] ) > 1) {
 				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது </h4>" . $rdCnt;
 			}
 			$rt .= $rdCnt;

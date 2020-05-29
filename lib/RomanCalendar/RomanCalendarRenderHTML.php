@@ -56,15 +56,7 @@ class RomanCalendarRenderHTML {
 	function getSingleTitle($dayCode) {
 		
 		// @formatter:off
-		$dayEnglishFull = array (
-				'Sunday',
-				'Monday',
-				'Tuesday',
-				'Wednesday',
-				'Thursday',
-				'Friday',
-				'Saturday' 
-		);
+		$dayEnglishFull = array ('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 		// @formatter:on
 		
 		$RomanCalendarRanks = array (

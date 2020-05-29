@@ -1355,11 +1355,11 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW00-ImmaculateHeart', 2, '1சாமு2:1.4-5.6-7.8'),
 ('OW00-ImmaculateHeart', 5, 'லூக்2:19காண்க'),
 ('OW00-ImmaculateHeart', 6.001, 'லூக்2:41-51'),
-('OW00-MaryMotherofChurch', 1.1, 'தொநூ3:9-15,20'),
-('OW00-MaryMotherofChurch', 1.2, 'திப1:12-14'),
-('OW00-MaryMotherofChurch', 2, 'திபா87:1-2.3,5.6-7'),
-('OW00-MaryMotherofChurch', 5, 'Mary-5AL05'),
-('OW00-MaryMotherofChurch', 6, 'யோவா19:25-27'),
+('OW00-MaryMotherofChurch', 1.109, 'தொநூ3:9-15,20'),
+('OW00-MaryMotherofChurch', 1.209, 'திப1:12-14'),
+('OW00-MaryMotherofChurch', 2.009, 'திபா87:1-2.3,5.6-7'),
+('OW00-MaryMotherofChurch', 5.009, 'Mary-5AL05'),
+('OW00-MaryMotherofChurch', 6.009, 'யோவா19:25-27'),
 ('OW00-SacredHeart', 5, 'OW00-SacredHeart'),
 ('OW00-SacredHeart A', 1, 'இச7:6-11'),
 ('OW00-SacredHeart A', 2, 'திபா103:1-2.3-4.6-7.8,10'),
@@ -2716,9 +2716,9 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW26-6Sat 1', 1, 'பாரூ4:5-12,27-29'),
 ('OW26-6Sat 1', 2, 'திபா69:32-34.35-36'),
 ('OW26-6Sat 2', 1, 'யோபு42:1-3,5-6,12-17'),
-('OW26-6Sat 2', 2, 'திபா119:66,71.75,91.125,130'),
-('OW27-0Sun A', 1, 'எசா5:1-7');
+('OW26-6Sat 2', 2, 'திபா119:66,71.75,91.125,130');
 INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('OW27-0Sun A', 1, 'எசா5:1-7'),
 ('OW27-0Sun A', 2, 'திபா80:8,11.12-13.14-15.18-19'),
 ('OW27-0Sun A', 3, 'பிலி4:6-9'),
 ('OW27-0Sun A', 5, 'யோவா15:16'),
@@ -3746,9 +3746,9 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Peter Damian, bishop and doctor of the Church', 1, '2திமொ4:1-5'),
 ('Saint Peter Damian, bishop and doctor of the Church', 2, 'திபா16:1-2a,5.7-8.11'),
 ('Saint Peter Damian, bishop and doctor of the Church', 5, 'யோவா15:9b,5b'),
-('Saint Peter Damian, bishop and doctor of the Church', 6, 'யோவா15:1-8'),
-('Saint Peter Damian, bishop and doctor of the Church', 9, '_Pastor or _Doctor or _Saint~5');
+('Saint Peter Damian, bishop and doctor of the Church', 6, 'யோவா15:1-8');
 INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('Saint Peter Damian, bishop and doctor of the Church', 9, '_Pastor or _Doctor or _Saint~5'),
 ('Saint Peter Julian Eymard, priest', 9, '_Pastor'),
 ('Saint Philip Neri, priest', 1, 'பிலி4:4-9'),
 ('Saint Philip Neri, priest', 2, 'திபா34:1-2.3-4.5-6.7-8.9-10'),

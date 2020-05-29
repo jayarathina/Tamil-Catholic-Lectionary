@@ -255,6 +255,7 @@ class TamilLectionaryUtil {
 			'Feast' => 'விழா',
 			'Feast-PrincipalPartron-Place' => 'விழா',
 			'Mem' => 'நினைவு',
+			'Mem-Mary' => 'நினைவு',
 			'OpMem' => 'வி.நினைவு',
 			'Commomeration' => 'நினைவுக்காப்பு',
 			'All Souls' => '' 

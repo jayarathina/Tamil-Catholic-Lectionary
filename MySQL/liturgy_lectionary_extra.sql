@@ -20,28 +20,16 @@ ALTER TABLE `generalcalendar__india`
 -- Indexes for table `readings__list`
 --
 ALTER TABLE `readings__list`
-  ADD PRIMARY KEY (`dayID`);
+  ADD PRIMARY KEY (`dayID`,`type`);
 
 --
--- Indexes for table `readings__list_multiple`
+-- Indexes for table `readings__notes`
 --
-ALTER TABLE `readings__list_multiple`
-  ADD PRIMARY KEY (`dayID`,`name`);
-
---
--- Indexes for table `readings__saintscommon`
---
-ALTER TABLE `readings__saintscommon`
-  ADD PRIMARY KEY (`dayID`);
+ALTER TABLE `readings__notes`
+  ADD PRIMARY KEY (`dayID`,`notesPos`);
 
 --
 -- Indexes for table `readings__text`
 --
 ALTER TABLE `readings__text`
-  ADD PRIMARY KEY (`refKey`,`usedBy`);
-
---
--- Indexes for table `readings__text__psalms`
---
-ALTER TABLE `readings__text__psalms`
   ADD PRIMARY KEY (`refKey`,`usedBy`);

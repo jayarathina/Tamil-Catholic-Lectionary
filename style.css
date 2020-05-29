@@ -30,7 +30,7 @@
 p.sequenceTxt {
 	text-align: justify;
 	text-indent: -25px;
-	margin: 25px;
+	margin-left:: 25px;
 }
 
 ol.sequenceTxt li {
@@ -40,7 +40,6 @@ ol.sequenceTxt li {
 .readings {
 	/*	display: none; */
 	/* Use this to display reading one by one with javascript*/
-	
 }
 
 .readingsTitle {
@@ -50,7 +49,7 @@ ol.sequenceTxt li {
 .readingTxt {
 	text-align: justify;
 	text-indent: 25px;
-	margin: 0;
+	margin: 0px 0px 5px 0px;
 }
 
 .readingIntro {

@@ -1315,6 +1315,7 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Nativity of the Lord 4', 6.11, 'யோவா1:1-5,9-14'),
 ('Our Lady of Fatima', 9, '_Mary'),
 ('Our Lady of Guadalupe', 9, '_Mary'),
+('Our Lady of Loreto', 9, '_Mary'),
 ('Our Lady of Lourdes', 1, 'எசா66:10-14c'),
 ('Our Lady of Lourdes', 2, 'யூதி13:18ab.19-20a'),
 ('Our Lady of Lourdes', 5, 'லூக்1:45காண்க'),
@@ -1338,9 +1339,9 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Our Lady of the Rosary', 9, '_Mary'),
 ('OW00-CorpusChristi', 4, 'LaudaSion'),
 ('OW00-CorpusChristi', 5, 'யோவா6:51-52'),
-('OW00-CorpusChristi A', 1, 'இச8:2-3,14b-16a'),
-('OW00-CorpusChristi A', 2, 'திபா147:12-13.14-15.19-20');
+('OW00-CorpusChristi A', 1, 'இச8:2-3,14b-16a');
 INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('OW00-CorpusChristi A', 2, 'திபா147:12-13.14-15.19-20'),
 ('OW00-CorpusChristi A', 3, '1கொரி10:16-17'),
 ('OW00-CorpusChristi A', 6, 'யோவா6:51-58'),
 ('OW00-CorpusChristi B', 1, 'விப24:3-8'),
@@ -2715,9 +2716,9 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW26-6Sat', 6, 'லூக்10:17-24'),
 ('OW26-6Sat 1', 1, 'பாரூ4:5-12,27-29'),
 ('OW26-6Sat 1', 2, 'திபா69:32-34.35-36'),
-('OW26-6Sat 2', 1, 'யோபு42:1-3,5-6,12-17'),
-('OW26-6Sat 2', 2, 'திபா119:66,71.75,91.125,130');
+('OW26-6Sat 2', 1, 'யோபு42:1-3,5-6,12-17');
 INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('OW26-6Sat 2', 2, 'திபா119:66,71.75,91.125,130'),
 ('OW27-0Sun A', 1, 'எசா5:1-7'),
 ('OW27-0Sun A', 2, 'திபா80:8,11.12-13.14-15.18-19'),
 ('OW27-0Sun A', 3, 'பிலி4:6-9'),
@@ -3722,6 +3723,11 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Paul of the Cross, priest', 5, 'மத்5:6'),
 ('Saint Paul of the Cross, priest', 6, 'மத்16:24-27'),
 ('Saint Paul of the Cross, priest', 9, '_Pastor or _Saint~5'),
+('Saint Paul VI, pope', 1, '1கொரி9:16-19,22-23'),
+('Saint Paul VI, pope', 2, 'திபா96:1-2a.2b-3.7-8a.10'),
+('Saint Paul VI, pope', 5, 'மாற்1:17'),
+('Saint Paul VI, pope', 6, 'மத்16:13-19'),
+('Saint Paul VI, pope', 9, '_Pastor~4'),
 ('Saint Paulinus of Nola, bishop', 1, '2கொரி8:9-15'),
 ('Saint Paulinus of Nola, bishop', 2, 'திபா40:1,3ab.6-7a,7b-8,9'),
 ('Saint Paulinus of Nola, bishop', 5, 'மத்5:3'),
@@ -3743,11 +3749,11 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Peter Chrysologus, bishop and doctor', 6, 'லூக்6:43-45'),
 ('Saint Peter Chrysologus, bishop and doctor', 9, '_Pastor or _Doctor'),
 ('Saint Peter Claver, priest', 9, '_Pastor'),
-('Saint Peter Damian, bishop and doctor of the Church', 1, '2திமொ4:1-5'),
+('Saint Peter Damian, bishop and doctor of the Church', 1, '2திமொ4:1-5');
+INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Peter Damian, bishop and doctor of the Church', 2, 'திபா16:1-2a,5.7-8.11'),
 ('Saint Peter Damian, bishop and doctor of the Church', 5, 'யோவா15:9b,5b'),
-('Saint Peter Damian, bishop and doctor of the Church', 6, 'யோவா15:1-8');
-INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('Saint Peter Damian, bishop and doctor of the Church', 6, 'யோவா15:1-8'),
 ('Saint Peter Damian, bishop and doctor of the Church', 9, '_Pastor or _Doctor or _Saint~5'),
 ('Saint Peter Julian Eymard, priest', 9, '_Pastor'),
 ('Saint Philip Neri, priest', 1, 'பிலி4:4-9'),

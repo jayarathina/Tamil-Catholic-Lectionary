@@ -1,5 +1,5 @@
 <?php
-header ( 'Content-Type: text/html; charset=utf-8' );
+header ('Content-Type: text/html; charset=utf-8' );
 include_once 'lib/TamilLectionary/TamilLectionary.php';
 include_once 'lib/TamilLectionary/TamilLectionaryHTML.php';
 

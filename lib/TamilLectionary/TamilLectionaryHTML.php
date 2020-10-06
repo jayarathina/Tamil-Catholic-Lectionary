@@ -57,7 +57,7 @@ class TamilLectionaryHTML {
 	function getDay($date, $month, $evtID = 0, $altReadings = 0) {
 		// For safety, if improper numbers are passsed on
 		if (! isset ( $this->fullYear [$month] [$date] [$evtID] )) {
-			return '';
+			return 'விரைவில் பதிவேற்றப்படும்...';
 		}
 		$rt = '';
 		$notice = '';
@@ -270,29 +270,26 @@ class TamilLectionaryHTML {
 					] 
 			] );
 			
+			$rdCnt = '';
+			
 			// Give spaing to verses
 			$refTxt = TamilLectionaryUtil::formatVerseToPrint ( $value );
 			
-			// If alternative response is set (அல்லது:...), then extract it.
-			$altResponse = '';
-			preg_match ( '/(.*)\( *அல்லது *:?(.*?)\)/', $readingTxt ['introRes'], $matches );
-			if (! empty ( $matches )) {
-				$readingTxt ['introRes'] = $matches [1];
-				$altResponse = "<br/><span class='clrDay'>அல்லது :</span>" . $matches [2];
+			// Format response verse
+			// If alternative response is set அல்லது:..., then extract it.
+			$responseTxt = preg_split('/அல்லது:/', $readingTxt ['introRes'], -1, PREG_SPLIT_NO_EMPTY);
+			foreach ($responseTxt as $id => $value) {
+			    preg_match ( '/(.*)§(.*)/', $value, $matches );
+			    if($id == 0){
+			        if (! empty ( $matches )) {
+			            $rdCnt .= "<span class='clrDay italics'>$refTxt . (பல்லவி: $matches[2]) </span>";
+			            $rdCnt .= "<p><span class='clrDay italics' >பல்லவி:</span> {$matches[1]}";
+			        }
+			    }else{
+			        $rdCnt .= "<br/><span class='clrDay italics' >அல்லது: ($matches[2]) :</span> {$matches [1]}";
+			    }
 			}
-			
-			// Seperate the response verse ref from responce text.
-			$responseTxt = $readingTxt ['introRes'];
-			$responseRef = '';
-			preg_match ( '/(.*)§(.*)/', $readingTxt ['introRes'], $matches );
-			if (! empty ( $matches )) {
-				$responseTxt = $matches [1];
-				$responseRef = " (பல்லவி: $matches[2])";
-			}
-			
-			$rdCnt = '';
-			$rdCnt .= "<span class='clrDay italics'>$refTxt . $responseRef </span>";
-			$rdCnt .= "<p><span class='clrDay italics' >பல்லவி:</span> $responseTxt $altResponse</p>";
+			$rdCnt .= "</p>";
 			
 			// Format individual Verses
 			$rdCnt_temp = str_replace ( '℟', " - <span class='clrDay'>பல்லவி</span><br/><br/>§", $readingTxt ['Content'] );
@@ -354,7 +351,7 @@ class TamilLectionaryHTML {
 			
 			// Find alternatives available and mark them so
 			if (isset ( $readngType [2] ) && intval ( $readngType [2] ) > 1) {
-				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது </h4>" . $rdCnt;
+				$rdCnt = "<hr class='clrDay'/><h4 class='clrDay italics'>அல்லது</h4>" . $rdCnt;
 			}
 			$rt .= $rdCnt;
 		}

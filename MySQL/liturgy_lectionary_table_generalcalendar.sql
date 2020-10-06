@@ -167,7 +167,7 @@ INSERT INTO `generalcalendar` (`feast_month`, `feast_date`, `feast_code`, `feast
 (9, 19, 'Saint Januarius, bishop and martyr', 'புனித சனுவாரியு - ஆயர், மறைச்சாட்சி', 'OpMem'),
 (9, 20, 'Saint Andrew Kim Taegon, priest, and Paul Chong Hasang and companions, martyrs', 'புனிதர்கள் மறைப்பணியாளர் ஆன்ரு கிம் தே கோன், பவுல் சோங் காசாங், தோழர்கள் - மறைச்சாட்சியர்', 'Mem'),
 (9, 21, 'Saint Matthew the Evangelist, Apostle, Evangelist', 'புனித மத்தேயு - திருத்தூதர், நற்செய்தியாளர்', 'Feast'),
-(9, 23, 'Saint Pio of Pietrelcina (Padre Pio), priest', 'புனித பியோ, மறைப்பணியாளர்', 'OpMem'),
+(9, 23, 'Saint Pio of Pietrelcina (Padre Pio), priest', 'புனித பியோ, மறைப்பணியாளர்', 'Mem'),
 (9, 26, 'Saints Cosmas and Damian, martyrs', 'புனிதர்கள் கோஸ்மாஸ், தமியான் - மறைச்சாட்சியர்', 'OpMem'),
 (9, 27, 'Saint Vincent de Paul, priest', 'புனித வின்சென்ட் தே பவுல் - மறைப்பணியாளர்', 'Mem'),
 (9, 28, 'Saint Wenceslaus, martyr', 'புனித வென்செஸ்லாஸ் - மறைச்சாட்சி', 'OpMem'),

@@ -280,13 +280,21 @@ class TamilLectionaryHTML {
 			$responseTxt = preg_split('/அல்லது:/', $readingTxt ['introRes'], -1, PREG_SPLIT_NO_EMPTY);
 			foreach ($responseTxt as $id => $value) {
 			    preg_match ( '/(.*)§(.*)/', $value, $matches );
-			    if($id == 0){
+			    $matches = array_map('trim', $matches); //trim all values
+			    if($id == 0){//For the first verse the verse ref has to be attached with psalms
 			        if (! empty ( $matches )) {
 			            $rdCnt .= "<span class='clrDay italics'>$refTxt . (பல்லவி: $matches[2]) </span>";
 			            $rdCnt .= "<p><span class='clrDay italics' >பல்லவி:</span> {$matches[1]}";
+			        }else{
+			            $rdCnt .= "<span class='clrDay italics'>$refTxt</span>";
+			            $rdCnt .= "<p><span class='clrDay italics' >பல்லவி:</span> $value";
 			        }
 			    }else{
-			        $rdCnt .= "<br/><span class='clrDay italics' >அல்லது: ($matches[2]) :</span> {$matches [1]}";
+			        if (! empty ( $matches )) {
+			            $rdCnt .= "</p><p><span class='clrDay italics' >அல்லது: ($matches[2]) :</span> {$matches [1]}";
+			        }else{
+			            $rdCnt .= "</p><p><span class='clrDay italics' >அல்லது:</span> $value";
+			        }
 			    }
 			}
 			$rdCnt .= "</p>";

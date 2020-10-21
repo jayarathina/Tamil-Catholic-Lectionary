@@ -71,17 +71,17 @@ class TamilLectionaryUtil {
 	 */
 	public static function expandBibleRef($readingCode) {
 		$fVerse = TamilLectionaryUtil::formatVerseToPrint ( $readingCode );
-		if (strlen ( $readingCode ) === 0)
-			return false; // For alleluia
+		if(strlen($readingCode) === 0) return false; // For alleluia
 		if (strpos ( $fVerse, ' ', 1 ) === 1) {
 			$fVerse = substr_replace ( $fVerse, '', 1, 1 );
 		}
 		$pieces = explode ( ' ', $fVerse, 2 );
 		if (isset ( TamilLectionaryUtil::$tamilAbbr [$pieces [0]] )) {
-			$fVerse = TamilLectionaryUtil::$tamilAbbr [$pieces [0]] . ' வாசகம் ' . $pieces [1];
-		} else {
-			return FALSE;
-		}
+			$fVerse = TamilLectionaryUtil::$tamilAbbr [$pieces [0]] . ' வாசகம் ';
+			if(strpos($pieces [1], '(') !== false) //தானி (இ) or எஸ் (கி)
+				$fVerse .= $pieces [0] . ' ';
+			$fVerse .= $pieces [1];
+		} else return FALSE;
 		return $fVerse;
 	}
 	
@@ -136,7 +136,7 @@ class TamilLectionaryUtil {
 			'1குறி' => 'குறிப்பேடு முதல் நூலிலிருந்து',
 			'2குறி' => 'குறிப்பேடு இரண்டாம் நூலிலிருந்து',
 			'எஸ்ரா' => 'எஸ்ரா நூலிலிருந்து',
-			'நெகே' => 'இறைவாக்கினர் நெகேமியா நூலிலிருந்து',
+			'நெகே' => 'நெகேமியா நூலிலிருந்து',
 			'எஸ்' => 'எஸ்தர் நூலிலிருந்து',
 			'யோபு' => 'யோபு நூலிலிருந்து',
 			'திபா' => 'திருப்பாடல்', // 'திருப்பாடல் நூலிலிருந்து',

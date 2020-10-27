@@ -261,7 +261,7 @@ class TamilLectionaryUtil {
 			'All Souls' => '' 
 	];
 	public static $commonsList = [ 
-			'_Church' => 'கோவில் நேர்ந்தளிப்பு அண்டு நாள்',
+			'_Church' => 'கோவில் நேர்ந்தளிப்பு ஆண்டு நாள்',
 			'_Mary' => 'தூய கன்னி மரியா - பொது',
 			'_Martyr' => 'மறைச்சாட்சியர் - பொது',
 			'_Pastor' => 'மறைப்பணியாளர் - பொது',

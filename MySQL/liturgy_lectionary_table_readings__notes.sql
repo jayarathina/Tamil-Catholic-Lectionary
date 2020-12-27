@@ -7,7 +7,7 @@
 
 CREATE TABLE `readings__notes` (
   `dayID` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `notesPos` float NOT NULL DEFAULT '0',
+  `notesPos` float NOT NULL DEFAULT 0,
   `Content` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

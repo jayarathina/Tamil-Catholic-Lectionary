@@ -3267,7 +3267,7 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Bernard of Clairvaux, abbot and doctor of the Church', 2, 'திபா119:9-10.11-12.13-14'),
 ('Saint Bernard of Clairvaux, abbot and doctor of the Church', 5, 'யோவா15:9b,5b'),
 ('Saint Bernard of Clairvaux, abbot and doctor of the Church', 6, 'யோவா17:20-26'),
-('Saint Bernard of Clairvaux, abbot and doctor of the Church', 9, '_Doctor or _Saint~5'),
+('Saint Bernard of Clairvaux, abbot and doctor of the Church', 9, '_Doctor or _Saint'),
 ('Saint Bernardine of Siena, priest', 1, 'திப4:8-12'),
 ('Saint Bernardine of Siena, priest', 2, 'திபா40:1,3a.6-7a,7b-8.9'),
 ('Saint Bernardine of Siena, priest', 5, 'யோவா8:12'),
@@ -3441,6 +3441,7 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Gertrude the Great, virgin', 5, 'யோவா15:9b,5b'),
 ('Saint Gertrude the Great, virgin', 6, 'யோவா15:1-8'),
 ('Saint Gertrude the Great, virgin', 9, '_Virgin or _Saint~5'),
+('Saint Gregory of Narek, abbot and doctor of the Church', 9, '_Doctor or _Saint'),
 ('Saint Gregory the Great, pope and doctor', 1, '2கொரி4:1-2,5-7'),
 ('Saint Gregory the Great, pope and doctor', 2, 'திபா96:1-2a.2b-3.7-8a.10'),
 ('Saint Gregory the Great, pope and doctor', 5, 'யோவா15:15b'),
@@ -3466,6 +3467,7 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Hilary of Poitiers, bishop and doctor', 5, 'மத்5:16'),
 ('Saint Hilary of Poitiers, bishop and doctor', 6, 'மத்5:13-19'),
 ('Saint Hilary of Poitiers, bishop and doctor', 9, '_Pastor or _Doctor'),
+('Saint Hildegard of Bingen, Virgin and Doctor', 9, '_Virgin or _Saint~5'),
 ('Saint Ignatius of Antioch, bishop and martyr', 1, 'பிலி3:17-4:1'),
 ('Saint Ignatius of Antioch, bishop and martyr', 2, 'திபா34:1-2.3-4.5-6.7-8'),
 ('Saint Ignatius of Antioch, bishop and martyr', 5, 'யாக்1:12'),
@@ -3552,6 +3554,7 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint John Leonardi, priest', 5, 'மாற்1:17'),
 ('Saint John Leonardi, priest', 6, 'லூக்5:1-11'),
 ('Saint John Leonardi, priest', 9, '_Pastor or _Saint~1'),
+('Saint John of Avila, priest and doctor', 9, '_Doctor or _Pastor'),
 ('Saint John of Capistrano, priest', 1, '2கொரி5:14-20'),
 ('Saint John of Capistrano, priest', 2, 'திபா16:1-2a,5.7-8.11'),
 ('Saint John of Capistrano, priest', 5, 'யோவா8:12'),
@@ -3747,12 +3750,12 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Peter Chanel, priest and martyr', 2, 'திபா117:1.2'),
 ('Saint Peter Chanel, priest and martyr', 5, 'மாற்1:17'),
 ('Saint Peter Chanel, priest and martyr', 6, 'மாற்1:14-20'),
-('Saint Peter Chanel, priest and martyr', 9, '_Martyr or _Pastor~6'),
+('Saint Peter Chanel, priest and martyr', 9, '_Martyr or _Pastor~6');
+INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Saint Peter Chrysologus, bishop and doctor', 1, 'எபே3:8-12'),
 ('Saint Peter Chrysologus, bishop and doctor', 2, 'திபா119:9-10.11-12.13-14'),
 ('Saint Peter Chrysologus, bishop and doctor', 5, 'யோவா15:5'),
-('Saint Peter Chrysologus, bishop and doctor', 6, 'லூக்6:43-45');
-INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
+('Saint Peter Chrysologus, bishop and doctor', 6, 'லூக்6:43-45'),
 ('Saint Peter Chrysologus, bishop and doctor', 9, '_Pastor or _Doctor'),
 ('Saint Peter Claver, priest', 9, '_Pastor'),
 ('Saint Peter Damian, bishop and doctor of the Church', 1, '2திமொ4:1-5'),

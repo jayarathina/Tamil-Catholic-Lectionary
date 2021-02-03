@@ -124,7 +124,7 @@ INSERT INTO `generalcalendar` (`feast_month`, `feast_date`, `feast_code`, `feast
 (7, 24, 'Saint Sharbel Makhluf, hermit', 'புனித சார்பெல் மாக்லுப் - மறைப்பணியாளர்', 'OpMem'),
 (7, 25, 'Saint James, apostle', 'புனித யாக்கோபு - திருத்தூதர்', 'Feast'),
 (7, 26, 'Saints Joachim and Anne', 'புனிதர்கள் சுவக்கீம், அன்னா - தூய மரியாவின் பெற்றோர்', 'Mem'),
-(7, 29, 'Saint Martha', 'புனித மார்த்தா', 'Mem'),
+(7, 29, 'Saints Martha, Mary and Lazarus', 'புனிதர்கள் மார்த்தா, மரியா, இலாசர்', 'Mem'),
 (7, 30, 'Saint Peter Chrysologus, bishop and doctor', 'புனித பீட்டர் கிறிசோலோகு - ஆயர், மறைவல்லுநர்', 'OpMem'),
 (7, 31, 'Saint Ignatius of Loyola, priest', 'புனித லொயோலா இஞ்ஞாசி - மறைப்பணியாளர்', 'Mem'),
 (8, 1, 'Saint Alphonsus Maria de Liguori, bishop and doctor of the Church', 'புனித அல்போன்ஸ் மரிய லிகோரி - ஆயர், மறைவல்லுநர்', 'Mem'),

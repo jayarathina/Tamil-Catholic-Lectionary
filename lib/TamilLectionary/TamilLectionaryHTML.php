@@ -283,8 +283,8 @@ class TamilLectionaryHTML {
 			    $matches = array_map('trim', $matches); //trim all values
 			    if($id == 0){//For the first verse the verse ref has to be attached with psalms
 			        if (! empty ( $matches )) {
-			            $rdCnt .= "<span class='clrDay italics'>$refTxt . (பல்லவி: $matches[2]) </span>";
-			            $rdCnt .= "<p><span class='clrDay italics' >பல்லவி:</span> {$matches[1]}";
+			            $rdCnt .= "<span class='clrDay italics'>$refTxt (பல்லவி: $matches[2]) </span>";
+			            $rdCnt .= "<p><span class='clrDay italics'>பல்லவி:</span> {$matches[1]}";
 			        }else{
 			            $rdCnt .= "<span class='clrDay italics'>$refTxt</span>";
 			            $rdCnt .= "<p><span class='clrDay italics' >பல்லவி:</span> $value";
@@ -627,11 +627,10 @@ class TamilLectionaryHTML {
 	 * @return string - HTML formated readings
 	 */
 	function getCommons($commonsCode) {
-		// TODO Should display only the subcategory of readings as recieved in $subType
+		// TODO Should display only the subcategory of readings as recieved in $subType 
 		$commonsCode_ = explode ( '~', $commonsCode . '~', 2 );
 		$commonsCode = $commonsCode_ [0];
-		$subType = intval ( $commonsCode_ [1] );
-		
+		// $subType = intval ( $commonsCode_ [1] );
 		$readingType = [ 
 				'1' => "<p class='readingsTitle clrDay commonsTitle'>முதல் வாசகங்கள்</p> <p  class='readingsTitle commonsSubTitle'>பழைய ஏற்பாட்டிலிருந்து</p>",
 				'2' => "<p class='readingsTitle commonsSubTitle'>பாஸ்கா காலத்தில்</p> <p class='readingsTitle clrDay commonsTitle'>முதல் வாசகங்கள்</p> <p  class='readingsTitle commonsSubTitle'>புதிய ஏற்பாட்டிலிருந்து</p>",

@@ -33,6 +33,15 @@ class TamilLectionaryReadings {
 			foreach ( $value as $days => $feasts ) {
 				foreach ( $feasts as $key => $feast ) {
 					$rcy->fullYear [$month] [$days] [$key] ['readings'] = $this->setSingleReading ( $feast ['code'], $rcy->calcConfig ['calendars'] );
+
+					// If not Sunday, Feast-Lord will have only one reading
+					if(isset($feast['type']) && $feast['type'] == 'Feast-Lord' && date("w", strtotime($rcy->currentYear . "-$month-$days")) !== '0' ){
+						$rcy->fullYear [$month] [$days] [$key] ['readings'] ['1.1'] = $rcy->fullYear [$month] [$days] [$key] ['readings']['1'];
+						$rcy->fullYear [$month] [$days] [$key] ['readings'] ['1.2'] = $rcy->fullYear [$month] [$days] [$key] ['readings']['3'];
+
+						unset($rcy->fullYear [$month] [$days] [$key] ['readings']['1']);
+						unset($rcy->fullYear [$month] [$days] [$key] ['readings']['3']);
+					}
 					
 					if ('LW06-4Thu' === $feast ['code']) // Add alternative chrism mass on holy thuresday
 						$rcy->fullYear [$month] [$days] [1] = $this->getChrismMass ();
@@ -176,7 +185,7 @@ class TamilLectionaryReadings {
 	function getChrismMass() {
 		$return_val = [ 
 				'code' => 'LW06-4Thu~Chrism',
-				'rank' => 1.2, // Shouls be less than 1.1
+				'rank' => 1.2, // Should be less than 1.1
 				'color' => 'white',
 				'ta_name' => 'திருத்தைலத் திருப்பலி' 
 		];

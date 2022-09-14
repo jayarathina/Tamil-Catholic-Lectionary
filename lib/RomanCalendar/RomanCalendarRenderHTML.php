@@ -15,7 +15,7 @@ class RomanCalendarRenderHTML {
 		
 		$this->setDayNames ();
 		
-		$rows = '<tr> <th colspan="3">' . $rcy->currentYear . '</th> </tr>';
+		$rows = "<tr><th colspan=3> <a class='arrowRight' href='index.php?year=" . ($rcy->currentYear - 1) . "'>◄</a> {$rcy->currentYear} <a class='arrowLeft' href='index.php?year=" . ($rcy->currentYear + 1) . "'>►</a> </th></tr>";
 		foreach ( $this->rcy->fullYear as $month => $value ) {
 			foreach ( $value as $days => $feasts ) {
 				$tempDt2 = new DateTime ( $rcy->__get ( 'currentYear' ) . "-$month-$days" );

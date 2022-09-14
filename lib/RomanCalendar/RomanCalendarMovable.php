@@ -222,7 +222,7 @@ class RomanCalendarMovable {
 			case 1 :
 			case 2 :
 			case 2.4 :
-			case 3 :
+			case 3.1:
 			case 4.1 :
 			case 4.2 :
 			case 4.3 :

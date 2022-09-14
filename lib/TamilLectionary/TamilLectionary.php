@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Mother class of all.
  *
@@ -7,8 +6,8 @@
  *
  */
 include_once ('lib/RomanCalendar/RomanCalendar.php');
-include_once ('lib/TamilLectionary/TamilLectionaryFeastNameFramer.php');
-include_once ('lib/TamilLectionary/TamilLectionaryReadings.php');
+include_once ('TamilLectionaryFeastNameFramer.php');
+include_once ('TamilLectionaryReadings.php');
 class TamilLectionary {
 	public $fullYear;
 	public $curYear;

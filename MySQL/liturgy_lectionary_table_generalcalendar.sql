@@ -10,7 +10,7 @@ CREATE TABLE `generalcalendar` (
   `feast_date` tinyint(2) NOT NULL,
   `feast_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `feast_ta` text COLLATE utf8_unicode_ci NOT NULL,
-  `feast_type` enum('Solemnity','Solemnity-Lord','Feast-Lord','Feast','Mem-Mary','Mem','OpMem') COLLATE utf8_unicode_ci NOT NULL
+  `feast_type` enum('Solemnity','Feast-Lord','Feast','Mem-Mary','Mem','OpMem') COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --

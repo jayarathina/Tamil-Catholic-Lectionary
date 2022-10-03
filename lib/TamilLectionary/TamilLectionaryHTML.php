@@ -153,7 +153,7 @@ class TamilLectionaryHTML {
 					// For Palm Sunday and Good Friday style for Gospel is different
 					if ($i == 6 && ($currtDay ['code'] == 'LW06-0Sun' || $currtDay ['code'] == 'LW06-5Fri')) {
 						$currReadings = str_replace ( "<span class='clrDay'>✠</span>", '', $currReadings );
-						$currReadings = str_replace ( 'எழுதிய நற்செய்தியிலிருந்து வாசகம்', 'எழுதியபடி நம் ஆண்டவராகிய இயேசு கிறிஸ்துவின் திருப்பாடுகள் ', $currReadings );
+						$currReadings = str_replace ( 'எழுதிய தூய நற்செய்தியிலிருந்து வாசகம்', 'எழுதியபடி நம் ஆண்டவராகிய இயேசு கிறிஸ்துவின் திருப்பாடுகள் ', $currReadings );
 						$currReadings = str_replace ( 'ஆண்டவரின் அருள்வாக்கு.', '', $currReadings );
 					}
 					break;

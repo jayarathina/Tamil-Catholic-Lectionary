@@ -6,9 +6,9 @@
 --
 
 CREATE TABLE `readings__list` (
-  `dayID` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `dayID` varchar(255) NOT NULL,
   `type` float NOT NULL COMMENT '1-R1; 2-Res; 3-R2; 4-Seq; 5-Al; 6- Gos; 0-Pro;  0.0001-அறச்செயலில் ஈடுபட்டோர்; 0.0002 - கல்விப் பணியாற்றியோர்; 0.0003 - கைம்பெண்கள்; 0.0004 - திருத்தந்தை;  0.0005 - துறவியர்; 0.0006 - மறைபரப்புப் பணியாளர்; 0.00001 - பாஸ்கா காலம்',
-  `ref` text COLLATE utf8_unicode_ci NOT NULL
+  `ref` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -954,7 +954,6 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('Immaculate Conception of the Blessed Virgin Mary', 5, 'லூக்1:28'),
 ('Immaculate Conception of the Blessed Virgin Mary', 6, 'லூக்1:26-38'),
 ('IN Blessed Augustine Thevarparambil, priest', 9, '_Pastor'),
-('IN Blessed Devasahayam Pillai, martyr', 9, '_Martyr'),
 ('IN Blessed Maria Theresa Chiramel, virgin', 1, 'தொநூ12:1-4a'),
 ('IN Blessed Maria Theresa Chiramel, virgin', 2, 'திபா45:10-11.13-14.15-16'),
 ('IN Blessed Maria Theresa Chiramel, virgin', 3, 'கலா2:19-21'),
@@ -968,6 +967,7 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('IN Saint Alphonsa of the Immaculate Conception (Alphonsa Muttathupadathu), virgin', 5, 'யோவா12:26'),
 ('IN Saint Alphonsa of the Immaculate Conception (Alphonsa Muttathupadathu), virgin', 6, 'யோவா12:20-26'),
 ('IN Saint Alphonsa of the Immaculate Conception (Alphonsa Muttathupadathu), virgin', 9, '_Virgin'),
+('IN Saint Devasahayam Pillai, martyr', 9, '_Martyr'),
 ('IN Saint Euphrasia, virgin', 9, '_Virgin'),
 ('IN Saint Francis Xavier, priest', 1, 'எசா61:1-3'),
 ('IN Saint Francis Xavier, priest', 2, 'திபா117:1.2'),
@@ -3057,7 +3057,7 @@ INSERT INTO `readings__list` (`dayID`, `type`, `ref`) VALUES
 ('OW33-0Sun C', 6, 'லூக்21:5-19'),
 ('OW33-1Mon', 5, 'யோவா8:12'),
 ('OW33-1Mon', 6, 'லூக்18:35-43'),
-('OW33-1Mon 1', 1, '1மக்1:10-15,41-43,54-57,62-63'),
+('OW33-1Mon 1', 1, '1மக்1:10-15,41-43,54-57,62-64'),
 ('OW33-1Mon 1', 2, 'திபா119:53,61.134,150.155,158'),
 ('OW33-1Mon 2', 1, 'திவெ1:1-4;2:1-5a'),
 ('OW33-1Mon 2', 2, 'திபா1:1-2.3.4,6'),
